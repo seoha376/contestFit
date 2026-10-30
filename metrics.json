@@ -1,0 +1,461 @@
+{
+  "evidence": {
+    "overall": {
+      "matched": 104,
+      "checked": 104,
+      "rate": 1.0
+    },
+    "by_field": {
+      "activity_period": {
+        "matched": 3,
+        "checked": 3,
+        "rate": 1.0
+      },
+      "deadline": {
+        "matched": 11,
+        "checked": 11,
+        "rate": 1.0
+      },
+      "deliverable_type": {
+        "matched": 7,
+        "checked": 7,
+        "rate": 1.0
+      },
+      "eligibility": {
+        "matched": 10,
+        "checked": 10,
+        "rate": 1.0
+      },
+      "employment_type": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "entry_fee": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "job_role": {
+        "matched": 0,
+        "checked": 0,
+        "rate": null
+      },
+      "onsite_required": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "organizer": {
+        "matched": 12,
+        "checked": 12,
+        "rate": 1.0
+      },
+      "participation_form": {
+        "matched": 3,
+        "checked": 3,
+        "rate": 1.0
+      },
+      "pay": {
+        "matched": 0,
+        "checked": 0,
+        "rate": null
+      },
+      "period": {
+        "matched": 11,
+        "checked": 11,
+        "rate": 1.0
+      },
+      "region": {
+        "matched": 5,
+        "checked": 5,
+        "rate": 1.0
+      },
+      "reward": {
+        "matched": 10,
+        "checked": 10,
+        "rate": 1.0
+      },
+      "rights_clause": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "stipend": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "team_size": {
+        "matched": 2,
+        "checked": 2,
+        "rate": 1.0
+      },
+      "title": {
+        "matched": 12,
+        "checked": 12,
+        "rate": 1.0
+      },
+      "type": {
+        "matched": 12,
+        "checked": 12,
+        "rate": 1.0
+      },
+      "weekly_hours": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "workplace": {
+        "matched": 0,
+        "checked": 0,
+        "rate": null
+      }
+    },
+    "by_type": {
+      "공모전": {
+        "matched": 62,
+        "checked": 62,
+        "rate": 1.0
+      },
+      "대외활동": {
+        "matched": 31,
+        "checked": 31,
+        "rate": 1.0
+      },
+      "인턴": {
+        "matched": 11,
+        "checked": 11,
+        "rate": 1.0
+      }
+    }
+  },
+  "rules": {
+    "deadline": {
+      "matched": 10,
+      "checked": 11,
+      "match_rate": 0.9091
+    },
+    "entry_fee": {
+      "matched": 1,
+      "checked": 1,
+      "match_rate": 1.0
+    },
+    "participation_form": {
+      "matched": 1,
+      "checked": 3,
+      "match_rate": 0.3333
+    },
+    "onsite_required": {
+      "matched": 1,
+      "checked": 1,
+      "match_rate": 1.0
+    }
+  },
+  "fill": {
+    "by_type": {
+      "공모전": {
+        "type": {
+          "null": 0,
+          "total": 7,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "title": {
+          "null": 0,
+          "total": 7,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "organizer": {
+          "null": 0,
+          "total": 7,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "deadline": {
+          "null": 0,
+          "total": 7,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "region": {
+          "null": 7,
+          "total": 7,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "eligibility": {
+          "null": 0,
+          "total": 7,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "participation_form": {
+          "null": 5,
+          "total": 7,
+          "null_rate": 0.7143,
+          "fill_rate": 0.2857
+        },
+        "team_size": {
+          "null": 6,
+          "total": 7,
+          "null_rate": 0.8571,
+          "fill_rate": 0.1429
+        },
+        "onsite_required": {
+          "null": 6,
+          "total": 7,
+          "null_rate": 0.8571,
+          "fill_rate": 0.1429
+        },
+        "reward": {
+          "null": 0,
+          "total": 7,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "period": {
+          "null": 0,
+          "total": 7,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "deliverable_type": {
+          "null": 0,
+          "total": 7,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "rights_clause": {
+          "null": 6,
+          "total": 7,
+          "null_rate": 0.8571,
+          "fill_rate": 0.1429
+        },
+        "entry_fee": {
+          "null": 6,
+          "total": 7,
+          "null_rate": 0.8571,
+          "fill_rate": 0.1429
+        }
+      },
+      "대외활동": {
+        "type": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "title": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "organizer": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "deadline": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "region": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "eligibility": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "participation_form": {
+          "null": 2,
+          "total": 3,
+          "null_rate": 0.6667,
+          "fill_rate": 0.3333
+        },
+        "team_size": {
+          "null": 2,
+          "total": 3,
+          "null_rate": 0.6667,
+          "fill_rate": 0.3333
+        },
+        "onsite_required": {
+          "null": 3,
+          "total": 3,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "reward": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "period": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "activity_period": {
+          "null": 0,
+          "total": 3,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "weekly_hours": {
+          "null": 2,
+          "total": 3,
+          "null_rate": 0.6667,
+          "fill_rate": 0.3333
+        },
+        "stipend": {
+          "null": 2,
+          "total": 3,
+          "null_rate": 0.6667,
+          "fill_rate": 0.3333
+        }
+      },
+      "인턴": {
+        "type": {
+          "null": 0,
+          "total": 2,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "title": {
+          "null": 0,
+          "total": 2,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "organizer": {
+          "null": 0,
+          "total": 2,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "deadline": {
+          "null": 1,
+          "total": 2,
+          "null_rate": 0.5,
+          "fill_rate": 0.5
+        },
+        "region": {
+          "null": 0,
+          "total": 2,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "eligibility": {
+          "null": 2,
+          "total": 2,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "participation_form": {
+          "null": 2,
+          "total": 2,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "team_size": {
+          "null": 2,
+          "total": 2,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "onsite_required": {
+          "null": 2,
+          "total": 2,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "reward": {
+          "null": 2,
+          "total": 2,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "period": {
+          "null": 1,
+          "total": 2,
+          "null_rate": 0.5,
+          "fill_rate": 0.5
+        },
+        "job_role": {
+          "null": 2,
+          "total": 2,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "employment_type": {
+          "null": 1,
+          "total": 2,
+          "null_rate": 0.5,
+          "fill_rate": 0.5
+        },
+        "workplace": {
+          "null": 2,
+          "total": 2,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "pay": {
+          "null": 2,
+          "total": 2,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        }
+      }
+    },
+    "common_field_count": 11,
+    "type_specific_field_count": {
+      "공모전": 3,
+      "대외활동": 3,
+      "인턴": 4
+    },
+    "type_specific_to_common_ratio": {
+      "공모전": 0.2727,
+      "대외활동": 0.2727,
+      "인턴": 0.3636
+    }
+  },
+  "mismatches": {
+    "participation_form": [
+      {
+        "id": "50bee33adad9109e",
+        "value": "개인",
+        "rule_value": null,
+        "evidence": "- 국민 누구나 개인 자격으로 참가 가능, 법인·단체·사업자 명의 불가",
+        "position": 824
+      },
+      {
+        "id": "03a90df742d14a86",
+        "value": "둘다",
+        "rule_value": null,
+        "evidence": "- 혼자도, 친구와 둘이 한 팀으로도 지원할 수 있습니다",
+        "position": 1201
+      }
+    ],
+    "deadline": [
+      {
+        "id": "03a90df742d14a86",
+        "value": "2027-01-18",
+        "rule_value": null,
+        "evidence": "[접수기간]\n2026년 10월 18일 ~ 2027년 01월 18일",
+        "position": 895
+      }
+    ]
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "collected_at": "2026-10-28T07:27:17.175752+00:00",
+  "robots_url": "https://linkareer.com/robots.txt",
+  "candidate_source": "https://linkareer.com/list/contest",
+  "list_pages": [
+    "https://linkareer.com/list/contest?page=1"
+  ],
+  "request_count": 25,
+  "request_limit": 80,
+  "min_delay_seconds": 2.0,
+  "target_total": 30,
+  "target_new": 23,
+  "existing_count": 7,
+  "new_count": 23,
+  "counts": {
+    "공모전": 30
+  },
+  "candidate_outcomes": {
+    "existing_or_duplicate": 0,
+    "expired": 0,
+    "missing_direct_deadline": 0,
+    "wrong_type": 0,
+    "request_error": 0,
+    "selected": 23
+  },
+  "items": [
+    {
+      "id": "90d16e8f7af016fc",
+      "source_url": "https://linkareer.com/activity/357817",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "디자인/예술",
+      "raw_html_file": "raw\\90d16e8f7af016fc.html",
+      "raw_text_file": "raw\\90d16e8f7af016fc.txt"
+    },
+    {
+      "id": "50bee33adad9109e",
+      "source_url": "https://linkareer.com/activity/357818",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\50bee33adad9109e.html",
+      "raw_text_file": "raw\\50bee33adad9109e.txt"
+    },
+    {
+      "id": "1811d39c3cd41950",
+      "source_url": "https://linkareer.com/activity/357820",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\1811d39c3cd41950.html",
+      "raw_text_file": "raw\\1811d39c3cd41950.txt"
+    },
+    {
+      "id": "31018040a0476696",
+      "source_url": "https://linkareer.com/activity/357821",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\31018040a0476696.html",
+      "raw_text_file": "raw\\31018040a0476696.txt"
+    },
+    {
+      "id": "38b258b4cdbaeb11",
+      "source_url": "https://linkareer.com/activity/356549",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\38b258b4cdbaeb11.html",
+      "raw_text_file": "raw\\38b258b4cdbaeb11.txt"
+    },
+    {
+      "id": "dec8ffbdd716df9f",
+      "source_url": "https://linkareer.com/activity/356564",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\dec8ffbdd716df9f.html",
+      "raw_text_file": "raw\\dec8ffbdd716df9f.txt"
+    },
+    {
+      "id": "20bba634f2e9bbfd",
+      "source_url": "https://linkareer.com/activity/357852",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\20bba634f2e9bbfd.html",
+      "raw_text_file": "raw\\20bba634f2e9bbfd.txt"
+    },
+    {
+      "id": "6658219099ecdc58",
+      "source_url": "https://linkareer.com/activity/358840",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "디자인/예술",
+      "raw_html_file": "raw\\6658219099ecdc58.html",
+      "raw_text_file": "raw\\6658219099ecdc58.txt"
+    },
+    {
+      "id": "6a8f178313c30e88",
+      "source_url": "https://linkareer.com/activity/355613",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\6a8f178313c30e88.html",
+      "raw_text_file": "raw\\6a8f178313c30e88.txt"
+    },
+    {
+      "id": "d60209357585cf8b",
+      "source_url": "https://linkareer.com/activity/358629",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\d60209357585cf8b.html",
+      "raw_text_file": "raw\\d60209357585cf8b.txt"
+    },
+    {
+      "id": "a15b52f50572c8dd",
+      "source_url": "https://linkareer.com/activity/358929",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "과학/공학",
+      "raw_html_file": "raw\\a15b52f50572c8dd.html",
+      "raw_text_file": "raw\\a15b52f50572c8dd.txt"
+    },
+    {
+      "id": "02aeef30eac884ae",
+      "source_url": "https://linkareer.com/activity/360080",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\02aeef30eac884ae.html",
+      "raw_text_file": "raw\\02aeef30eac884ae.txt"
+    },
+    {
+      "id": "f5b5a5c472f36432",
+      "source_url": "https://linkareer.com/activity/342034",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\f5b5a5c472f36432.html",
+      "raw_text_file": "raw\\f5b5a5c472f36432.txt"
+    },
+    {
+      "id": "f75ed85a5321c4a5",
+      "source_url": "https://linkareer.com/activity/351157",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "경영/금융",
+      "raw_html_file": "raw\\f75ed85a5321c4a5.html",
+      "raw_text_file": "raw\\f75ed85a5321c4a5.txt"
+    },
+    {
+      "id": "4d952afa37972fe8",
+      "source_url": "https://linkareer.com/activity/359538",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\4d952afa37972fe8.html",
+      "raw_text_file": "raw\\4d952afa37972fe8.txt"
+    },
+    {
+      "id": "418b705aa4232fb7",
+      "source_url": "https://linkareer.com/activity/360404",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\418b705aa4232fb7.html",
+      "raw_text_file": "raw\\418b705aa4232fb7.txt"
+    },
+    {
+      "id": "eed1812d21af3550",
+      "source_url": "https://linkareer.com/activity/360403",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\eed1812d21af3550.html",
+      "raw_text_file": "raw\\eed1812d21af3550.txt"
+    },
+    {
+      "id": "75cfa447df5e3a3e",
+      "source_url": "https://linkareer.com/activity/360396",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\75cfa447df5e3a3e.html",
+      "raw_text_file": "raw\\75cfa447df5e3a3e.txt"
+    },
+    {
+      "id": "728d81257d3244ba",
+      "source_url": "https://linkareer.com/activity/360339",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\728d81257d3244ba.html",
+      "raw_text_file": "raw\\728d81257d3244ba.txt"
+    },
+    {
+      "id": "cdd42e0d01944f9d",
+      "source_url": "https://linkareer.com/activity/360309",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\cdd42e0d01944f9d.html",
+      "raw_text_file": "raw\\cdd42e0d01944f9d.txt"
+    },
+    {
+      "id": "44faa9beca11bec4",
+      "source_url": "https://linkareer.com/activity/360286",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\44faa9beca11bec4.html",
+      "raw_text_file": "raw\\44faa9beca11bec4.txt"
+    },
+    {
+      "id": "7022c12a6276257d",
+      "source_url": "https://linkareer.com/activity/360285",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "환경/사회",
+      "raw_html_file": "raw\\7022c12a6276257d.html",
+      "raw_text_file": "raw\\7022c12a6276257d.txt"
+    },
+    {
+      "id": "d135e88e6af7ad11",
+      "source_url": "https://linkareer.com/activity/360283",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "과학/공학",
+      "raw_html_file": "raw\\d135e88e6af7ad11.html",
+      "raw_text_file": "raw\\d135e88e6af7ad11.txt"
+    },
+    {
+      "id": "bc2fb76a70b45368",
+      "source_url": "https://linkareer.com/activity/360253",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\bc2fb76a70b45368.html",
+      "raw_text_file": "raw\\bc2fb76a70b45368.txt"
+    },
+    {
+      "id": "318f863d38930705",
+      "source_url": "https://linkareer.com/activity/360251",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "경영/금융",
+      "raw_html_file": "raw\\318f863d38930705.html",
+      "raw_text_file": "raw\\318f863d38930705.txt"
+    },
+    {
+      "id": "7f5234cd9d78a71f",
+      "source_url": "https://linkareer.com/activity/360224",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\7f5234cd9d78a71f.html",
+      "raw_text_file": "raw\\7f5234cd9d78a71f.txt"
+    },
+    {
+      "id": "a0f5483fd9cb23e7",
+      "source_url": "https://linkareer.com/activity/360215",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\a0f5483fd9cb23e7.html",
+      "raw_text_file": "raw\\a0f5483fd9cb23e7.txt"
+    },
+    {
+      "id": "773bb8ad87e21618",
+      "source_url": "https://linkareer.com/activity/360141",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\773bb8ad87e21618.html",
+      "raw_text_file": "raw\\773bb8ad87e21618.txt"
+    },
+    {
+      "id": "23b5778c0e4433fd",
+      "source_url": "https://linkareer.com/activity/360109",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\23b5778c0e4433fd.html",
+      "raw_text_file": "raw\\23b5778c0e4433fd.txt"
+    },
+    {
+      "id": "c9ae25ac194be349",
+      "source_url": "https://linkareer.com/activity/360083",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\c9ae25ac194be349.html",
+      "raw_text_file": "raw\\c9ae25ac194be349.txt"
+    }
+  ],
+  "notes": []
+}

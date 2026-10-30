@@ -1,0 +1,154 @@
+{
+  "collected_at": "2026-10-27T10:46:14.099873+00:00",
+  "robots_url": "https://linkareer.com/robots.txt",
+  "sitemaps": [
+    "https://linkareer.com/sitemap/activities/138.xml",
+    "https://linkareer.com/sitemap/activities/88.xml",
+    "https://linkareer.com/sitemap/activities/137.xml",
+    "https://linkareer.com/sitemap/activities/136.xml"
+  ],
+  "candidate_count": 3554,
+  "request_count": 150,
+  "request_limit": 150,
+  "min_delay_seconds": 2.0,
+  "targets": {
+    "공모전": 20,
+    "대외활동": 10,
+    "인턴": 10
+  },
+  "counts": {
+    "공모전": 7,
+    "대외활동": 3,
+    "인턴": 2
+  },
+  "domain_counts": {
+    "공모전": {
+      "디자인/예술": 1,
+      "IT/데이터": 3,
+      "기타": 3
+    },
+    "대외활동": {
+      "마케팅/콘텐츠": 1,
+      "IT/데이터": 1,
+      "기타": 1
+    },
+    "인턴": {
+      "마케팅/콘텐츠": 2
+    }
+  },
+  "items": [
+    {
+      "id": "90d16e8f7af016fc",
+      "source_url": "https://linkareer.com/activity/357817",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "디자인/예술",
+      "raw_html_file": "raw\\90d16e8f7af016fc.html",
+      "raw_text_file": "raw\\90d16e8f7af016fc.txt"
+    },
+    {
+      "id": "50bee33adad9109e",
+      "source_url": "https://linkareer.com/activity/357818",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\50bee33adad9109e.html",
+      "raw_text_file": "raw\\50bee33adad9109e.txt"
+    },
+    {
+      "id": "1811d39c3cd41950",
+      "source_url": "https://linkareer.com/activity/357820",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\1811d39c3cd41950.html",
+      "raw_text_file": "raw\\1811d39c3cd41950.txt"
+    },
+    {
+      "id": "31018040a0476696",
+      "source_url": "https://linkareer.com/activity/357821",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\31018040a0476696.html",
+      "raw_text_file": "raw\\31018040a0476696.txt"
+    },
+    {
+      "id": "03a90df742d14a86",
+      "source_url": "https://linkareer.com/activity/357824",
+      "type": "대외활동",
+      "type_evidence": "대외활동",
+      "domain": "마케팅/콘텐츠",
+      "raw_html_file": "raw\\03a90df742d14a86.html",
+      "raw_text_file": "raw\\03a90df742d14a86.txt"
+    },
+    {
+      "id": "f5ac1227b31556fc",
+      "source_url": "https://linkareer.com/activity/359035",
+      "type": "인턴",
+      "type_evidence": "[링글잉글리시에듀케이션서비스] 브랜드 & 캠페인 마케팅 전환형 인턴",
+      "domain": "마케팅/콘텐츠",
+      "raw_html_file": "raw\\f5ac1227b31556fc.html",
+      "raw_text_file": "raw\\f5ac1227b31556fc.txt"
+    },
+    {
+      "id": "38b258b4cdbaeb11",
+      "source_url": "https://linkareer.com/activity/356549",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\38b258b4cdbaeb11.html",
+      "raw_text_file": "raw\\38b258b4cdbaeb11.txt"
+    },
+    {
+      "id": "dec8ffbdd716df9f",
+      "source_url": "https://linkareer.com/activity/356564",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "기타",
+      "raw_html_file": "raw\\dec8ffbdd716df9f.html",
+      "raw_text_file": "raw\\dec8ffbdd716df9f.txt"
+    },
+    {
+      "id": "12fc637e12902303",
+      "source_url": "https://linkareer.com/activity/356565",
+      "type": "인턴",
+      "type_evidence": "인플루언서 마케팅 인턴",
+      "domain": "마케팅/콘텐츠",
+      "raw_html_file": "raw\\12fc637e12902303.html",
+      "raw_text_file": "raw\\12fc637e12902303.txt"
+    },
+    {
+      "id": "40c56c5079cd4529",
+      "source_url": "https://linkareer.com/activity/357829",
+      "type": "대외활동",
+      "type_evidence": "대외활동",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\40c56c5079cd4529.html",
+      "raw_text_file": "raw\\40c56c5079cd4529.txt"
+    },
+    {
+      "id": "79626eb4b67dab4c",
+      "source_url": "https://linkareer.com/activity/357830",
+      "type": "대외활동",
+      "type_evidence": "대외활동",
+      "domain": "기타",
+      "raw_html_file": "raw\\79626eb4b67dab4c.html",
+      "raw_text_file": "raw\\79626eb4b67dab4c.txt"
+    },
+    {
+      "id": "20bba634f2e9bbfd",
+      "source_url": "https://linkareer.com/activity/357852",
+      "type": "공모전",
+      "type_evidence": "공모전",
+      "domain": "IT/데이터",
+      "raw_html_file": "raw\\20bba634f2e9bbfd.html",
+      "raw_text_file": "raw\\20bba634f2e9bbfd.txt"
+    }
+  ],
+  "notes": [
+    "activities 사이트맵에서 공모전 표본을 목표 20건 중 7건만 찾았습니다.",
+    "activities 사이트맵에서 대외활동 표본을 목표 10건 중 3건만 찾았습니다.",
+    "activities 사이트맵에서 인턴 표본을 목표 10건 중 2건만 찾았습니다."
+  ]
+}

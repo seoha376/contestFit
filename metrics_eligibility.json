@@ -1,0 +1,1423 @@
+{
+  "evidence": {
+    "overall": {
+      "matched": 284,
+      "checked": 284,
+      "rate": 1.0
+    },
+    "by_field": {
+      "age": {
+        "matched": 4,
+        "checked": 4,
+        "rate": 1.0
+      },
+      "business_registration": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "deadline": {
+        "matched": 30,
+        "checked": 30,
+        "rate": 1.0
+      },
+      "deliverable_type": {
+        "matched": 2,
+        "checked": 2,
+        "rate": 1.0
+      },
+      "eligibility": {
+        "matched": 30,
+        "checked": 30,
+        "rate": 1.0
+      },
+      "entry_fee": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "onsite_required": {
+        "matched": 1,
+        "checked": 1,
+        "rate": 1.0
+      },
+      "organizer": {
+        "matched": 29,
+        "checked": 29,
+        "rate": 1.0
+      },
+      "other_conditions": {
+        "matched": 4,
+        "checked": 4,
+        "rate": 1.0
+      },
+      "participation_form": {
+        "matched": 11,
+        "checked": 11,
+        "rate": 1.0
+      },
+      "period": {
+        "matched": 30,
+        "checked": 30,
+        "rate": 1.0
+      },
+      "region": {
+        "matched": 0,
+        "checked": 0,
+        "rate": null
+      },
+      "region_restriction": {
+        "matched": 2,
+        "checked": 2,
+        "rate": 1.0
+      },
+      "reward": {
+        "matched": 30,
+        "checked": 30,
+        "rate": 1.0
+      },
+      "rights_clause": {
+        "matched": 2,
+        "checked": 2,
+        "rate": 1.0
+      },
+      "student_status": {
+        "matched": 27,
+        "checked": 27,
+        "rate": 1.0
+      },
+      "submission_format": {
+        "matched": 2,
+        "checked": 2,
+        "rate": 1.0
+      },
+      "team_policy": {
+        "matched": 11,
+        "checked": 11,
+        "rate": 1.0
+      },
+      "team_size": {
+        "matched": 7,
+        "checked": 7,
+        "rate": 1.0
+      },
+      "title": {
+        "matched": 30,
+        "checked": 30,
+        "rate": 1.0
+      },
+      "type": {
+        "matched": 30,
+        "checked": 30,
+        "rate": 1.0
+      }
+    },
+    "by_type": {
+      "공모전": {
+        "matched": 284,
+        "checked": 284,
+        "rate": 1.0
+      }
+    }
+  },
+  "rules": {
+    "deadline": {
+      "matched": 30,
+      "checked": 30,
+      "match_rate": 1.0
+    },
+    "entry_fee": {
+      "matched": 1,
+      "checked": 1,
+      "match_rate": 1.0
+    },
+    "participation_form": {
+      "matched": 10,
+      "checked": 11,
+      "match_rate": 0.9091
+    },
+    "onsite_required": {
+      "matched": 1,
+      "checked": 1,
+      "match_rate": 1.0
+    }
+  },
+  "fill": {
+    "by_type": {
+      "공모전": {
+        "type": {
+          "null": 0,
+          "total": 30,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "title": {
+          "null": 0,
+          "total": 30,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "organizer": {
+          "null": 1,
+          "total": 30,
+          "null_rate": 0.0333,
+          "fill_rate": 0.9667
+        },
+        "deadline": {
+          "null": 0,
+          "total": 30,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "region": {
+          "null": 30,
+          "total": 30,
+          "null_rate": 1.0,
+          "fill_rate": 0.0
+        },
+        "eligibility": {
+          "null": 0,
+          "total": 30,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "participation_form": {
+          "null": 19,
+          "total": 30,
+          "null_rate": 0.6333,
+          "fill_rate": 0.3667
+        },
+        "team_size": {
+          "null": 23,
+          "total": 30,
+          "null_rate": 0.7667,
+          "fill_rate": 0.2333
+        },
+        "onsite_required": {
+          "null": 29,
+          "total": 30,
+          "null_rate": 0.9667,
+          "fill_rate": 0.0333
+        },
+        "reward": {
+          "null": 0,
+          "total": 30,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "period": {
+          "null": 0,
+          "total": 30,
+          "null_rate": 0.0,
+          "fill_rate": 1.0
+        },
+        "deliverable_type": {
+          "null": 28,
+          "total": 30,
+          "null_rate": 0.9333,
+          "fill_rate": 0.0667
+        },
+        "rights_clause": {
+          "null": 28,
+          "total": 30,
+          "null_rate": 0.9333,
+          "fill_rate": 0.0667
+        },
+        "entry_fee": {
+          "null": 29,
+          "total": 30,
+          "null_rate": 0.9667,
+          "fill_rate": 0.0333
+        },
+        "submission_format": {
+          "null": 28,
+          "total": 30,
+          "null_rate": 0.9333,
+          "fill_rate": 0.0667
+        },
+        "age": {
+          "null": 26,
+          "total": 30,
+          "null_rate": 0.8667,
+          "fill_rate": 0.1333
+        },
+        "student_status": {
+          "null": 3,
+          "total": 30,
+          "null_rate": 0.1,
+          "fill_rate": 0.9
+        },
+        "region_restriction": {
+          "null": 28,
+          "total": 30,
+          "null_rate": 0.9333,
+          "fill_rate": 0.0667
+        },
+        "business_registration": {
+          "null": 29,
+          "total": 30,
+          "null_rate": 0.9667,
+          "fill_rate": 0.0333
+        },
+        "team_policy": {
+          "null": 19,
+          "total": 30,
+          "null_rate": 0.6333,
+          "fill_rate": 0.3667
+        },
+        "other_conditions": {
+          "null": 26,
+          "total": 30,
+          "null_rate": 0.8667,
+          "fill_rate": 0.1333
+        }
+      }
+    },
+    "common_field_count": 11,
+    "type_specific_field_count": {
+      "공모전": 10,
+      "대외활동": 3,
+      "인턴": 4
+    },
+    "type_specific_to_common_ratio": {
+      "공모전": 0.9091,
+      "대외활동": 0.2727,
+      "인턴": 0.3636
+    }
+  },
+  "mismatches": {
+    "participation_form": [
+      {
+        "id": "50bee33adad9109e",
+        "value": "개인",
+        "rule_value": null,
+        "evidence": "- 국민 누구나 개인 자격으로 참가 가능, 법인·단체·사업자 명의 불가",
+        "position": 824
+      }
+    ]
+  },
+  "eligibility": {
+    "nontrivial_conditions": {
+      "count": 11,
+      "total": 30,
+      "rate": 0.3667
+    },
+    "profile_distribution": {
+      "① 만 24세 서울 거주 재학생 혼자": {
+        "지원 가능": 0,
+        "확인 필요": 26,
+        "지원 불가": 4
+      },
+      "② 만 29세 직장인 혼자(사업자 없음)": {
+        "지원 가능": 0,
+        "확인 필요": 27,
+        "지원 불가": 3
+      },
+      "③ 만 22세 휴학생 3인 팀": {
+        "지원 가능": 0,
+        "확인 필요": 24,
+        "지원 불가": 6
+      },
+      "④ 만 35세 사업자 보유자": {
+        "지원 가능": 0,
+        "확인 필요": 25,
+        "지원 불가": 5
+      }
+    },
+    "split_postings": {
+      "count": 8,
+      "total": 30,
+      "rate": 0.2667
+    },
+    "cases": [
+      {
+        "id": "90d16e8f7af016fc",
+        "title": "[문화체육관광부] 2026년 충남 유교문화 사진·영상 공모전",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "50bee33adad9109e",
+        "title": "[경상북도 의성군] AI활용 의성군 서비스 개선 공모제안 경진대회",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": [
+                  "- 주최·운영 부서 직원, 심사위원과 그 가족 참가 불가",
+                  "- 만 14세 미만은 개인정보·저작권 동의서에 법정대리인 동의·서명 필요"
+                ]
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": [
+                  "- 주최·운영 부서 직원, 심사위원과 그 가족 참가 불가",
+                  "- 만 14세 미만은 개인정보·저작권 동의서에 법정대리인 동의·서명 필요"
+                ]
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "지원 불가",
+            "reasons": [
+              {
+                "field": "team_policy",
+                "message": "개인 참가만 허용됨",
+                "evidence": "- 국민 누구나 개인 자격으로 참가 가능, 법인·단체·사업자 명의 불가"
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "지원 불가",
+            "reasons": [
+              {
+                "field": "business_registration",
+                "message": "사업자 보유자는 지원할 수 없음",
+                "evidence": "- 국민 누구나 개인 자격으로 참가 가능, 법인·단체·사업자 명의 불가"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "1811d39c3cd41950",
+        "title": "[광양시] 2026 광양시 매돌이 AI 영상 공모전 – 매돌이, AI로 살아나다!",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": [
+                  "- 참가자 1인당 1개 작품 출품",
+                  "- 미성년자는 법정대리인 동의 필요"
+                ]
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": [
+                  "- 참가자 1인당 1개 작품 출품",
+                  "- 미성년자는 법정대리인 동의 필요"
+                ]
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": [
+                  "- 참가자 1인당 1개 작품 출품",
+                  "- 미성년자는 법정대리인 동의 필요"
+                ]
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": [
+                  "- 참가자 1인당 1개 작품 출품",
+                  "- 미성년자는 법정대리인 동의 필요"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "31018040a0476696",
+        "title": "제1회 꿈꾸미닷컴 꿈 수필 공모전",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "지원 불가",
+            "reasons": [
+              {
+                "field": "student_status",
+                "message": "허용된 학적·신분에 해당하지 않음",
+                "evidence": "- 학생, 직장인, 인생 2막을 준비하는 분 모두 환영합니다"
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "지원 불가",
+            "reasons": [
+              {
+                "field": "student_status",
+                "message": "허용된 학적·신분에 해당하지 않음",
+                "evidence": "- 학생, 직장인, 인생 2막을 준비하는 분 모두 환영합니다"
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "지원 불가",
+            "reasons": [
+              {
+                "field": "student_status",
+                "message": "허용된 학적·신분에 해당하지 않음",
+                "evidence": "- 학생, 직장인, 인생 2막을 준비하는 분 모두 환영합니다"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "38b258b4cdbaeb11",
+        "title": "2026년 서울특별시 어린이·청소년 시민발언대 「청소년이 바꾸는 서울」 인스타툰 공모전",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "student_status",
+                "message": "학적·신분 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "student_status",
+                "message": "학적·신분 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "student_status",
+                "message": "학적·신분 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "student_status",
+                "message": "학적·신분 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "dec8ffbdd716df9f",
+        "title": "2026년 멘토링 수기공모전",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": "- 시상식 날짜 : 2026. 12. 18.(금) 15:30 ~ 18:00 (수상자 시상식 필참)"
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": "- 시상식 날짜 : 2026. 12. 18.(금) 15:30 ~ 18:00 (수상자 시상식 필참)"
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": "- 시상식 날짜 : 2026. 12. 18.(금) 15:30 ~ 18:00 (수상자 시상식 필참)"
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": "- 시상식 날짜 : 2026. 12. 18.(금) 15:30 ~ 18:00 (수상자 시상식 필참)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "20bba634f2e9bbfd",
+        "title": "2026 데이터+AI 혁신 챌린지 데이터 문제해결 부문 경진대회 <참가 수기 이벤트>",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": "참여 대상: 2026년 데이터 문제해결 부문 경진대회 참가 신청자"
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": "참여 대상: 2026년 데이터 문제해결 부문 경진대회 참가 신청자"
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": "참여 대상: 2026년 데이터 문제해결 부문 경진대회 참가 신청자"
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "other_conditions",
+                "message": "추가 조건은 프로필만으로 자동 판정할 수 없음",
+                "evidence": "참여 대상: 2026년 데이터 문제해결 부문 경진대회 참가 신청자"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "6658219099ecdc58",
+        "title": "실손24 영상 공모전",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "6a8f178313c30e88",
+        "title": "[건강보험심사평가원] 우리 동네 병원과 가까워지는 한마디 슬로건 공모전",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "d60209357585cf8b",
+        "title": "텐퍼센트커피 커스텀 레시피 콘테스트",
+        "decisions": [
+          {
+            "profile": "① 만 24세 서울 거주 재학생 혼자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "② 만 29세 직장인 혼자(사업자 없음)",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "③ 만 22세 휴학생 3인 팀",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          },
+          {
+            "profile": "④ 만 35세 사업자 보유자",
+            "result": "확인 필요",
+            "reasons": [
+              {
+                "field": "age",
+                "message": "연령 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "region_restriction",
+                "message": "지역 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "business_registration",
+                "message": "사업자 조건이 명시되지 않음",
+                "evidence": null
+              },
+              {
+                "field": "team_policy",
+                "message": "개인·팀 조건이 명시되지 않음",
+                "evidence": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

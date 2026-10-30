@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: src
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run Python tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run decision engine tests
+        run: node --test tests/web/decision-engine.test.mjs
+
+      - name: Check Python syntax
+        run: python -m compileall -q src tests
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check web/decision-engine.mjs
+          node --check web/config.mjs
+          node --check web/app.mjs
+
+      - name: Validate committed JSON data
+        run: |
+          python -c "import json, pathlib; [json.loads(path.read_text(encoding='utf-8')) for path in pathlib.Path('.').glob('*.json')]; json.loads(pathlib.Path('web/data/seed.json').read_text(encoding='utf-8'))"

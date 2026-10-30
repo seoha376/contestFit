@@ -1,0 +1,2282 @@
+{
+  "schema_version": "1.1",
+  "generated_from": "extracted_eligibility.json",
+  "validation_status": "unverified",
+  "contests": [
+    {
+      "id": "90d16e8f7af016fc",
+      "title": "[문화체육관광부] 2026년 충남 유교문화 사진·영상 공모전",
+      "organizer": "문화체육관광부",
+      "source_url": "https://linkareer.com/activity/357817",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "90d16e8f7af016fc-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": "대한민국",
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "- 대한민국 국민 누구나",
+            "major_scope": null,
+            "region": null,
+            "nationality": "- 대한민국 국민 누구나",
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": "body",
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모870만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "50bee33adad9109e",
+      "title": "[경상북도 의성군] AI활용 의성군 서비스 개선 공모제안 경진대회",
+      "organizer": "경상북도 의성군",
+      "source_url": "https://linkareer.com/activity/357818",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "50bee33adad9109e-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": "any",
+            "years": null,
+            "name_restriction": true
+          },
+          "entry_type": "individual",
+          "team_size": null,
+          "other_conditions": [
+            "주최·운영 부서 직원, 심사위원과 그 가족 참가 불가",
+            "만 14세 미만은 개인정보·저작권 동의서에 법정대리인 동의·서명 필요"
+          ],
+          "evidence": {
+            "age": null,
+            "status": "- 국민 누구나 개인 자격으로 참가 가능, 법인·단체·사업자 명의 불가",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": "- 국민 누구나 개인 자격으로 참가 가능, 법인·단체·사업자 명의 불가",
+            "entry_type": "- 국민 누구나 개인 자격으로 참가 가능, 법인·단체·사업자 명의 불가",
+            "team_size": null,
+            "other_conditions": [
+              "- 주최·운영 부서 직원, 심사위원과 그 가족 참가 불가",
+              "- 만 14세 미만은 개인정보·저작권 동의서에 법정대리인 동의·서명 필요"
+            ]
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": "body",
+            "entry_type": "body",
+            "team_size": null,
+            "other_conditions": "body"
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모630만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "1811d39c3cd41950",
+      "title": "[광양시] 2026 광양시 매돌이 AI 영상 공모전 – 매돌이, AI로 살아나다!",
+      "organizer": "광양시",
+      "source_url": "https://linkareer.com/activity/357820",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "1811d39c3cd41950-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": {
+            "min": null,
+            "max": 4
+          },
+          "other_conditions": [
+            "참가자 1인당 1개 작품 출품",
+            "미성년자는 법정대리인 동의 필요"
+          ],
+          "evidence": {
+            "age": null,
+            "status": "- 매돌이와 광양시에 관심 있는 국민 누구나(개인 또는 4인 이내 팀)",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "- 매돌이와 광양시에 관심 있는 국민 누구나(개인 또는 4인 이내 팀)",
+            "team_size": "- 매돌이와 광양시에 관심 있는 국민 누구나(개인 또는 4인 이내 팀)",
+            "other_conditions": [
+              "- 참가자 1인당 1개 작품 출품",
+              "- 미성년자는 법정대리인 동의 필요"
+            ]
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": "body",
+            "other_conditions": "body"
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모270만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "31018040a0476696",
+      "title": "제1회 꿈꾸미닷컴 꿈 수필 공모전",
+      "organizer": "꿈꾸미닷컴",
+      "source_url": "https://linkareer.com/activity/357821",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "31018040a0476696-section-1",
+          "name": null,
+          "age": {
+            "min": 14,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": "- 만 14세 이상 꿈꾸는 누구나",
+            "status": "- 만 14세 이상 꿈꾸는 누구나",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": "body",
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태중소기업참여대상대상 제한 없음시상규모20만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "38b258b4cdbaeb11",
+      "title": "2026년 서울특별시 어린이·청소년 시민발언대 「청소년이 바꾸는 서울」 인스타툰 공모전",
+      "organizer": "서울특별시립청소년활동진흥센터",
+      "source_url": "https://linkareer.com/activity/356549",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "38b258b4cdbaeb11-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태비영리단체/협회/재단참여대상청소년시상규모-접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "dec8ffbdd716df9f",
+      "title": "2026년 멘토링 수기공모전",
+      "organizer": "대구광역시사회복지협의회",
+      "source_url": "https://linkareer.com/activity/356564",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "dec8ffbdd716df9f-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [
+            "시상식 날짜 : 2026. 12. 18.(금) 15:30 ~ 18:00 (수상자 시상식 필참)"
+          ],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": "- 시상식 날짜 : 2026. 12. 18.(금) 15:30 ~ 18:00 (수상자 시상식 필참)"
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": "body"
+          },
+          "chip_evidence": {
+            "status": "기업형태비영리단체/협회/재단참여대상대상 제한 없음시상규모60만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "20bba634f2e9bbfd",
+      "title": "2026 데이터+AI 혁신 챌린지 데이터 문제해결 부문 경진대회 <참가 수기 이벤트>",
+      "organizer": "데이터 문제해결은행",
+      "source_url": "https://linkareer.com/activity/357852",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "20bba634f2e9bbfd-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [
+            "참여 대상: 2026년 데이터 문제해결 부문 경진대회 참가 신청자"
+          ],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": "참여 대상: 2026년 데이터 문제해결 부문 경진대회 참가 신청자"
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": "body"
+          },
+          "chip_evidence": {
+            "status": "기업형태기타참여대상대상 제한 없음시상규모100만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "6658219099ecdc58",
+      "title": "실손24 영상 공모전",
+      "organizer": "실손24",
+      "source_url": "https://linkareer.com/activity/358840",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "6658219099ecdc58-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모1000만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "6a8f178313c30e88",
+      "title": "[건강보험심사평가원] 우리 동네 병원과 가까워지는 한마디 슬로건 공모전",
+      "organizer": "건강보험심사평가원",
+      "source_url": "https://linkareer.com/activity/355613",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "6a8f178313c30e88-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": "대한민국",
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "- 대한민국 국민 누구나",
+            "major_scope": null,
+            "region": null,
+            "nationality": "- 대한민국 국민 누구나",
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": "body",
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모810만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "d60209357585cf8b",
+      "title": "텐퍼센트커피 커스텀 레시피 콘테스트",
+      "organizer": "(주)텐퍼센트커피",
+      "source_url": "https://linkareer.com/activity/358629",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "d60209357585cf8b-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "텐퍼센트커피를 좋아하는 누구나!",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태중소기업참여대상대상 제한 없음시상규모1400만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "a15b52f50572c8dd",
+      "title": "[국회미래연구원] 국회 미래세대 미래의제 공모전",
+      "organizer": "국회미래연구원",
+      "source_url": "https://linkareer.com/activity/358929",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "a15b52f50572c8dd-section-1",
+          "name": null,
+          "age": {
+            "min": 19,
+            "max": 39,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": {
+            "min": null,
+            "max": 5
+          },
+          "other_conditions": [],
+          "evidence": {
+            "age": "- 공고일 현재 만 19세 이상 39세 이하의 개인 또는 팀",
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "- 공고일 현재 만 19세 이상 39세 이하의 개인 또는 팀",
+            "team_size": "※ 팀은 상기 연령 조건을 모두 충족하는 인원으로 구성(최대 5인까지 인정)",
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": "body",
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": "body",
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대학생, 직장인/일반인시상규모200만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "02aeef30eac884ae",
+      "title": "LOTTE AX CHALLENGE 2026",
+      "organizer": "롯데지주",
+      "source_url": "https://linkareer.com/activity/360080",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "02aeef30eac884ae-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태대기업참여대상대상 제한 없음시상규모2000만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "f5b5a5c472f36432",
+      "title": "[한국과학기술정보연구원] 2026 DATA·AI 분석 경진대회",
+      "organizer": "한국과학기술정보연구원",
+      "source_url": "https://linkareer.com/activity/342034",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "f5b5a5c472f36432-section-1",
+          "name": "문제발굴 부문",
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [
+            "사회·과학 당면 문제 해결이 필요한 기관 또는 개인"
+          ],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": "사회·과학 당면 문제 해결이 필요한 기관 또는 개인"
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": "body"
+          },
+          "chip_evidence": {
+            "status": null
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        },
+        {
+          "id": "f5b5a5c472f36432-section-2",
+          "name": "문제해결 부문",
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "데이터 분석·활용에 관심 있는 개인 또는 팀(팀장1+팀원3)",
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": null
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "f75ed85a5321c4a5",
+      "title": "한국투자증권 대학생 모의투자대회 '한투모투배틀'",
+      "organizer": "한국투자증권(주)",
+      "source_url": "https://linkareer.com/activity/351157",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "f75ed85a5321c4a5-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [
+              "재학생",
+              "대학원생"
+            ],
+            "excluded": null,
+            "chip_mismatch": true
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "한국투자증권 비대면 주식계좌를 보유하고 있는 대학(원)생이라면 누.구.나 참여 가능합니다.",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태금융권참여대상대학생시상규모1830만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "4d952afa37972fe8",
+      "title": "[CJ제일제당] 햇반 30주년 AI 공모전 ‘갓 지은 AI디어’",
+      "organizer": "CJ제일제당",
+      "source_url": "https://linkareer.com/activity/359538",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "4d952afa37972fe8-section-1",
+          "name": null,
+          "age": {
+            "min": 14,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": {
+            "min": null,
+            "max": 4
+          },
+          "other_conditions": [],
+          "evidence": {
+            "age": "만 14세 이상 대한민국 거주자",
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "개인 또는 팀(최대 4인) 참가 가능",
+            "team_size": "개인 또는 팀(최대 4인) 참가 가능",
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": "body",
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": "body",
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태대기업참여대상대상 제한 없음시상규모3000만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "418b705aa4232fb7",
+      "title": "2026 제18회 전국청소년 모형항공기대회",
+      "organizer": "한국폴리텍대학 항공 캠퍼스",
+      "source_url": "https://linkareer.com/activity/360404",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "418b705aa4232fb7-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태비영리단체/협회/재단참여대상청소년시상규모-접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "eed1812d21af3550",
+      "title": "제39회 무등일보 신춘문예",
+      "organizer": "에스알비무등일보",
+      "source_url": "https://linkareer.com/activity/360403",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "eed1812d21af3550-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태중소기업참여대상대상 제한 없음시상규모600만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "75cfa447df5e3a3e",
+      "title": "[문화정원] 2026 (다시, 다리다) 유휴공간 활성화 아이디어 공모전",
+      "organizer": "문화정원",
+      "source_url": "https://linkareer.com/activity/360396",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "75cfa447df5e3a3e-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "- 전국 누구나 참여 가능 (개인 또는 팀)",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "- 전국 누구나 참여 가능 (개인 또는 팀)",
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태기타참여대상대상 제한 없음시상규모210만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "728d81257d3244ba",
+      "title": "[F&S] ₩50,000 LOOK",
+      "organizer": "F&S",
+      "source_url": "https://linkareer.com/activity/360339",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "728d81257d3244ba-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태기타참여대상대상 제한 없음시상규모580만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "cdd42e0d01944f9d",
+      "title": "2026 대구 대학(원) AI 드래프톤",
+      "organizer": "대구광역시 / 주관: 대구테크노파크",
+      "source_url": "https://linkareer.com/activity/360309",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "cdd42e0d01944f9d-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": 34,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [
+              "재학생",
+              "휴학생",
+              "대학원생",
+              "수료생"
+            ],
+            "excluded": null,
+            "chip_mismatch": true
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "team",
+          "team_size": {
+            "min": 3,
+            "max": 4
+          },
+          "other_conditions": [],
+          "evidence": {
+            "age": "만 34세 이하 (행사일 기준)",
+            "status": "전국 대학생·대학원생 (휴학생·수료생 포함)",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "같은 학교 학생 3~4인이 1팀",
+            "team_size": "같은 학교 학생 3~4인이 1팀",
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": "body",
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": "body",
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대학생시상규모950만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "44faa9beca11bec4",
+      "title": "춘천MBC AI영상 공모전",
+      "organizer": "춘천MBC",
+      "source_url": "https://linkareer.com/activity/360286",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "44faa9beca11bec4-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "전국민 누구나",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태중견기업참여대상대상 제한 없음시상규모490만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "7022c12a6276257d",
+      "title": "2026년 KDN Eco-Life 대국민 환경 공모전",
+      "organizer": "한전KDN",
+      "source_url": "https://linkareer.com/activity/360285",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "7022c12a6276257d-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": "대한민국",
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": "- 대한민국 국민 및 한전KDN 임직원",
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": "body",
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모360만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "d135e88e6af7ad11",
+      "title": "2026 소상공인 분야 연구논문 공모전",
+      "organizer": "소상공인시장진흥공단 / 한국정책학회",
+      "source_url": "https://linkareer.com/activity/360283",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "d135e88e6af7ad11-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [
+              "재학생",
+              "휴학생",
+              "대학원생",
+              "수료생"
+            ],
+            "excluded": null,
+            "chip_mismatch": true
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": {
+            "min": null,
+            "max": 3
+          },
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "- 소상공인 및 지역상권 활성화 등 지역사회 현안에 관심있는 국내 대학(원)생(휴학생, 수료생 포함)",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "- 개인 및 팀(최대 3인)′ 논문(15쪽 내외 A4 사이즈)",
+            "team_size": "- 개인 및 팀(최대 3인)′ 논문(15쪽 내외 A4 사이즈)",
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": "body",
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태비영리단체/협회/재단참여대상대상 제한 없음시상규모800만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "bc2fb76a70b45368",
+      "title": "VIVID RE: PLAY - 총상금 2천만원 AI 영상 창작 공모전",
+      "organizer": "ARKAIN",
+      "source_url": "https://linkareer.com/activity/360253",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "bc2fb76a70b45368-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "- AI 영상 창작에 관심 있는 누구나",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태중소기업참여대상대상 제한 없음시상규모2000만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "318f863d38930705",
+      "title": "2026 해양 창업아이디어 공모전 Spark-up 1876",
+      "organizer": "부산항만공사",
+      "source_url": "https://linkareer.com/activity/360251",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "318f863d38930705-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [
+              "예비창업자"
+            ],
+            "excluded": null,
+            "chip_mismatch": true
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": "years",
+            "years": 1,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": {
+            "min": null,
+            "max": 4
+          },
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "- 공고일(2026년 10월 21일) 기준 신청자 명의의 사업자등록 또는 법인설립등기가 없는 예비창업자 및 창업 1년 미만의 초기창업자",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": "- 공고일(2026년 10월 21일) 기준 신청자 명의의 사업자등록 또는 법인설립등기가 없는 예비창업자 및 창업 1년 미만의 초기창업자",
+            "entry_type": "- 개인 또는 팀 단위로 참가 가능(팀 참가 시 최대 4인 이내 구성)",
+            "team_size": "- 개인 또는 팀 단위로 참가 가능(팀 참가 시 최대 4인 이내 구성)",
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": "body",
+            "entry_type": "body",
+            "team_size": "body",
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모1000만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "7f5234cd9d78a71f",
+      "title": "2026년 지역문제해결 아이디어 발굴 부여 솔버톤 대회",
+      "organizer": "부여군, 부여군지역공동체활성화재단",
+      "source_url": "https://linkareer.com/activity/360224",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "7f5234cd9d78a71f-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": null,
+            "excluded": null,
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모3000만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "a0f5483fd9cb23e7",
+      "title": "제4회 산업기술 R&D 어린이 그림그리기 공모전",
+      "organizer": "(주)경동기획",
+      "source_url": "https://linkareer.com/activity/360215",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "a0f5483fd9cb23e7-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": true
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "대한민국 초등학생 누구나 ※유치원/어린이집 참여 불가",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태중소기업참여대상청소년시상규모710만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "773bb8ad87e21618",
+      "title": "[2026 제주감귤박람회] 감귤디저트대회",
+      "organizer": "(주)올인피엠지",
+      "source_url": "https://linkareer.com/activity/360141",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "773bb8ad87e21618-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": {
+            "min": null,
+            "max": 2
+          },
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "지원자격 : 감귤 요리에 관심이 있는 누구나 (개인 또는 2인 이하 팀)",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "지원자격 : 감귤 요리에 관심이 있는 누구나 (개인 또는 2인 이하 팀)",
+            "team_size": "지원자격 : 감귤 요리에 관심이 있는 누구나 (개인 또는 2인 이하 팀)",
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": "body",
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태중소기업참여대상대상 제한 없음시상규모100만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "23b5778c0e4433fd",
+      "title": "2026 사회보장 데이터를 활용한 AI 혁신 아이디어 경진대회",
+      "organizer": null,
+      "source_url": "https://linkareer.com/activity/360109",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "23b5778c0e4433fd-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": false
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": "both",
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "전 국민 누구나 개인 또는 팀으로 참여 가능",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "전 국민 누구나 개인 또는 팀으로 참여 가능",
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": "body",
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태기타참여대상대상 제한 없음시상규모2450만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "c9ae25ac194be349",
+      "title": "디지털 디톡스 챌린지",
+      "organizer": "세종사이버대학교 아동가족학부",
+      "source_url": "https://linkareer.com/activity/360083",
+      "collected_at": "2026-10-28T07:27:17.175752+00:00",
+      "is_sample": true,
+      "validation_status": "unverified",
+      "sections": [
+        {
+          "id": "c9ae25ac194be349-section-1",
+          "name": null,
+          "age": {
+            "min": null,
+            "max": null,
+            "basis_date": null
+          },
+          "status": {
+            "allowed": [],
+            "excluded": [],
+            "chip_mismatch": true
+          },
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": {
+            "policy": null,
+            "years": null,
+            "name_restriction": false
+          },
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": [],
+          "evidence": {
+            "age": null,
+            "status": "유아를 양육하는 가정 구성원 및 유아를 지도하는 교육자분들 누구나 참여하실 수 있습니다.",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "evidence_source": {
+            "age": null,
+            "status": "body",
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          },
+          "chip_evidence": {
+            "status": "기업형태기타참여대상직장인/일반인시상규모100만 원접수기간"
+          },
+          "confidence": {
+            "age": null,
+            "status": null,
+            "major_scope": null,
+            "region": null,
+            "nationality": null,
+            "business_reg": null,
+            "entry_type": null,
+            "team_size": null,
+            "other_conditions": null
+          }
+        }
+      ]
+    }
+  ]
+}

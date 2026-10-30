@@ -1,0 +1,34 @@
+# 외부 사이트 원문 및 로컬 수집 사본
+raw/
+raw2/
+
+# 환경변수와 로컬 비밀값
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Node / JavaScript
+node_modules/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 로그와 임시 파일
+*.log
+*.tmp
+tmp/
