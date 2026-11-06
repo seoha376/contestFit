@@ -2,12 +2,13 @@
 
 ContestFit은 저장된 공모전 본문에서 자격 조건을 추출하고, 사용자의 프로필과 명시 조건을 비교해 `지원 가능`, `확인 필요`, `지원 불가`를 보여주는 로컬 검증 프로토타입이다.
 
-현재 저장소는 다음 두 부분으로 구성된다.
+현재 저장소는 다음 세 부분으로 구성된다.
 
 - Python 3.11+ 표준 라이브러리 기반 수집·정제·추출·평가 코드
 - 빌드 도구와 프레임워크가 없는 HTML/CSS/JavaScript 정적 웹 UI
+- MySQL에 공모전·자격 조건을 저장하는 Spring Boot API 서버 (`server/`)
 
-외부 LLM API, 데이터베이스, 로그인, 런타임 비밀키는 사용하지 않는다. 웹 프로토타입의 프로필은 브라우저 `localStorage`에만 저장된다.
+외부 LLM API와 로그인은 사용하지 않는다. 웹 프로토타입의 프로필은 브라우저 `localStorage`에만 저장된다. 서버의 DB 접속값은 환경변수로만 주입하며 Git에 커밋하지 않는다.
 
 ## 빠른 시작
 
@@ -76,6 +77,9 @@ web/                          정적 웹 프로토타입
   config.mjs                  프로필·필터·임계값 설정
   app.mjs                     DOM, localStorage, 화면 렌더링
   data/seed.json              웹 실행에 사용하는 30건 검증 데이터
+server/                       Spring Boot + MySQL API 서버
+  src/main/resources/db/migration/
+                             Flyway 스키마 이력
 tests/                        Python unittest와 Node 내장 테스트
 raw/                          외부 원문 로컬 사본; Git 업로드 금지
 manifest*.json                수집 시점·URL·raw 파일 참조 기록
@@ -124,6 +128,8 @@ PowerShell에서는 먼저 `$env:PYTHONPATH='src'`를 설정한다.
 
 자세한 절차는 [CONTRIBUTING.md](CONTRIBUTING.md)를 참고한다. 자동화 도구와 코딩 에이전트는 [AGENTS.md](AGENTS.md)를 먼저 읽는다.
 
-## 현재 범위 밖
+## 서버 범위와 다음 결정
 
-프론트엔드·백엔드 역할 분배, 서버 API, 데이터베이스, 배포 환경, 인증, 운영용 데이터 수집 방식은 아직 확정하지 않는다. 실제 요구사항이 정해진 뒤 별도 설계로 결정한다.
+현재 서버는 공모전과 자격 조건의 저장·조회·등록 API만 제공한다. DB 준비, 실행 방법, API 형식은 [server/README.md](server/README.md)에 있다.
+
+인증, 사용자 프로필 API, 판정 이력 API, 배포 환경, 운영용 데이터 수집 방식은 아직 구현하지 않는다. 요구사항을 확정한 뒤 별도 변경으로 추가한다.

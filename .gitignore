@@ -22,6 +22,9 @@ venv/
 # Node / JavaScript
 node_modules/
 
+# Java / Maven
+target/
+
 # IDE / OS
 .idea/
 .vscode/
