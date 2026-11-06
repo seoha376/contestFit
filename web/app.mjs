@@ -212,15 +212,26 @@ tabs.addEventListener("click", (event) => {
 async function start() {
   renderForm();
   try {
-    const response = await fetch("./data/seed.json");
-    if (!response.ok) throw new Error(`seed load failed: ${response.status}`);
-    const seed = await response.json();
-    state.contests = seed.contests;
+    const response = await fetch(`${APP_CONFIG.apiBaseUrl}/contests/feed`);
+    if (!response.ok) throw new Error(`API load failed: ${response.status}`);
+    const contests = await response.json();
+    if (!Array.isArray(contests) || contests.length === 0) throw new Error("API returned no contest data");
+    state.contests = contests;
     loading.hidden = true;
     renderResults();
   } catch (error) {
-    loading.innerHTML = `<strong>seed.json을 불러오지 못했습니다.</strong><span>로컬 웹 서버로 실행했는지 확인해 주세요.</span>`;
-    console.error(error);
+    try {
+      const response = await fetch("./data/seed.json");
+      if (!response.ok) throw new Error(`seed load failed: ${response.status}`);
+      const seed = await response.json();
+      state.contests = seed.contests;
+      loading.hidden = true;
+      renderResults();
+      console.warn("서버 API를 사용할 수 없어 정적 seed.json으로 표시합니다.", error);
+    } catch (seedError) {
+      loading.innerHTML = `<strong>공모전 데이터를 불러오지 못했습니다.</strong><span>서버 또는 로컬 웹 서버가 실행 중인지 확인해 주세요.</span>`;
+      console.error(seedError);
+    }
   }
 }
 

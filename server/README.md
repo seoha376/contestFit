@@ -7,8 +7,11 @@ ContestFit의 공모전과 자격 조건을 MySQL에 저장하고 REST API로 �
 - `GET /api/contests` - 공모전 목록과 조건 조회
 - `GET /api/contests/{id}` - 한 공모전 상세 조회
 - `POST /api/contests` - 공모전과 자격 조건 등록
+- `GET /api/contests/feed` - 웹 판정 엔진이 사용하는 기존 seed 형식의 공모전 피드
 
 `POST`는 현재 로컬 개발용입니다. 로그인과 운영 권한 관리는 아직 구현하지 않았습니다.
+
+처음 실행하는 빈 DB에는 `web/data/seed.json`의 검증용 30건이 자동으로 적재됩니다. 서버는 이 원본 구조를 보존해 `/api/contests/feed`로 반환하므로, 기존 웹 판정 로직의 `sections`, 근거, confidence 형식이 바뀌지 않습니다.
 
 ## DB 준비
 

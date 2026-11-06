@@ -37,6 +37,9 @@ public class Contest {
     @Column(name = "validation_status", nullable = false, length = 20)
     private ValidationStatus validationStatus = ValidationStatus.DRAFT;
 
+    @Column(name = "seed_payload", columnDefinition = "JSON")
+    private String seedPayload;
+
     @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<EligibilityRule> eligibilityRules = new ArrayList<>();
 
@@ -44,11 +47,16 @@ public class Contest {
     }
 
     public Contest(String title, String category, LocalDateTime deadline, String sourceUrl, ValidationStatus validationStatus) {
+        this(title, category, deadline, sourceUrl, validationStatus, null);
+    }
+
+    public Contest(String title, String category, LocalDateTime deadline, String sourceUrl, ValidationStatus validationStatus, String seedPayload) {
         this.title = title;
         this.category = category;
         this.deadline = deadline;
         this.sourceUrl = sourceUrl;
         this.validationStatus = validationStatus == null ? ValidationStatus.DRAFT : validationStatus;
+        this.seedPayload = seedPayload;
     }
 
     public void addEligibilityRule(EligibilityRule rule) {
@@ -62,5 +70,6 @@ public class Contest {
     public LocalDateTime getDeadline() { return deadline; }
     public String getSourceUrl() { return sourceUrl; }
     public ValidationStatus getValidationStatus() { return validationStatus; }
+    public String getSeedPayload() { return seedPayload; }
     public List<EligibilityRule> getEligibilityRules() { return List.copyOf(eligibilityRules); }
 }

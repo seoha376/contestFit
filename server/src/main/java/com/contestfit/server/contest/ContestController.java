@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @RestController
 @RequestMapping("/api/contests")
@@ -23,6 +24,11 @@ public class ContestController {
     @GetMapping
     public List<ContestResponse> findAll() {
         return contestService.findAll();
+    }
+
+    @GetMapping("/feed")
+    public List<JsonNode> findFeed() {
+        return contestService.findSeedFeed();
     }
 
     @GetMapping("/{id}")

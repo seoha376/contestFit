@@ -1,4 +1,5 @@
 export const APP_CONFIG = Object.freeze({
+  apiBaseUrl: "http://localhost:8080/api",
   confidenceThreshold: 0.7,
   storageKey: "contest-fit.profile.v1",
   filters: [
