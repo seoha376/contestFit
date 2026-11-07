@@ -12,6 +12,7 @@ class WebSeedTests(unittest.TestCase):
             "source_url": "https://linkareer.com/activity/1",
             "title": {"value": "공모전 A", "evidence": "공모전 A"},
             "organizer": {"value": "기관 A", "evidence": "기관 A"},
+            "deadline": {"value": "2026-11-20", "evidence": "11월 20일 마감"},
             "age": {"value": {"min": 14, "max": None}, "evidence": "만 14세 이상"},
             "student_status": {"value": ["재학생"], "evidence": "대학생"},
             "eligibility": {"value": "대학생", "evidence": "대학생"},
@@ -27,6 +28,7 @@ class WebSeedTests(unittest.TestCase):
         section = item["sections"][0]
         self.assertEqual(item["validation_status"], "unverified")
         self.assertTrue(item["is_sample"])
+        self.assertEqual(item["deadline"], "2026-11-20")
         self.assertEqual(section["age"], {"min": 14, "max": None, "basis_date": None})
         self.assertEqual(section["business_reg"], {"policy": "required", "years": None, "name_restriction": False})
         self.assertEqual(section["team_size"], {"min": None, "max": 4})

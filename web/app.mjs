@@ -1,4 +1,5 @@
-import { judgeAll } from "./decision-engine.mjs";
+import { judgeContest } from "./decision-engine.mjs";
+import { evaluateFit, titleTopics } from "./fit-engine.mjs";
 import { APP_CONFIG, EMPTY_PROFILE } from "./config.mjs";
 
 const labels = {
@@ -12,6 +13,7 @@ const fieldLabels = {
   status: "신분",
   major_scope: "전공/소속",
   region: "지역",
+  schoolRegion: "학교 소재지",
   nationality: "국적",
   business_reg: "사업자",
   entry_type: "참가 형태",
@@ -22,6 +24,12 @@ const state = {
   contests: [],
   profile: loadProfile(),
   activeFilter: "all",
+  query: "",
+  dataFilter: "all",
+  categoryFilter: "all",
+  deadlineFilter: "all",
+  selectedSections: {},
+  sort: "relevance",
 };
 
 const form = document.querySelector("#profile-form");
@@ -29,6 +37,19 @@ const tabs = document.querySelector("#result-tabs");
 const list = document.querySelector("#contest-list");
 const summary = document.querySelector("#summary-counts");
 const loading = document.querySelector("#loading-state");
+const importForm = document.querySelector("#import-form");
+const importMessage = document.querySelector("#import-message");
+const downloadPreview = document.querySelector("#download-preview");
+const feedbackForm = document.querySelector("#feedback-form");
+const knownSkills = new Set(APP_CONFIG.skillGroups.flatMap((group) => group.skills));
+const knownInterests = new Set(APP_CONFIG.interestOptions);
+let lastPreview = null;
+let departmentTimer = null;
+let schoolTimer = null;
+
+function commaValues(value) {
+  return [...new Set(String(value || "").split(/[,，\n]/).map((item) => item.trim()).filter(Boolean))].slice(0, 12);
+}
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -60,6 +81,10 @@ function optionList(values, selected) {
   }).join("");
 }
 
+function choiceButtons(values, selected, kind) {
+  return values.map((value) => `<button type="button" class="choice-button ${selected.includes(value) ? "selected" : ""}" data-${kind}="${escapeHtml(value)}" aria-pressed="${selected.includes(value)}">${escapeHtml(value)}</button>`).join("");
+}
+
 function renderForm() {
   form.innerHTML = `
     <div class="profile-heading">
@@ -77,10 +102,41 @@ function renderForm() {
       <input name="age" type="number" min="0" max="120" inputmode="numeric" placeholder="예: 24" value="${escapeHtml(state.profile.age)}">
     </label>
     <label>4. 전공 / 소속
-      <input name="affiliation" type="text" placeholder="예: 컴퓨터공학과, 직장인" value="${escapeHtml(state.profile.affiliation)}">
+      <input name="affiliation" type="text" placeholder="예: 컴퓨터공학과" value="${escapeHtml(state.profile.affiliation)}">
     </label>
+    <div id="department-results" class="department-results" aria-live="polite"></div>
+    <p id="department-note" class="department-note">학과는 직접 입력할 수 있습니다. 공식 전국 목록이 등록되면 검색 제안을 보여줍니다.</p>
+    <label>학교 이름 <span>(학교별 제한 확인용)</span>
+      <input name="school" type="search" placeholder="대학명 두 글자 이상 입력" value="${escapeHtml(state.profile.school)}" aria-controls="school-results" aria-autocomplete="list">
+    </label>
+    <div id="school-results" class="department-results" aria-live="polite"></div>
+    <p id="school-note" class="department-note">학교명을 입력하면 공식 학과자료의 대학명을 제안합니다. 직접 입력도 가능합니다.</p>
+    <div class="choice-field" role="group" aria-label="내 역량">
+      <strong>내 역량 <span>(여러 개 선택)</span></strong>
+      ${APP_CONFIG.skillGroups.map((group, index) => {
+        const count = group.skills.filter((skill) => (state.profile.skills || []).includes(skill)).length;
+        return `<details class="choice-group" ${index === 0 ? "open" : ""}><summary>${escapeHtml(group.name)} <span class="selection-count">${count ? `${count}개 선택` : ""}</span></summary><div class="choice-buttons">${choiceButtons(group.skills, state.profile.skills || [], "skill")}</div></details>`;
+      }).join("")}
+    </div>
+    <label>목록에 없는 역량 <span>(선택)</span>
+      <input name="skillsCustom" type="text" placeholder="쉼표로 구분해 추가" value="${escapeHtml((state.profile.skills || []).filter((value) => !knownSkills.has(value)).join(", "))}">
+    </label>
+    <div class="choice-field" role="group" aria-label="관심 주제">
+      <strong>관심 주제 <span>(여러 개 선택)</span></strong>
+      <div class="choice-buttons">${choiceButtons(APP_CONFIG.interestOptions, state.profile.interests || [], "interest")}</div>
+    </div>
+    <label>목록에 없는 관심 주제 <span>(선택)</span>
+      <input name="interestsCustom" type="text" placeholder="쉼표로 구분해 추가" value="${escapeHtml((state.profile.interests || []).filter((value) => !knownInterests.has(value)).join(", "))}">
+    </label>
+    <p class="department-note">역량·관심 주제는 탐색에만 사용하며 지원 자격을 바꾸지 않습니다.</p>
     <label>5. 거주 지역
       <select name="region"><option value="">선택해 주세요</option>${optionList(APP_CONFIG.regionOptions, state.profile.region)}</select>
+    </label>
+    <label>학교 소재지
+      <select name="schoolRegion"><option value="">선택해 주세요</option>${optionList(APP_CONFIG.regionOptions, state.profile.schoolRegion)}</select>
+    </label>
+    <label>직장·사업장 소재지
+      <select name="affiliationRegion"><option value="">선택해 주세요</option>${optionList(APP_CONFIG.regionOptions, state.profile.affiliationRegion)}</select>
     </label>
     <fieldset>
       <legend>6. 사업자 / 창업 상태</legend>
@@ -116,7 +172,12 @@ function profileFromForm() {
     nationality: data.get("nationality") || "",
     age: data.get("age") === "" ? "" : Number(data.get("age")),
     affiliation: data.get("affiliation")?.trim() || "",
+    school: data.get("school")?.trim() || "",
+    skills: [...new Set([...form.querySelectorAll('[data-skill][aria-pressed="true"]')].map((item) => item.dataset.skill).concat(commaValues(data.get("skillsCustom"))))],
+    interests: [...new Set([...form.querySelectorAll('[data-interest][aria-pressed="true"]')].map((item) => item.dataset.interest).concat(commaValues(data.get("interestsCustom"))))],
     region: data.get("region") || "",
+    schoolRegion: data.get("schoolRegion") || "",
+    affiliationRegion: data.get("affiliationRegion") || "",
     businessStatus: data.get("businessStatus") || "",
     businessYears: data.get("businessYears") === "" ? "" : Number(data.get("businessYears")),
     entryType: data.get("entryType") || "",
@@ -124,9 +185,9 @@ function profileFromForm() {
   };
 }
 
-function renderTabs(counts) {
+function renderTabs(counts, total) {
   tabs.innerHTML = APP_CONFIG.filters.map((filter) => {
-    const count = filter.id === "all" ? state.contests.length : counts[filter.id];
+    const count = filter.id === "all" ? total : counts[filter.id];
     return `<button type="button" role="tab" aria-selected="${state.activeFilter === filter.id}" class="tab ${state.activeFilter === filter.id ? "active" : ""}" data-filter="${filter.id}">${filter.label}<span>${count}</span></button>`;
   }).join("");
 }
@@ -152,7 +213,7 @@ function evidenceRows(contest) {
   return rows.length ? rows.join("") : "<p class=\"muted\">저장된 근거 발췌가 없습니다.</p>";
 }
 
-function cardHtml({ contest, decision }) {
+function cardHtml({ contest, decision, fit, localToday }) {
   const firstReason = decision.reasons?.[0]?.message ?? "판정 사유를 확인해 주세요.";
   const collected = contest.collected_at ? new Date(contest.collected_at).toLocaleDateString("ko-KR") : "미기재";
   return `
@@ -160,18 +221,25 @@ function cardHtml({ contest, decision }) {
       <div class="card-topline">
         <div class="badges">
           <span class="result-badge">${labels[decision.result]}</span>
-          <span class="data-badge">검증 전 데이터</span>
+          <span class="fit-badge ${fit.level === "related" ? "" : fit.level === "unknown" ? "unknown" : "no-signal"}">${fit.level === "related" ? "내 주제와 연결" : fit.level === "unknown" ? "관련성 정보 부족" : "일치 신호 없음"}</span>
+          <span class="data-badge">${contest.validation_status === "verified" ? "검수 완료" : "검증 전 데이터"}</span>
           <span class="sample-badge">${contest.is_sample ? "샘플" : "실제"}</span>
+          ${contest.deadline && contest.deadline < localToday ? '<span class="data-badge">접수 마감</span>' : ""}
         </div>
         <span class="organizer">${escapeHtml(contest.organizer || "주최 미기재")}</span>
       </div>
       <h3>${escapeHtml(contest.title)}</h3>
+      ${(contest.category || titleTopics(contest.title).length) ? `<p class="deadline-line">주제: ${escapeHtml(contest.category || titleTopics(contest.title).join(" · "))}${contest.category ? "" : " · 제목 키워드"}</p>` : ""}
+      ${contest.deadline ? `<p class="deadline-line">접수 마감 ${escapeHtml(contest.deadline)}</p>` : ""}
       <p class="reason-line">${escapeHtml(firstReason)}</p>
+      <p class="fit-note">${escapeHtml(fit.reasons.join(" "))}</p>
+      ${contest.sections.length > 1 ? `<div class="section-picker"><label for="section-${escapeHtml(contest.id)}">지원 부문</label><select class="section-select" id="section-${escapeHtml(contest.id)}" data-contest-id="${escapeHtml(contest.id)}"><option value="">부문 선택 전</option>${contest.sections.map((section) => `<option value="${escapeHtml(section.id)}" ${state.selectedSections[contest.id] === section.id ? "selected" : ""}>${escapeHtml(section.name || section.id)}</option>`).join("")}</select></div>` : ""}
       <div class="chips">${conditionChips(decision)}</div>
       <details>
         <summary>근거와 상세 보기 <span aria-hidden="true">＋</span></summary>
         <div class="detail-body">
           <dl class="evidence-list">${evidenceRows(contest)}</dl>
+          ${contest.skill_signals?.length ? `<p class="muted">공고에 명시된 역량: ${contest.skill_signals.map((item) => `${escapeHtml(item.name)} — ${escapeHtml(item.evidence)}`).join(" · ")}</p>` : ""}
           <div class="detail-meta">
             <span>수집일 ${escapeHtml(collected)}</span>
             ${contest.source_url ? `<a href="${escapeHtml(contest.source_url)}" target="_blank" rel="noopener noreferrer">원문 공고 열기 ↗</a>` : ""}
@@ -186,19 +254,123 @@ function cardHtml({ contest, decision }) {
 function renderResults() {
   if (!state.contests.length) return;
   const settings = { confidenceThreshold: APP_CONFIG.confidenceThreshold };
-  const judged = judgeAll(state.contests, state.profile, settings);
+  const query = state.query.toLocaleLowerCase("ko-KR");
+  const today = new Date();
+  const localToday = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  const matching = state.contests.filter((contest) => {
+    const searchText = `${contest.title || ""} ${contest.organizer || ""} ${(contest.topic_tags || []).join(" ")} ${(contest.skill_signals || []).map((item) => item.name).join(" ")}`;
+    const matchText = searchText.toLocaleLowerCase("ko-KR").includes(query);
+    const matchData = state.dataFilter === "all" || (state.dataFilter === "sample" ? contest.is_sample : !contest.is_sample);
+    const matchCategory = state.categoryFilter === "all" || contest.category === state.categoryFilter || titleTopics(contest.title).includes(state.categoryFilter);
+    const matchDeadline = state.deadlineFilter === "all"
+      || (state.deadlineFilter === "unknown" && !contest.deadline)
+      || (state.deadlineFilter === "open" && contest.deadline && contest.deadline >= localToday);
+    return matchText && matchData && matchCategory && matchDeadline;
+  });
+  const judged = matching.map((contest) => ({
+    contest,
+    decision: judgeContest(contest, { ...state.profile, selectedSectionId: state.selectedSections[contest.id] || "" }, settings),
+    fit: evaluateFit(contest, state.profile),
+  }));
+  if (state.sort === "relevance") judged.sort((a, b) => ({ related: 0, unknown: 1, no_signal: 2 }[a.fit.level] - { related: 0, unknown: 1, no_signal: 2 }[b.fit.level]));
+  if (state.sort === "deadline") judged.sort((a, b) => (a.contest.deadline || "9999-12-31").localeCompare(b.contest.deadline || "9999-12-31"));
   const counts = { eligible: 0, needs_review: 0, ineligible: 0 };
   judged.forEach(({ decision }) => { counts[decision.result] += 1; });
-  renderTabs(counts);
-  summary.innerHTML = `현재 프로필 기준 <strong>${counts.eligible}</strong>개 가능 · <strong>${counts.needs_review}</strong>개 확인 필요 · <strong>${counts.ineligible}</strong>개 불가`;
+  renderTabs(counts, judged.length);
+  summary.innerHTML = `현재 프로필의 자격 조건 기준 <strong>${counts.eligible}</strong>개 가능 · <strong>${counts.needs_review}</strong>개 확인 필요 · <strong>${counts.ineligible}</strong>개 불가`;
   const visible = state.activeFilter === "all" ? judged : judged.filter(({ decision }) => decision.result === state.activeFilter);
-  list.innerHTML = visible.length ? visible.map(cardHtml).join("") : `<div class="empty-state"><strong>해당 판정의 공고가 없습니다.</strong><span>프로필이나 필터를 바꿔 보세요.</span></div>`;
+  list.innerHTML = visible.length ? visible.map((item) => cardHtml({ ...item, localToday })).join("") : `<div class="empty-state"><strong>해당 판정의 공고가 없습니다.</strong><span>프로필이나 필터를 바꿔 보세요.</span></div>`;
 }
 
 form.addEventListener("input", () => {
   state.profile = profileFromForm();
   saveProfile();
   syncConditionalInputs();
+  renderResults();
+});
+
+form.addEventListener("input", (event) => {
+  if (event.target.name !== "affiliation") return;
+  clearTimeout(departmentTimer);
+  const query = event.target.value.trim();
+  const results = form.querySelector("#department-results");
+  results.innerHTML = "";
+  if (query.length < 2) return;
+  departmentTimer = setTimeout(async () => {
+    try {
+      const response = await fetch(`/api/departments?q=${encodeURIComponent(query)}`);
+      if (!response.ok) return;
+      const data = await response.json();
+      if (form.elements.affiliation.value.trim() !== query) return;
+      form.querySelector("#department-note").textContent = data.count
+        ? `공식 학과자료 ${data.reference_year || "연도 미상"}년 ${data.count.toLocaleString("ko-KR")}건에서 검색 · 재학 여부는 공고 원문 확인`
+        : data.coverage_note;
+      results.innerHTML = data.departments.map((item) => `<button type="button" data-major="${escapeHtml(item.major)}" data-school="${escapeHtml(item.school)}" data-region="${escapeHtml(item.region)}">${escapeHtml(item.school)} · ${escapeHtml(item.major)}</button>`).join("");
+    } catch {
+      form.querySelector("#department-note").textContent = "학과 검색을 사용할 수 없습니다. 학과명은 직접 입력할 수 있습니다.";
+    }
+  }, 250);
+});
+
+form.addEventListener("input", (event) => {
+  if (event.target.name !== "school") return;
+  clearTimeout(schoolTimer);
+  const query = event.target.value.trim();
+  const results = form.querySelector("#school-results");
+  results.innerHTML = "";
+  if (query.length < 2) return;
+  schoolTimer = setTimeout(async () => {
+    try {
+      const response = await fetch(`/api/schools?q=${encodeURIComponent(query)}`);
+      if (!response.ok) throw new Error("search failed");
+      const data = await response.json();
+      if (form.elements.school.value.trim() !== query) return;
+      form.querySelector("#school-note").textContent = data.count
+        ? `공식 학과자료 ${data.reference_year || "연도 미상"}년 · 대학 ${data.count.toLocaleString("ko-KR")}곳 중 검색${data.schools.length ? "" : " · 일치하는 대학 없음"}`
+        : "공식 대학 목록이 아직 동기화되지 않았습니다. 학교명을 직접 입력할 수 있습니다.";
+      results.innerHTML = data.schools.map((item) => `<button type="button" data-school-choice="${escapeHtml(item.name)}" data-region="${escapeHtml(item.region)}">${escapeHtml(item.name)}${item.region ? ` · ${escapeHtml(item.region)}` : ""}</button>`).join("");
+    } catch {
+      form.querySelector("#school-note").textContent = "대학 검색을 사용할 수 없습니다. 학교명을 직접 입력할 수 있습니다.";
+    }
+  }, 180);
+});
+
+form.addEventListener("click", (event) => {
+  const choiceButton = event.target.closest("[data-skill], [data-interest]");
+  if (choiceButton) {
+    const selected = choiceButton.getAttribute("aria-pressed") !== "true";
+    choiceButton.setAttribute("aria-pressed", String(selected));
+    choiceButton.classList.toggle("selected", selected);
+    const group = choiceButton.closest(".choice-group");
+    if (group) {
+      const count = group.querySelectorAll('[data-skill][aria-pressed="true"]').length;
+      group.querySelector(".selection-count").textContent = count ? `${count}개 선택` : "";
+    }
+    state.profile = profileFromForm();
+    saveProfile();
+    renderResults();
+    return;
+  }
+  const school = event.target.closest("[data-school-choice]");
+  if (school) {
+    form.elements.school.value = school.dataset.schoolChoice;
+    const region = APP_CONFIG.regionOptions.find((item) => school.dataset.region.startsWith(item));
+    if (region) form.elements.schoolRegion.value = region;
+    form.querySelector("#school-results").innerHTML = "";
+    state.profile = profileFromForm();
+    saveProfile();
+    renderResults();
+    return;
+  }
+  const choice = event.target.closest("[data-major]");
+  if (!choice) return;
+  form.elements.affiliation.value = choice.dataset.major;
+  form.elements.school.value = choice.dataset.school;
+  const region = APP_CONFIG.regionOptions.find((item) => choice.dataset.region.startsWith(item));
+  if (region) form.elements.schoolRegion.value = region;
+  form.querySelector("#department-results").innerHTML = "";
+  state.profile = profileFromForm();
+  saveProfile();
   renderResults();
 });
 
@@ -209,17 +381,122 @@ tabs.addEventListener("click", (event) => {
   renderResults();
 });
 
+list.addEventListener("change", (event) => {
+  const picker = event.target.closest("[data-contest-id]");
+  if (!picker) return;
+  state.selectedSections[picker.dataset.contestId] = picker.value;
+  renderResults();
+});
+
+document.querySelector("#contest-search").addEventListener("input", (event) => {
+  state.query = event.target.value.trim();
+  renderResults();
+});
+
+document.querySelector("#data-filter").addEventListener("change", (event) => {
+  state.dataFilter = event.target.value;
+  renderResults();
+});
+
+document.querySelector("#category-filter").addEventListener("change", (event) => {
+  state.categoryFilter = event.target.value;
+  renderResults();
+});
+
+document.querySelector("#deadline-filter").addEventListener("change", (event) => {
+  state.deadlineFilter = event.target.value;
+  renderResults();
+});
+
+document.querySelector("#sort-filter").addEventListener("change", (event) => {
+  state.sort = event.target.value;
+  renderResults();
+});
+
+importForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const button = importForm.querySelector("button");
+  button.disabled = true;
+  downloadPreview.hidden = true;
+  importMessage.textContent = "공고 조건을 읽고 있습니다…";
+  try {
+    const data = new FormData(importForm);
+    const response = await fetch("/api/preview", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ source_url: data.get("source_url"), text: data.get("text") }),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "공고를 처리할 수 없습니다.");
+    state.contests.unshift(result.contest);
+    lastPreview = result.contest;
+    downloadPreview.hidden = false;
+    state.query = "";
+    state.dataFilter = "all";
+    state.categoryFilter = "all";
+    state.deadlineFilter = "all";
+    state.activeFilter = "all";
+    document.querySelector("#contest-search").value = "";
+    document.querySelector("#data-filter").value = "all";
+    document.querySelector("#category-filter").value = "all";
+    document.querySelector("#deadline-filter").value = "all";
+    renderResults();
+    document.querySelector("#contest-total").textContent = state.contests.length;
+    importMessage.textContent = "검수 전 공고를 목록 맨 위에 추가했습니다. 새로고침하면 미리보기는 사라집니다.";
+  } catch (error) {
+    importMessage.textContent = error.message || "서버 연결을 확인해 주세요.";
+  } finally {
+    button.disabled = false;
+  }
+});
+
+downloadPreview.addEventListener("click", () => {
+  if (!lastPreview) return;
+  const blob = new Blob([JSON.stringify(lastPreview, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = `${lastPreview.id}.json`;
+  anchor.click();
+  URL.revokeObjectURL(url);
+});
+
+feedbackForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const message = document.querySelector("#feedback-message");
+  const data = new FormData(feedbackForm);
+  try {
+    const response = await fetch("/api/feedback", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        task_completed: data.get("task_completed") === "yes",
+        reason_clear: data.get("reason_clear") === "yes",
+        ease: Number(data.get("ease")),
+      }),
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "의견을 저장할 수 없습니다.");
+    feedbackForm.reset();
+    message.textContent = "의견을 저장했습니다. 감사합니다.";
+  } catch (error) {
+    message.textContent = error.message || "서버 연결을 확인해 주세요.";
+  }
+});
+
 async function start() {
   renderForm();
   try {
-    const response = await fetch("./data/seed.json");
+    const response = await fetch("/api/contests");
     if (!response.ok) throw new Error(`seed load failed: ${response.status}`);
     const seed = await response.json();
     state.contests = seed.contests;
+    const categories = [...new Set(state.contests.flatMap((item) => [item.category, ...titleTopics(item.title)].filter(Boolean)))].sort();
+    document.querySelector("#category-filter").innerHTML = `<option value="all">전체 주제</option>${categories.map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join("")}`;
+    document.querySelector("#contest-total").textContent = state.contests.length;
+    document.querySelector("#data-summary").textContent = `샘플 ${state.contests.filter((item) => item.is_sample).length}건 · 실제 ${state.contests.filter((item) => !item.is_sample).length}건`;
     loading.hidden = true;
     renderResults();
   } catch (error) {
-    loading.innerHTML = `<strong>seed.json을 불러오지 못했습니다.</strong><span>로컬 웹 서버로 실행했는지 확인해 주세요.</span>`;
+    loading.innerHTML = `<strong>공고 데이터를 불러오지 못했습니다.</strong><span>Python 서비스로 실행했는지 확인해 주세요.</span>`;
     console.error(error);
   }
 }

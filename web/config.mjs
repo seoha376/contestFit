@@ -19,6 +19,13 @@ export const APP_CONFIG = Object.freeze({
     { value: "individual", label: "개인" },
     { value: "team", label: "팀" },
   ],
+  skillGroups: [
+    { name: "개발·데이터", skills: ["Python", "JavaScript", "앱 개발", "웹 개발", "데이터 분석", "AI 활용"] },
+    { name: "디자인·콘텐츠", skills: ["UI/UX 디자인", "그래픽 디자인", "영상 편집", "사진 촬영", "글쓰기", "발표"] },
+    { name: "기획·연구", skills: ["서비스 기획", "아이디어 발상", "시장 조사", "사용자 조사", "문제 해결", "보고서 작성"] },
+    { name: "사업·협업", skills: ["창업", "마케팅", "브랜딩", "프로젝트 관리", "팀 협업", "영어"] },
+  ],
+  interestOptions: ["AI", "데이터", "개발", "디자인", "환경", "관광", "창업", "영상", "사진", "글쓰기"],
 });
 
 export const EMPTY_PROFILE = Object.freeze({
@@ -26,7 +33,12 @@ export const EMPTY_PROFILE = Object.freeze({
   nationality: "",
   age: "",
   affiliation: "",
+  school: "",
+  skills: [],
+  interests: [],
   region: "",
+  schoolRegion: "",
+  affiliationRegion: "",
   businessStatus: "",
   businessYears: "",
   entryType: "",

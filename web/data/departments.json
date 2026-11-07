@@ -1,0 +1,8 @@
+{
+  "source": "한국대학교육협의회 전국대학별학과정보표준데이터",
+  "source_url": "https://www.data.go.kr/data/15107737/standard.do",
+  "reference_year": null,
+  "synced_at": null,
+  "coverage_note": "공식 학과 카탈로그가 아직 동기화되지 않았습니다. 학과명은 직접 입력할 수 있습니다.",
+  "departments": []
+}

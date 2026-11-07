@@ -97,8 +97,18 @@ function compareText(profileValue, requiredValue) {
   return profile === required || profile.includes(required) || required.includes(profile);
 }
 
+function compareMajorScope(profileValue, requiredValue) {
+  if (Array.isArray(requiredValue)) return requiredValue.some((value) => compareMajorScope(profileValue, value));
+  return String(profileValue).replace(/\s+/g, "").toLowerCase()
+    .includes(String(requiredValue).replace(/\s+/g, "").toLowerCase());
+}
+
 function evaluateAge(section, profile, output) {
   if (!isSpecified(section, "age")) return;
+  if (section.age?.basis_date) {
+    output.review.push(reason("age", "basis_date", "공고의 연령 기준일에 맞춘 만 나이를 확인해야 합니다.", section.evidence?.age));
+    return;
+  }
   if (profile.age == null || profile.age === "") {
     output.review.push(reason("age", "missing_profile", "프로필 연령을 입력해야 합니다.", section.evidence?.age));
     return;
@@ -136,10 +146,22 @@ function evaluateStatus(section, profile, output) {
 
 function evaluateSimple(section, profile, field, profileKey, output) {
   if (!isSpecified(section, field)) return;
-  const profileValue = profile[profileKey];
+  const profileValue = field === "major_scope" && profile.school
+    ? `${profile.school} ${profile[profileKey] || ""}`.trim()
+    : profile[profileKey];
+  if (field === "major_scope") {
+    const scopes = Array.isArray(section[field]) ? section[field] : [section[field]];
+    const needsSchool = scopes.some((value) => /(?:대학교|대학|학교)/.test(String(value)));
+    const needsMajor = scopes.some((value) => /(?:학과|학부|전공)/.test(String(value)));
+    if ((needsSchool && !profile.school || needsMajor && !profile.affiliation)
+      && !compareMajorScope(profileValue || "", section[field])) {
+      output.review.push(reason(field, "missing_profile", "공고의 학교·학과 조건과 비교할 프로필 정보가 부족합니다.", section.evidence?.[field]));
+      return;
+    }
+  }
   if (profileValue == null || profileValue === "") {
     output.review.push(reason(field, "missing_profile", `프로필 ${FIELD_LABELS[field]}을(를) 입력해야 합니다.`, section.evidence?.[field]));
-  } else if (!compareText(profileValue, section[field])) {
+  } else if (!(field === "major_scope" ? compareMajorScope(profileValue, section[field]) : compareText(profileValue, section[field]))) {
     output.fail.push(reason(field, "mismatch", `${FIELD_LABELS[field]} 조건을 충족하지 않습니다.`, section.evidence?.[field]));
   }
 }
@@ -253,6 +275,16 @@ export function evaluateSection(section, profile, settings = DEFAULT_SETTINGS) {
 
 export function judgeContest(contest, profile, settings = DEFAULT_SETTINGS) {
   const evaluations = contest.sections.map((section) => evaluateSection(section, profile, settings));
+  if (contest.validation_status === "draft") {
+    return {
+      result: "needs_review",
+      reasons: [reason("source", "unverified_import", "새 공고의 자동 추출 조건을 검수해야 합니다.")],
+      sections: evaluations,
+      possibleSections: [],
+      missingFields: [...new Set(evaluations.flatMap((item) => item.missingFields))],
+      otherConditions: [...new Set(evaluations.flatMap((item) => item.otherConditions))],
+    };
+  }
   const selected = profile.selectedSectionId
     ? evaluations.find((item) => item.sectionId === profile.selectedSectionId)
     : null;

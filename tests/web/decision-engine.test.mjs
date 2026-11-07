@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { DEFAULT_SETTINGS, judgeContest, validateDecisionEvidence } from "../../web/decision-engine.mjs";
+import { evaluateFit, titleTopics } from "../../web/fit-engine.mjs";
 
 const baseProfile = {
   status: "재학생",
@@ -115,6 +116,63 @@ test("임계값보다 낮은 confidence와 누락된 프로필 값은 확인 필
     confidence: { nationality: 0.9 },
   });
   assert.equal(judgeContest(missingProfile, { ...baseProfile, nationality: "" }, DEFAULT_SETTINGS).result, "needs_review");
+});
+
+test("자동 추출 후 검수 전인 공고는 지원 가능으로 표시하지 않는다", () => {
+  const draft = { ...contest({ status: { allowed: ["재학생"], excluded: [] }, evidence: { status: "재학생" } }), validation_status: "draft" };
+  const result = judgeContest(draft, baseProfile, DEFAULT_SETTINGS);
+  assert.equal(result.result, "needs_review");
+  assert.equal(result.reasons[0].kind, "unverified_import");
+});
+
+test("공고가 별도 연령 기준일을 지정하면 현재 만 나이로 확정 판정하지 않는다", () => {
+  const datedAge = contest({
+    age: { min: null, max: 24, basis_date: "2026-12-31" },
+    evidence: { age: "2026년 12월 31일 기준 만 24세 이하" },
+  });
+  assert.equal(judgeContest(datedAge, baseProfile, DEFAULT_SETTINGS).result, "needs_review");
+  assert.equal(judgeContest(datedAge, { ...baseProfile, age: 25 }, DEFAULT_SETTINGS).result, "needs_review");
+});
+
+test("역량 관계는 지원 자격과 별도로 근거가 있는 키워드만 설명한다", () => {
+  const item = { ...contest({}), title: "AI 영상 공모전", topic_tags: [], skill_signals: [{ name: "영상 편집", evidence: "영상 편집 결과물을 제출" }] };
+  const fit = evaluateFit(item, { skills: ["영상 편집"], interests: ["인공지능"] });
+  assert.equal(fit.level, "related");
+  assert.deepEqual(fit.matchedSkills, ["영상 편집"]);
+  assert.ok(fit.reasons.some((value) => value.includes("제목")));
+  assert.equal(judgeContest(item, baseProfile).result, "eligible");
+});
+
+test("공고에 역량 정보가 없거나 키워드가 달라도 부적합으로 단정하지 않는다", () => {
+  assert.equal(evaluateFit({ title: "새 공모전" }, { skills: ["Python"] }).level, "unknown");
+  assert.equal(evaluateFit({ title: "AI 공모전" }, { skills: ["글쓰기"] }).level, "no_signal");
+});
+
+test("영문 역량 키워드는 대소문자를 구분하지 않는다", () => {
+  const fit = evaluateFit({ title: "서비스 공모전", skill_signals: [{ name: "python", evidence: "Python 개발 결과물" }] }, { skills: ["Python"] });
+  assert.deepEqual(fit.matchedSkills, ["python"]);
+});
+
+test("선택형 역량은 공고 제목의 주제와 분야 수준에서 연결된다", () => {
+  const fit = evaluateFit({ title: "AI 활용 영상 공모전" }, { skills: ["AI 활용", "영상 편집"], interests: [] });
+  assert.equal(fit.level, "related");
+  assert.deepEqual(fit.matchedTopics, ["AI", "영상"]);
+  assert.ok(fit.reasons.some((value) => value.includes("역량 분야")));
+});
+
+test("지자체 이름의 시를 글쓰기 주제로 해석하지 않는다", () => {
+  assert.equal(titleTopics("광양시 AI 영상 공모전").includes("글쓰기"), false);
+});
+
+test("학교와 학과가 함께 지정된 조건은 둘 다 맞아야 한다", () => {
+  const item = contest({ major_scope: "서울대학교 컴퓨터공학과", evidence: { major_scope: "서울대학교 컴퓨터공학과 재학생" } });
+  const matching = { ...baseProfile, school: "서울대학교", affiliation: "컴퓨터공학과" };
+  const otherMajor = { ...matching, affiliation: "기계공학과" };
+  const missingMajor = { ...matching, affiliation: "" };
+  assert.equal(judgeContest(item, matching).result, "eligible");
+  assert.notEqual(judgeContest(item, otherMajor).result, "eligible");
+  assert.equal(judgeContest(item, missingMajor).result, "needs_review");
+  assert.equal(judgeContest(item, { ...matching, school: "" }).result, "needs_review");
 });
 
 test("전국 누구나는 서울 거주자를 지역 불충족으로 만들지 않는다", () => {
