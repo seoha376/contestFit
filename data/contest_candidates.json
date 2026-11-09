@@ -1,0 +1,149 @@
+{
+  "schema_version": "1",
+  "candidates": [
+    {
+      "id": "official-bef2ab544f83c854",
+      "source_url": "https://mediahub.seoul.go.kr/gongmo/2000783",
+      "title": "「자전거타기 좋은 서울」 영상 공모전",
+      "organizer": "",
+      "deadline": "2026-11-09",
+      "category": "자전거·PM",
+      "source_name": "서울시 공식 공모전 목록",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T06:39:33.460694+00:00",
+      "updated_at": "2026-11-09T06:39:33.460694+00:00"
+    },
+    {
+      "id": "official-004c81bfbfa79315",
+      "source_url": "https://mediahub.seoul.go.kr/gongmo/2000780",
+      "title": "제12회 서울 29초 영화제",
+      "organizer": "",
+      "deadline": "2026-11-10",
+      "category": "영상 콘텐츠",
+      "source_name": "서울시 공식 공모전 목록",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T06:39:33.460694+00:00",
+      "updated_at": "2026-11-09T06:39:33.460694+00:00"
+    },
+    {
+      "id": "official-132aeb1f1439c64d",
+      "source_url": "https://kcgs.or.kr/homepage/static/p7",
+      "title": "2026 대학생 캡스톤 디자인 논문 공모전",
+      "organizer": "한국게임학회",
+      "deadline": "2026-11-13",
+      "category": "게임",
+      "source_name": "주최 학회 공식 공지",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T02:10:58.768044+00:00",
+      "updated_at": "2026-11-09T02:10:58.768044+00:00"
+    },
+    {
+      "id": "official-1e419f48dfb70820",
+      "source_url": "https://youth.knsu.ac.kr/knsu/unilife/notice.do?articleNo=56421&mode=view",
+      "title": "2026년 천마온 활용 경험 및 아이디어 공모전",
+      "organizer": "한국체육대학교 교육혁신원",
+      "deadline": "2026-11-15",
+      "category": "아이디어",
+      "source_name": "주최 대학 공식 공지",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T02:10:58.768044+00:00",
+      "updated_at": "2026-11-09T02:10:58.768044+00:00"
+    },
+    {
+      "id": "official-324070784f038007",
+      "source_url": "https://mediahub.seoul.go.kr/gongmo/2000786",
+      "title": "「2026 서울라이트 광화문」미디어파사드 작품 공모전",
+      "organizer": "",
+      "deadline": "2026-11-16",
+      "category": "미디어파사드",
+      "source_name": "서울시 공식 공모전 목록",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T06:39:33.460694+00:00",
+      "updated_at": "2026-11-09T06:39:33.460694+00:00"
+    },
+    {
+      "id": "official-5bdfb1f17bcddd94",
+      "source_url": "https://www.gg.go.kr/gongmo/bbs/boardView.do?bIdx=110906321&bsIdx=923&menuId=4433",
+      "title": "모두의 소통 소상공인 성장 및 재도약 정책 아이디어 공모전",
+      "organizer": "경기신용보증재단",
+      "deadline": "2026-11-16",
+      "category": "정책 아이디어",
+      "source_name": "경기도 통합공모 공식 게시물",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T06:39:25.175823+00:00",
+      "updated_at": "2026-11-09T06:39:25.175823+00:00"
+    },
+    {
+      "id": "official-5bd01b2ef11da29c",
+      "source_url": "https://www.ssis.or.kr/lay1/bbs/S1T67C95/A/102/view.do?article_seq=130246",
+      "title": "2026 사회보장 데이터를 활용한 AI 혁신 아이디어 경진대회",
+      "organizer": "한국사회보장정보원·대구가톨릭대학교",
+      "deadline": "2026-11-20",
+      "category": "AI·데이터",
+      "source_name": "한국사회보장정보원 공식 공지",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T06:39:25.175823+00:00",
+      "updated_at": "2026-11-09T06:39:25.175823+00:00"
+    },
+    {
+      "id": "official-93739bb43dcc8c97",
+      "source_url": "https://fashionillustration.or.kr/posts/67541?back=true",
+      "title": "2026 제29회 KOFIA 국제패션일러스트레이션 공모전",
+      "organizer": "한국패션일러스트레이션협회",
+      "deadline": "2026-11-20",
+      "category": "디자인",
+      "source_name": "주최 협회 공식 공지",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T02:10:58.768044+00:00",
+      "updated_at": "2026-11-09T02:10:58.768044+00:00"
+    },
+    {
+      "id": "official-1cbcae7d6257647f",
+      "source_url": "https://mediahub.seoul.go.kr/gongmo/2000785",
+      "title": "서울특별시 행정서식, 뚝딱뚝딱! 개선 아이디어 공모전",
+      "organizer": "",
+      "deadline": "2026-11-20",
+      "category": "행정, 아이디어",
+      "source_name": "서울시 공식 공모전 목록",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T06:39:33.460694+00:00",
+      "updated_at": "2026-11-09T06:39:33.460694+00:00"
+    },
+    {
+      "id": "official-962593f3f6fa98cc",
+      "source_url": "https://www.yglobal.or.kr/program/list.php?idx=38&mode=view",
+      "title": "용산글로벌교육지원센터 개관 1주년 기념 애칭 공모전",
+      "organizer": "용산글로벌교육지원센터",
+      "deadline": "2026-11-20",
+      "category": "네이밍",
+      "source_name": "주최 센터 공식 공지",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T06:39:25.175823+00:00",
+      "updated_at": "2026-11-09T06:39:25.175823+00:00"
+    },
+    {
+      "id": "official-3fc2e3e64265e835",
+      "source_url": "https://www.kiid.or.kr/download/kiid_poster_exhibition_20260331.pdf",
+      "title": "2026년 제18회 한국실내디자인대전",
+      "organizer": "한국실내디자인학회",
+      "deadline": "2026-11-23",
+      "category": "디자인",
+      "source_name": "주최 학회 공식 요강 PDF",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T02:10:58.768044+00:00",
+      "updated_at": "2026-11-09T02:10:58.768044+00:00"
+    },
+    {
+      "id": "official-122ab4056a127abb",
+      "source_url": "https://mediahub.seoul.go.kr/gongmo/2000791",
+      "title": "2026 내가 소개하는 서울 숏폼 공모전",
+      "organizer": "",
+      "deadline": "2026-11-27",
+      "category": "영상 콘텐츠",
+      "source_name": "서울시 공식 공모전 목록",
+      "status": "candidate",
+      "discovered_at": "2026-11-09T06:39:33.460694+00:00",
+      "updated_at": "2026-11-09T06:39:33.460694+00:00"
+    }
+  ]
+}

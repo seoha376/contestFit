@@ -44,11 +44,13 @@ macOS/Linux: `PYTHONPATH=src python -m posting_validation.service`. 브라우저
 
 공모전 공급원 조사와 세 담당자의 구현 경계는 [데이터 공급원 및 작업 인계](docs/data-sources-and-handoff.md)에 정리했다.
 
+1번 데이터·백엔드 담당자의 API 키 발급, 공고 후보 등록, 저장 모델, 조회 API 인수 절차는 [데이터·백엔드 실행 가이드](docs/data-backend-setup.md)에 정리했다. 공식 URL을 확인한 후보는 웹 공개 폴더 밖의 `data/contest_candidates.json`에만 저장하며, 검수된 실제 공고와 구분한다. 서울시 공식 공모전 목록의 후보 메타데이터는 `python -m posting_validation.seoul_feed`로 수동 갱신한다. K-CTF API 키가 있으면 `python -m posting_validation.kctf_feed`로 접수 중인 정보보안 대회를 같은 후보 저장 경로에 가져올 수 있다.
+
 분야 필터는 검수 JSON의 `category`에 팀이 확인한 분야를 기입한 공고에만 나타난다. 빈 분야를 추측해 채우지 않는다. 정확도 평가는 `[{"contest_id":"...","profile":{...},"expected":"eligible"}]` 형태의 수기 정답 파일을 만든 뒤 `node scripts/evaluate.mjs <수기정답.json>`으로 실행한다. 결과에는 전체 정확도와 잘못된 `지원 가능` 건수·비율이 함께 나온다. 정답 120건은 실제 원문과 대표 프로필을 확인하며 팀이 작성해야 한다.
 
-`GET /api/contests`는 검수된 공고와 기존 샘플을 함께 반환한다. `GET /api/departments?q=학과명`과 `GET /api/schools?q=대학명`은 동기화된 학과 카탈로그에서 검색 제안을 반환한다. `POST /api/preview`는 `{source_url, text?}`를 받아 임시 공고를 반환하고, `POST /api/feedback`은 `{task_completed, reason_clear, ease}`를 받는다. 이후 공식 공모전 API의 실제 응답 형식이 확인되면 출처별 어댑터를 이 공고 스키마에 연결한다.
+`GET /api/contests`는 검수된 공고와 기존 샘플을 함께 반환한다. `kind`, `deadline`, `q`, `limit` 조회 조건을 선택적으로 받을 수 있다. `GET /api/departments?q=학과명`과 `GET /api/schools?q=대학명`은 동기화된 학과 카탈로그에서 검색 제안을 반환한다. `GET /api/data-status`는 데이터 건수와 갱신 시각을 반환한다. `POST /api/preview`는 `{source_url, text?}`를 받아 임시 공고를 반환하고, `POST /api/feedback`은 `{task_completed, reason_clear, ease}`를 받는다. 이후 공식 공모전 API의 실제 응답 형식이 확인되면 출처별 어댑터를 이 공고 스키마에 연결한다.
 
-이 서비스는 기본적으로 로컬 주소에만 연결된다. 다른 기기에서 테스트하려면 접근 가능한 환경에 배포해야 하며, 배포 전 공식 URL 접근 정책과 서버의 공개 API 운영 조건을 확인한다. 현재 `curated.json`과 전국 학과 카탈로그는 비어 있고 기존 30건은 모두 검증 전 샘플이다. 실제 사용 결과를 주장하기 전에 공식 원문 검수와 사용 기록이 필요하다.
+이 서비스는 기본적으로 로컬 주소에만 연결된다. 다른 기기에서 테스트하려면 접근 가능한 환경에 배포해야 하며, 배포 전 공식 URL 접근 정책과 서버의 공개 API 운영 조건을 확인한다. 2026-11-09에 2025년 전국 학과 29,359건과 학교명 1,970개를 동기화했다. `curated.json`은 아직 비어 있고 기존 30건은 모두 검증 전 샘플이다. 실제 사용 결과를 주장하기 전에 공식 원문 검수와 사용 기록이 필요하다.
 
 ### 운영체제별 참고
 
@@ -94,6 +96,7 @@ src/posting_validation/       Python 추출·평가 파이프라인
   diagnosis.py                null 원인 진단
   web_seed.py                 추출 결과를 웹 seed 스키마로 변환
   departments.py              공식 전국 학과 API 동기화·검색
+  candidates.py               공식 공고 후보 메타데이터 등록·중복 제거
   service.py                  정적 웹·단건 미리보기·익명 의견 API
   curate.py                   원문 대조 후 실제 공고 게시
   cli.py                      파이프라인 CLI
@@ -105,6 +108,8 @@ web/                          정적 웹 프로토타입
   data/seed.json              웹 실행에 사용하는 검증 전 샘플 30건
   data/curated.json           팀이 검수해 게시한 실제 공고
   data/departments.json       공식 학과 카탈로그 검색용 축약 데이터
+data/                         웹에 공개하지 않는 공고 후보 메타데이터
+  contest_candidates.json     검수 전 공식 URL 후보 목록
 tests/                        Python unittest와 Node 내장 테스트
 raw/                          외부 원문 로컬 사본; Git 업로드 금지
 manifest*.json                수집 시점·URL·raw 파일 참조 기록
