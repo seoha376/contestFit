@@ -220,11 +220,17 @@ function cardHtml({ contest, decision, fit, localToday }) {
     <article class="contest-card status-${decision.result}">
       <div class="card-topline">
         <div class="badges">
-          <span class="result-badge">${labels[decision.result]}</span>
-          <span class="fit-badge ${fit.level === "related" ? "" : fit.level === "unknown" ? "unknown" : "no-signal"}">${fit.level === "related" ? "내 주제와 연결" : fit.level === "unknown" ? "관련성 정보 부족" : "일치 신호 없음"}</span>
-          <span class="data-badge">${contest.validation_status === "verified" ? "검수 완료" : "검증 전 데이터"}</span>
-          <span class="sample-badge">${contest.is_sample ? "샘플" : "실제"}</span>
-          ${contest.deadline && contest.deadline < localToday ? '<span class="data-badge">접수 마감</span>' : ""}
+          <div class="badge-group" role="group" aria-label="지원 자격 판정">
+            <span class="badge-caption">지원 자격</span>
+            <span class="result-badge">${labels[decision.result]}</span>
+            <span class="data-badge">${contest.validation_status === "verified" ? "검수 완료" : "검증 전 데이터"}</span>
+            <span class="sample-badge">${contest.is_sample ? "샘플 데이터" : "실제 공고"}</span>
+            ${contest.deadline && contest.deadline < localToday ? '<span class="data-badge">접수 마감</span>' : ""}
+          </div>
+          <div class="badge-group" role="group" aria-label="주제 관련성 (지원 자격과 별개)">
+            <span class="badge-caption">주제 관련성 · 자격과 별개</span>
+            <span class="fit-badge ${fit.level === "related" ? "" : fit.level === "unknown" ? "unknown" : "no-signal"}">${fit.level === "related" ? "내 주제와 연결" : fit.level === "unknown" ? "관련성 정보 부족" : "일치 신호 없음"}</span>
+          </div>
         </div>
         <span class="organizer">${escapeHtml(contest.organizer || "주최 미기재")}</span>
       </div>
@@ -232,7 +238,7 @@ function cardHtml({ contest, decision, fit, localToday }) {
       ${(contest.category || titleTopics(contest.title).length) ? `<p class="deadline-line">주제: ${escapeHtml(contest.category || titleTopics(contest.title).join(" · "))}${contest.category ? "" : " · 제목 키워드"}</p>` : ""}
       ${contest.deadline ? `<p class="deadline-line">접수 마감 ${escapeHtml(contest.deadline)}</p>` : ""}
       <p class="reason-line">${escapeHtml(firstReason)}</p>
-      <p class="fit-note">${escapeHtml(fit.reasons.join(" "))}</p>
+      <p class="fit-note"><strong>주제 관련성 (자격 판정과 별개):</strong> ${escapeHtml(fit.reasons.join(" "))}</p>
       ${contest.sections.length > 1 ? `<div class="section-picker"><label for="section-${escapeHtml(contest.id)}">지원 부문</label><select class="section-select" id="section-${escapeHtml(contest.id)}" data-contest-id="${escapeHtml(contest.id)}"><option value="">부문 선택 전</option>${contest.sections.map((section) => `<option value="${escapeHtml(section.id)}" ${state.selectedSections[contest.id] === section.id ? "selected" : ""}>${escapeHtml(section.name || section.id)}</option>`).join("")}</select></div>` : ""}
       <div class="chips">${conditionChips(decision)}</div>
       <details>
@@ -279,7 +285,22 @@ function renderResults() {
   renderTabs(counts, judged.length);
   summary.innerHTML = `현재 프로필의 자격 조건 기준 <strong>${counts.eligible}</strong>개 가능 · <strong>${counts.needs_review}</strong>개 확인 필요 · <strong>${counts.ineligible}</strong>개 불가`;
   const visible = state.activeFilter === "all" ? judged : judged.filter(({ decision }) => decision.result === state.activeFilter);
-  list.innerHTML = visible.length ? visible.map((item) => cardHtml({ ...item, localToday })).join("") : `<div class="empty-state"><strong>해당 판정의 공고가 없습니다.</strong><span>프로필이나 필터를 바꿔 보세요.</span></div>`;
+  list.innerHTML = visible.length ? visible.map((item) => cardHtml({ ...item, localToday })).join("") : `<div class="empty-state"><strong>${judged.length ? "해당 판정의 공고가 없습니다." : "조건에 맞는 공고가 없습니다."}</strong><span>프로필이나 필터를 바꿔 보세요. 아래 버튼으로 검색어와 필터를 한 번에 초기화할 수 있습니다.</span><button type="button" class="empty-reset" id="reset-filters">필터 초기화</button></div>`;
+}
+
+function resetFilters() {
+  state.query = "";
+  state.dataFilter = "all";
+  state.categoryFilter = "all";
+  state.deadlineFilter = "all";
+  state.sort = "relevance";
+  state.activeFilter = "all";
+  document.querySelector("#contest-search").value = "";
+  document.querySelector("#data-filter").value = "all";
+  document.querySelector("#category-filter").value = "all";
+  document.querySelector("#deadline-filter").value = "all";
+  document.querySelector("#sort-filter").value = "relevance";
+  renderResults();
 }
 
 form.addEventListener("input", () => {
@@ -388,6 +409,11 @@ list.addEventListener("change", (event) => {
   renderResults();
 });
 
+list.addEventListener("click", (event) => {
+  if (!event.target.closest("#reset-filters")) return;
+  resetFilters();
+});
+
 document.querySelector("#contest-search").addEventListener("input", (event) => {
   state.query = event.target.value.trim();
   renderResults();
@@ -441,6 +467,7 @@ importForm.addEventListener("submit", async (event) => {
     document.querySelector("#deadline-filter").value = "all";
     renderResults();
     document.querySelector("#contest-total").textContent = state.contests.length;
+    updateDataSummary();
     importMessage.textContent = "검수 전 공고를 목록 맨 위에 추가했습니다. 새로고침하면 미리보기는 사라집니다.";
   } catch (error) {
     importMessage.textContent = error.message || "서버 연결을 확인해 주세요.";
@@ -482,22 +509,46 @@ feedbackForm.addEventListener("submit", async (event) => {
   }
 });
 
+function updateDataSummary() {
+  const samples = state.contests.filter((item) => item.is_sample).length;
+  const real = state.contests.length - samples;
+  const unverified = state.contests.filter((item) => item.validation_status !== "verified").length;
+  document.querySelector("#data-summary").textContent = state.contests.length && samples === state.contests.length
+    ? `샘플 ${samples}건 · 실제 0건 — 전부 검증 전 샘플입니다`
+    : `샘플 ${samples}건 · 실제 ${real}건${unverified ? ` · 검증 전 ${unverified}건 포함` : ""}`;
+}
+
+function applyContestData(seed) {
+  state.contests = seed.contests;
+  const categories = [...new Set(state.contests.flatMap((item) => [item.category, ...titleTopics(item.title)].filter(Boolean)))].sort();
+  document.querySelector("#category-filter").innerHTML = `<option value="all">전체 주제</option>${categories.map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join("")}`;
+  document.querySelector("#contest-total").textContent = state.contests.length;
+  updateDataSummary();
+}
+
 async function start() {
   renderForm();
   try {
     const response = await fetch("/api/contests");
     if (!response.ok) throw new Error(`seed load failed: ${response.status}`);
     const seed = await response.json();
-    state.contests = seed.contests;
-    const categories = [...new Set(state.contests.flatMap((item) => [item.category, ...titleTopics(item.title)].filter(Boolean)))].sort();
-    document.querySelector("#category-filter").innerHTML = `<option value="all">전체 주제</option>${categories.map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join("")}`;
-    document.querySelector("#contest-total").textContent = state.contests.length;
-    document.querySelector("#data-summary").textContent = `샘플 ${state.contests.filter((item) => item.is_sample).length}건 · 실제 ${state.contests.filter((item) => !item.is_sample).length}건`;
+    applyContestData(seed);
     loading.hidden = true;
     renderResults();
   } catch (error) {
-    loading.innerHTML = `<strong>공고 데이터를 불러오지 못했습니다.</strong><span>Python 서비스로 실행했는지 확인해 주세요.</span>`;
     console.error(error);
+    try {
+      const fallbackResponse = await fetch("./data/seed.json");
+      if (!fallbackResponse.ok) throw new Error(`fallback load failed: ${fallbackResponse.status}`);
+      const seed = await fallbackResponse.json();
+      applyContestData(seed);
+      document.querySelector("#fallback-banner").hidden = false;
+      loading.hidden = true;
+      renderResults();
+    } catch (fallbackError) {
+      loading.innerHTML = `<strong>공고 데이터를 불러오지 못했습니다.</strong><span>Python 서비스로 실행했는지 확인해 주세요.</span>`;
+      console.error(fallbackError);
+    }
   }
 }
 
