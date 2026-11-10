@@ -145,6 +145,21 @@ def _direct_deadline_range_evidence(text: str) -> str | None:
     return None
 
 
+def _deadline_from_evidence(evidence: str):
+    """Use an abbreviated range end only when its year is unambiguous."""
+    dates = list(DATE_RE.finditer(evidence))
+    if len(dates) == 1:
+        year, start_month, start_day = map(int, dates[0].groups())
+        remainder = evidence[dates[0].end():]
+        abbreviated_end = re.match(r"^\s*\.?\s*[~–-]\s*(\d{1,2})[.\-/월]\s*(\d{1,2})(?:일)?", remainder)
+        if abbreviated_end:
+            end_month, end_day = map(int, abbreviated_end.groups())
+            if (end_month, end_day) < (start_month, start_day):
+                return None
+            return parse_deadline(f"마감일 {year}-{end_month:02d}-{end_day:02d}")
+    return parse_deadline(evidence)
+
+
 def _submission_format_field(text: str) -> dict:
     text_lines = lines(text)
     for index, line in enumerate(text_lines):
@@ -442,7 +457,7 @@ def extract_posting(url: str, html: str, text: str, item_id: str | None = None) 
     deadline_evidence = first_line(text, [r"마감.{0,20}20\d{2}[.\-/년]\s*\d{1,2}[.\-/월]\s*\d{1,2}", r"(접수|모집|지원).{0,12}20\d{2}[.\-/년]\s*\d{1,2}[.\-/월]\s*\d{1,2}"])
     if not deadline_evidence:
         deadline_evidence = _direct_deadline_range_evidence(text)
-    deadline = parse_deadline(deadline_evidence or "")
+    deadline = _deadline_from_evidence(deadline_evidence or "")
     data["deadline"] = field(deadline.date().isoformat(), deadline_evidence) if deadline and deadline_evidence else field()
     data["region"] = _simple(text, [r"^(지역|활동지역|근무지역)\s*[:：]"])
     if data["region"]["value"] is None:
