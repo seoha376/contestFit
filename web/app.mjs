@@ -23,6 +23,7 @@ const fieldLabels = {
 const state = {
   contests: [],
   dataMeta: null,
+  dataStatus: null,
   profile: loadProfile(),
   activeFilter: "all",
   query: "",
@@ -203,20 +204,53 @@ function conditionChips(decision) {
   return chips.join("");
 }
 
+function formatSyncedAt(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  const pad = (num) => String(num).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
 function updateDataSummary() {
   const total = state.contests.length;
+  const summaryElement = document.querySelector("#data-summary");
+  const totalElement = document.querySelector("#contest-total");
+  if (totalElement) totalElement.textContent = total;
+  if (!summaryElement) return;
+  // /api/data-status가 응답하면 서버 집계 값을 우선 표시한다. 실패하면 아래 목록 기반 계산이 폴백이다.
+  const status = state.dataStatus;
+  if (status && typeof status.sample_contests === "number" && typeof status.verified_contests === "number") {
+    let text = `샘플 ${status.sample_contests}건 · 검수 완료 ${status.verified_contests}건`;
+    if (status.sample_contests > 0 && status.verified_contests === 0) text += " — 전부 검증 전 샘플입니다";
+    if (typeof status.departments === "number" && typeof status.schools === "number") {
+      text += ` · 학과 ${status.departments.toLocaleString("ko-KR")}개 · 학교 ${status.schools.toLocaleString("ko-KR")}곳`;
+      if (status.reference_year) text += ` (${status.reference_year}년 기준)`;
+    }
+    const synced = formatSyncedAt(status.synced_at);
+    if (synced) text += ` · ${synced} 동기화`;
+    summaryElement.textContent = text;
+    return;
+  }
   const samples = state.contests.filter((item) => item.is_sample).length;
   // 검수 완료 건수는 목록 안에서 실공고이면서 verified인 항목만 명시적으로 센다.
   const verified = state.contests.filter((item) => !item.is_sample && item.validation_status === "verified").length;
   const unverified = state.contests.filter((item) => item.validation_status !== "verified").length;
-  const summaryElement = document.querySelector("#data-summary");
-  if (summaryElement) {
-    summaryElement.textContent = total > 0 && samples === total
-      ? `샘플 ${samples}건 · 실제 0건 — 전부 검증 전 샘플입니다`
-      : `샘플 ${samples}건 · 실제 ${total - samples}건 · 검수 완료 ${verified}건${unverified ? ` · 검증 전 ${unverified}건 포함` : ""}`;
+  summaryElement.textContent = total > 0 && samples === total
+    ? `샘플 ${samples}건 · 실제 0건 — 전부 검증 전 샘플입니다`
+    : `샘플 ${samples}건 · 실제 ${total - samples}건 · 검수 완료 ${verified}건${unverified ? ` · 검증 전 ${unverified}건 포함` : ""}`;
+}
+
+async function loadDataStatus() {
+  try {
+    const response = await fetch("/api/data-status");
+    if (!response.ok) throw new Error(`data status failed: ${response.status}`);
+    state.dataStatus = await response.json();
+  } catch (error) {
+    console.error(error);
+    state.dataStatus = null;
   }
-  const totalElement = document.querySelector("#contest-total");
-  if (totalElement) totalElement.textContent = total;
+  updateDataSummary();
 }
 
 function deadlineLabel(contest, localToday) {
@@ -559,6 +593,7 @@ function applyContestData() {
 
 async function start() {
   renderForm();
+  loadDataStatus();
   try {
     const response = await fetch("/api/contests");
     if (!response.ok) throw new Error(`seed load failed: ${response.status}`);
