@@ -1,0 +1,84 @@
+{
+  "contest": {
+    "id": "official-1cbcae7d6257647f",
+    "title": "서울특별시 행정서식, 뚝딱뚝딱! 개선 아이디어 공모전",
+    "organizer": "서울특별시",
+    "deadline": "2026-11-20",
+    "category": null,
+    "topic_tags": [],
+    "skill_signals": [],
+    "source_url": "https://mediahub.seoul.go.kr/gongmo/2000785",
+    "collected_at": "2026-11-10T01:19:06.017330+00:00",
+    "is_sample": false,
+    "validation_status": "draft",
+    "sections": [
+      {
+        "id": "official-1cbcae7d6257647f-section-1",
+        "name": null,
+        "age": {
+          "min": null,
+          "max": null,
+          "basis_date": null
+        },
+        "status": {
+          "allowed": [],
+          "excluded": [],
+          "chip_mismatch": false
+        },
+        "major_scope": null,
+        "region": null,
+        "nationality": null,
+        "business_reg": {
+          "policy": null,
+          "years": null,
+          "name_restriction": false
+        },
+        "entry_type": "individual",
+        "team_size": null,
+        "other_conditions": [
+          "행정서식 이용 경험",
+          "수상 취소 및 상금 환수 이력 제한"
+        ],
+        "evidence": {
+          "age": null,
+          "status": "공모자격: 행정서식 이용 경험이 있는 국민 누구나 (개인, 전국단위 공모)",
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": null,
+          "entry_type": "개인 자격으로 응모 (팀 단위 제출 불가)",
+          "team_size": null,
+          "other_conditions": [
+            "행정서식 이용 경험이 있는 국민 누구나",
+            "수상 취소 및 상금·부상 환수 이력이 있는 자"
+          ]
+        },
+        "evidence_source": {
+          "age": null,
+          "status": "body",
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": null,
+          "entry_type": "body",
+          "team_size": null,
+          "other_conditions": "body"
+        },
+        "chip_evidence": {
+          "status": null
+        },
+        "confidence": {
+          "age": null,
+          "status": null,
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": null,
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": null
+        }
+      }
+    ]
+  }
+}
