@@ -16,7 +16,7 @@ import ssl
 import threading
 import time
 import urllib.robotparser
-from datetime import UTC, datetime
+from datetime import UTC, date, datetime
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -43,6 +43,8 @@ BLOCKED_HOSTS = {
     "thinkgood.co.kr", "www.thinkgood.co.kr", "all-con.co.kr", "www.all-con.co.kr",
 }
 _feedback_lock = threading.Lock()
+_catalog_lock = threading.Lock()
+_catalog_cache: tuple[Path, int, dict] | None = None
 
 
 class PreviewError(ValueError):
@@ -177,6 +179,55 @@ def record_feedback(value: dict) -> None:
         stream.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
+def load_catalog() -> dict:
+    """Reuse the parsed catalog until the atomic sync replaces its file."""
+    global _catalog_cache
+    with _catalog_lock:
+        stamp = CATALOG.stat().st_mtime_ns
+        if _catalog_cache is None or _catalog_cache[0] != CATALOG or _catalog_cache[1] != stamp:
+            _catalog_cache = (CATALOG, stamp, json.loads(CATALOG.read_text(encoding="utf-8")))
+        return _catalog_cache[2]
+
+
+def list_contests(kind: str = "all", deadline: str = "all", query: str = "", limit: int | None = None) -> dict:
+    if kind not in ("all", "real", "sample") or deadline not in ("all", "open", "unknown"):
+        raise ValueError("공고 조회 조건이 올바르지 않습니다.")
+    if limit is not None and not 1 <= limit <= 200:
+        raise ValueError("조회 건수는 1~200이어야 합니다.")
+    seed = json.loads(SEED.read_text(encoding="utf-8"))
+    curated = json.loads(CURATED.read_text(encoding="utf-8")) if CURATED.exists() else {"contests": []}
+    contests = curated["contests"] + seed["contests"]
+    if kind != "all":
+        contests = [item for item in contests if bool(item.get("is_sample")) == (kind == "sample")]
+    if deadline != "all":
+        today = date.today().isoformat()
+        if deadline == "unknown":
+            contests = [item for item in contests if not item.get("deadline")]
+        else:
+            contests = [item for item in contests if item.get("deadline") and item["deadline"] >= today]
+    if query:
+        needle = query.strip().casefold()
+        contests = [item for item in contests if needle in f"{item.get('title') or ''} {item.get('organizer') or ''}".casefold()]
+    seed["contests"] = contests[:limit] if limit else contests
+    return seed
+
+
+def data_status() -> dict:
+    data = list_contests()
+    catalog = load_catalog()
+    school_count = catalog.get("school_count")
+    if school_count is None:
+        school_count = len({item.get("school") for item in catalog.get("departments", []) if item.get("school")})
+    return {
+        "sample_contests": sum(bool(item.get("is_sample")) for item in data["contests"]),
+        "verified_contests": sum(not item.get("is_sample") and item.get("validation_status") == "verified" for item in data["contests"]),
+        "departments": len(catalog.get("departments", [])),
+        "schools": school_count,
+        "reference_year": catalog.get("reference_year"),
+        "synced_at": catalog.get("synced_at"),
+    }
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(WEB), **kwargs)
@@ -193,18 +244,29 @@ class Handler(SimpleHTTPRequestHandler):
     def do_GET(self) -> None:
         parsed = urlsplit(self.path)
         if parsed.path == "/api/contests":
-            seed = json.loads(SEED.read_text(encoding="utf-8"))
-            curated = json.loads(CURATED.read_text(encoding="utf-8")) if CURATED.exists() else {"contests": []}
-            seed["contests"] = curated["contests"] + seed["contests"]
-            self.send_json(HTTPStatus.OK, seed)
+            params = parse_qs(parsed.query)
+            try:
+                limit = int(params["limit"][0]) if "limit" in params else None
+                data = list_contests(
+                    kind=params.get("kind", ["all"])[0],
+                    deadline=params.get("deadline", ["all"])[0],
+                    query=params.get("q", [""])[0][:100],
+                    limit=limit,
+                )
+            except ValueError as exc:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+                return
+            self.send_json(HTTPStatus.OK, data)
         elif parsed.path == "/api/departments":
-            catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+            catalog = load_catalog()
             query = parse_qs(parsed.query).get("q", [""])[0][:80]
             self.send_json(HTTPStatus.OK, search_catalog(catalog, query))
         elif parsed.path == "/api/schools":
-            catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+            catalog = load_catalog()
             query = parse_qs(parsed.query).get("q", [""])[0][:80]
             self.send_json(HTTPStatus.OK, search_schools(catalog, query))
+        elif parsed.path == "/api/data-status":
+            self.send_json(HTTPStatus.OK, data_status())
         elif self.path.startswith("/api/"):
             self.send_json(HTTPStatus.NOT_FOUND, {"error": "API를 찾을 수 없습니다."})
         else:

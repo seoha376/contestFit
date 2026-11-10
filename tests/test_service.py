@@ -57,6 +57,37 @@ class ServiceTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 verify_contest(contest)
 
+    def test_contest_query_preserves_default_and_filters_real_data(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            seed_path = Path(directory) / "seed.json"
+            curated_path = Path(directory) / "curated.json"
+            seed_path.write_text(json.dumps({"schema_version": "1.1", "contests": [
+                {"title": "샘플 공모전", "organizer": "예시", "is_sample": True, "deadline": None},
+            ]}, ensure_ascii=False), encoding="utf-8")
+            curated_path.write_text(json.dumps({"contests": [
+                {"title": "실제 AI 공모전", "organizer": "공식기관", "is_sample": False, "deadline": "2099-12-31", "validation_status": "verified"},
+            ]}, ensure_ascii=False), encoding="utf-8")
+            with patch.object(service, "SEED", seed_path), patch.object(service, "CURATED", curated_path):
+                self.assertEqual(len(service.list_contests()["contests"]), 2)
+                filtered = service.list_contests(kind="real", deadline="open", query="AI", limit=1)
+                self.assertEqual([item["title"] for item in filtered["contests"]], ["실제 AI 공모전"])
+                self.assertEqual(len(service.list_contests(deadline="unknown")["contests"]), 1)
+                with self.assertRaises(ValueError):
+                    service.list_contests(limit=0)
+
+    def test_data_status_reports_counts_without_exposing_candidates(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            seed_path = Path(directory) / "seed.json"
+            curated_path = Path(directory) / "curated.json"
+            catalog_path = Path(directory) / "departments.json"
+            seed_path.write_text(json.dumps({"contests": [{"is_sample": True}]}), encoding="utf-8")
+            curated_path.write_text(json.dumps({"contests": [{"is_sample": False, "validation_status": "verified"}]}), encoding="utf-8")
+            catalog_path.write_text(json.dumps({"departments": [{"school": "예시대", "major": "컴퓨터공학과"}], "school_count": 1, "reference_year": 2025}), encoding="utf-8")
+            with patch.object(service, "SEED", seed_path), patch.object(service, "CURATED", curated_path), patch.object(service, "CATALOG", catalog_path):
+                result = service.data_status()
+            self.assertEqual((result["sample_contests"], result["verified_contests"], result["departments"], result["schools"]), (1, 1, 1, 1))
+            self.assertNotIn("serviceKey", result)
+
 
 if __name__ == "__main__":
     unittest.main()
