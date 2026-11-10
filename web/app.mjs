@@ -22,6 +22,7 @@ const fieldLabels = {
 
 const state = {
   contests: [],
+  dataMeta: null,
   profile: loadProfile(),
   activeFilter: "all",
   query: "",
@@ -205,12 +206,14 @@ function conditionChips(decision) {
 function updateDataSummary() {
   const total = state.contests.length;
   const samples = state.contests.filter((item) => item.is_sample).length;
+  // 검수 완료 건수는 목록 안에서 실공고이면서 verified인 항목만 명시적으로 센다.
+  const verified = state.contests.filter((item) => !item.is_sample && item.validation_status === "verified").length;
   const unverified = state.contests.filter((item) => item.validation_status !== "verified").length;
   const summaryElement = document.querySelector("#data-summary");
   if (summaryElement) {
     summaryElement.textContent = total > 0 && samples === total
       ? `샘플 ${samples}건 · 실제 0건 — 전부 검증 전 샘플입니다`
-      : `샘플 ${samples}건 · 실제 ${total - samples}건${unverified ? ` · 검증 전 ${unverified}건 포함` : ""}`;
+      : `샘플 ${samples}건 · 실제 ${total - samples}건 · 검수 완료 ${verified}건${unverified ? ` · 검증 전 ${unverified}건 포함` : ""}`;
   }
   const totalElement = document.querySelector("#contest-total");
   if (totalElement) totalElement.textContent = total;
@@ -561,6 +564,7 @@ async function start() {
     if (!response.ok) throw new Error(`seed load failed: ${response.status}`);
     const seed = await response.json();
     state.contests = seed.contests;
+    state.dataMeta = { schemaVersion: seed.schema_version ?? null, validationStatus: seed.validation_status ?? null };
     applyContestData();
   } catch (error) {
     console.error(error);
@@ -569,6 +573,7 @@ async function start() {
       if (!fallbackResponse.ok) throw new Error(`seed fallback failed: ${fallbackResponse.status}`);
       const seed = await fallbackResponse.json();
       state.contests = seed.contests;
+      state.dataMeta = { schemaVersion: seed.schema_version ?? null, validationStatus: seed.validation_status ?? null };
       if (fallbackBanner) fallbackBanner.hidden = false;
       applyContestData();
     } catch (fallbackError) {
