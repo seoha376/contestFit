@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="공모전 자격 조건을 프로필과 비교하고 원문 근거를 확인하는 서비스">
   <title>Contest Fit — 공모전 자격 판정</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%2313263d%22/><text x=%2232%22 y=%2240%22 text-anchor=%22middle%22 font-size=%2224%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22white%22>CF</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%224%22 fill=%22%23141714%22/><text x=%2232%22 y=%2240%22 text-anchor=%22middle%22 font-size=%2224%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22white%22>CF</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
@@ -14,6 +17,12 @@
       <span class="brand-mark" aria-hidden="true">CF</span>
       <span>CONTEST FIT</span>
     </a>
+    <nav class="site-nav" aria-label="주요 섹션">
+      <a href="#profile-panel">프로필</a>
+      <a href="#results-panel">탐색</a>
+      <a href="#import-panel">공고 추가</a>
+      <a href="#feedback-panel">의견</a>
+    </nav>
     <div class="header-status"><span></span> 근거 기반 자격 확인</div>
   </header>
 
@@ -31,18 +40,23 @@
       </div>
     </section>
 
+    <div id="fallback-banner" class="fallback-banner" role="alert" hidden>
+      <span aria-hidden="true">!</span>
+      <div><strong>서버에 연결하지 못했습니다</strong><p>지금은 샘플 데이터만 표시하고 있습니다. Python 서비스 실행 후 새로고침하면 전체 공고를 확인할 수 있습니다.</p></div>
+    </div>
+
     <div class="unverified-banner" role="note">
       <span aria-hidden="true">!</span>
       <div><strong>데이터 상태를 확인하세요</strong><p>기존 샘플은 검증 전 데이터입니다. 주제 관련성은 지원 자격 판정과 별개이며, 최종 조건은 주최 공고에서 확인해야 합니다.</p></div>
     </div>
 
     <div class="workspace">
-      <aside class="profile-panel" aria-label="프로필 입력">
+      <aside id="profile-panel" class="profile-panel" aria-label="프로필 입력">
         <form id="profile-form" autocomplete="off"></form>
       </aside>
 
-      <section class="results-panel" aria-labelledby="results-title">
-        <section class="tool-panel" aria-labelledby="import-title">
+      <section id="results-panel" class="results-panel" aria-labelledby="results-title">
+        <section id="import-panel" class="tool-panel" aria-labelledby="import-title">
           <div><span class="eyebrow">ONE POSTING AT A TIME</span><h2 id="import-title">공식 공고 한 건 확인하기</h2></div>
           <p>주최 기관의 공식 URL을 입력하세요. 자동 열람이 막힌 공고는 원문의 자격 부분을 함께 붙여넣을 수 있습니다. 새 결과는 검수 전으로 표시됩니다.</p>
           <form id="import-form">
@@ -70,7 +84,7 @@
         <div id="result-tabs" class="tabs" role="tablist" aria-label="판정 결과 필터"></div>
         <div id="loading-state" class="loading-state"><span class="loader" aria-hidden="true"></span><span>공고 데이터를 읽고 있습니다.</span></div>
         <div id="contest-list" class="contest-list"></div>
-        <section class="tool-panel feedback-panel" aria-labelledby="feedback-title">
+        <section id="feedback-panel" class="tool-panel feedback-panel" aria-labelledby="feedback-title">
           <span class="eyebrow">USER EXPERIENCE</span><h2 id="feedback-title">사용 후 짧은 의견</h2>
           <p>이름이나 프로필 정보는 받지 않습니다. 테스트 과제를 마친 뒤 선택해 주세요.</p>
           <form id="feedback-form">

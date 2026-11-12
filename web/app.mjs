@@ -22,6 +22,8 @@ const fieldLabels = {
 
 const state = {
   contests: [],
+  dataMeta: null,
+  dataStatus: null,
   profile: loadProfile(),
   activeFilter: "all",
   query: "",
@@ -39,6 +41,7 @@ const summary = document.querySelector("#summary-counts");
 const loading = document.querySelector("#loading-state");
 const importForm = document.querySelector("#import-form");
 const importMessage = document.querySelector("#import-message");
+const fallbackBanner = document.querySelector("#fallback-banner");
 const downloadPreview = document.querySelector("#download-preview");
 const feedbackForm = document.querySelector("#feedback-form");
 const knownSkills = new Set(APP_CONFIG.skillGroups.flatMap((group) => group.skills));
@@ -201,6 +204,82 @@ function conditionChips(decision) {
   return chips.join("");
 }
 
+function formatSyncedAt(value) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  const pad = (num) => String(num).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+}
+
+function updateDataSummary() {
+  const total = state.contests.length;
+  const summaryElement = document.querySelector("#data-summary");
+  const totalElement = document.querySelector("#contest-total");
+  if (totalElement) totalElement.textContent = total;
+  if (!summaryElement) return;
+  // /api/data-status가 응답하면 서버 집계 값을 우선 표시한다. 실패하면 아래 목록 기반 계산이 폴백이다.
+  const status = state.dataStatus;
+  if (status && typeof status.sample_contests === "number" && typeof status.verified_contests === "number") {
+    let text = `샘플 ${status.sample_contests}건 · 검수 완료 ${status.verified_contests}건`;
+    if (status.sample_contests > 0 && status.verified_contests === 0) text += " — 전부 검증 전 샘플입니다";
+    if (typeof status.departments === "number" && typeof status.schools === "number") {
+      text += ` · 학과 ${status.departments.toLocaleString("ko-KR")}개 · 학교 ${status.schools.toLocaleString("ko-KR")}곳`;
+      if (status.reference_year) text += ` (${status.reference_year}년 기준)`;
+    }
+    const synced = formatSyncedAt(status.synced_at);
+    if (synced) text += ` · ${synced} 동기화`;
+    summaryElement.textContent = text;
+    return;
+  }
+  const samples = state.contests.filter((item) => item.is_sample).length;
+  // 검수 완료 건수는 목록 안에서 실공고이면서 verified인 항목만 명시적으로 센다.
+  const verified = state.contests.filter((item) => !item.is_sample && item.validation_status === "verified").length;
+  const unverified = state.contests.filter((item) => item.validation_status !== "verified").length;
+  summaryElement.textContent = total > 0 && samples === total
+    ? `샘플 ${samples}건 · 실제 0건 — 전부 검증 전 샘플입니다`
+    : `샘플 ${samples}건 · 실제 ${total - samples}건 · 검수 완료 ${verified}건${unverified ? ` · 검증 전 ${unverified}건 포함` : ""}`;
+}
+
+async function loadDataStatus() {
+  try {
+    const response = await fetch("/api/data-status");
+    if (!response.ok) throw new Error(`data status failed: ${response.status}`);
+    state.dataStatus = await response.json();
+  } catch (error) {
+    console.error(error);
+    state.dataStatus = null;
+  }
+  updateDataSummary();
+}
+
+function deadlineLabel(contest, localToday) {
+  if (!contest.deadline) return "";
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(contest.deadline)) return `접수 마감 ${contest.deadline}`;
+  const due = new Date(`${contest.deadline}T00:00:00`);
+  const today = new Date(`${localToday}T00:00:00`);
+  if (Number.isNaN(due.getTime()) || Number.isNaN(today.getTime())) return `접수 마감 ${contest.deadline}`;
+  const days = Math.round((due - today) / 86400000);
+  if (days < 0) return `접수 마감 ${contest.deadline} · 마감됨`;
+  if (days === 0) return `접수 마감 ${contest.deadline} · D-Day`;
+  return `접수 마감 ${contest.deadline} · D-${days}`;
+}
+
+function resetFilters() {
+  state.activeFilter = "all";
+  state.query = "";
+  state.dataFilter = "all";
+  state.categoryFilter = "all";
+  state.deadlineFilter = "all";
+  state.sort = "relevance";
+  document.querySelector("#contest-search").value = "";
+  document.querySelector("#data-filter").value = "all";
+  document.querySelector("#category-filter").value = "all";
+  document.querySelector("#deadline-filter").value = "all";
+  document.querySelector("#sort-filter").value = "relevance";
+  renderResults();
+}
+
 function evidenceRows(contest) {
   const rows = [];
   for (const section of contest.sections) {
@@ -219,25 +298,36 @@ function cardHtml({ contest, decision, fit, localToday }) {
   return `
     <article class="contest-card status-${decision.result}">
       <div class="card-topline">
-        <div class="badges">
-          <span class="result-badge">${labels[decision.result]}</span>
-          <span class="fit-badge ${fit.level === "related" ? "" : fit.level === "unknown" ? "unknown" : "no-signal"}">${fit.level === "related" ? "내 주제와 연결" : fit.level === "unknown" ? "관련성 정보 부족" : "일치 신호 없음"}</span>
-          <span class="data-badge">${contest.validation_status === "verified" ? "검수 완료" : "검증 전 데이터"}</span>
-          <span class="sample-badge">${contest.is_sample ? "샘플" : "실제"}</span>
-          ${contest.deadline && contest.deadline < localToday ? '<span class="data-badge">접수 마감</span>' : ""}
+        <div class="badge-groups">
+          <div class="badge-group">
+            <span class="badge-group-label">지원 자격</span>
+            <div class="badges">
+              <span class="result-badge">${labels[decision.result]}</span>
+              <span class="data-badge">${contest.validation_status === "verified" ? "검수 완료" : "검증 전 데이터"}</span>
+              <span class="sample-badge">${contest.is_sample ? "샘플 데이터" : "실제 공고"}</span>
+              ${contest.deadline && contest.deadline < localToday ? '<span class="data-badge">접수 마감</span>' : ""}
+            </div>
+          </div>
+          <div class="badge-group">
+            <span class="badge-group-label">주제 관련성 · 자격과 별개</span>
+            <div class="badges">
+              <span class="fit-badge ${fit.level === "related" ? "" : fit.level === "unknown" ? "unknown" : "no-signal"}">${fit.level === "related" ? "내 주제와 연결" : fit.level === "unknown" ? "관련성 정보 부족" : "일치 신호 없음"}</span>
+            </div>
+          </div>
         </div>
         <span class="organizer">${escapeHtml(contest.organizer || "주최 미기재")}</span>
       </div>
       <h3>${escapeHtml(contest.title)}</h3>
       ${(contest.category || titleTopics(contest.title).length) ? `<p class="deadline-line">주제: ${escapeHtml(contest.category || titleTopics(contest.title).join(" · "))}${contest.category ? "" : " · 제목 키워드"}</p>` : ""}
-      ${contest.deadline ? `<p class="deadline-line">접수 마감 ${escapeHtml(contest.deadline)}</p>` : ""}
+      ${contest.deadline ? `<p class="deadline-line"><span class="date-label">${escapeHtml(deadlineLabel(contest, localToday))}</span></p>` : ""}
       <p class="reason-line">${escapeHtml(firstReason)}</p>
-      <p class="fit-note">${escapeHtml(fit.reasons.join(" "))}</p>
+      <p class="fit-note"><span class="fit-note-label">주제 관련성 (자격 판정과 별개):</span> ${escapeHtml(fit.reasons.join(" "))}</p>
       ${contest.sections.length > 1 ? `<div class="section-picker"><label for="section-${escapeHtml(contest.id)}">지원 부문</label><select class="section-select" id="section-${escapeHtml(contest.id)}" data-contest-id="${escapeHtml(contest.id)}"><option value="">부문 선택 전</option>${contest.sections.map((section) => `<option value="${escapeHtml(section.id)}" ${state.selectedSections[contest.id] === section.id ? "selected" : ""}>${escapeHtml(section.name || section.id)}</option>`).join("")}</select></div>` : ""}
       <div class="chips">${conditionChips(decision)}</div>
       <details>
-        <summary>근거와 상세 보기 <span aria-hidden="true">＋</span></summary>
+        <summary>자격 분석 리포트 · 근거 보기 <span aria-hidden="true">＋</span></summary>
         <div class="detail-body">
+          <div class="report-head"><span class="report-title">자격 분석 리포트</span><span class="report-sub">원문 근거 발췌</span></div>
           <dl class="evidence-list">${evidenceRows(contest)}</dl>
           ${contest.skill_signals?.length ? `<p class="muted">공고에 명시된 역량: ${contest.skill_signals.map((item) => `${escapeHtml(item.name)} — ${escapeHtml(item.evidence)}`).join(" · ")}</p>` : ""}
           <div class="detail-meta">
@@ -277,9 +367,15 @@ function renderResults() {
   const counts = { eligible: 0, needs_review: 0, ineligible: 0 };
   judged.forEach(({ decision }) => { counts[decision.result] += 1; });
   renderTabs(counts, judged.length);
-  summary.innerHTML = `현재 프로필의 자격 조건 기준 <strong>${counts.eligible}</strong>개 가능 · <strong>${counts.needs_review}</strong>개 확인 필요 · <strong>${counts.ineligible}</strong>개 불가`;
+  summary.innerHTML = `<span class="summary-lead">현재 프로필 기준</span><span class="stat"><strong class="stat-num stat-eligible">${counts.eligible}</strong>지원 가능</span><span class="stat"><strong class="stat-num stat-needs_review">${counts.needs_review}</strong>확인 필요</span><span class="stat"><strong class="stat-num stat-ineligible">${counts.ineligible}</strong>지원 불가</span>`;
   const visible = state.activeFilter === "all" ? judged : judged.filter(({ decision }) => decision.result === state.activeFilter);
-  list.innerHTML = visible.length ? visible.map((item) => cardHtml({ ...item, localToday })).join("") : `<div class="empty-state"><strong>해당 판정의 공고가 없습니다.</strong><span>프로필이나 필터를 바꿔 보세요.</span></div>`;
+  if (visible.length) {
+    list.innerHTML = visible.map((item) => cardHtml({ ...item, localToday })).join("");
+  } else if (!judged.length) {
+    list.innerHTML = `<div class="empty-state"><strong>조건에 맞는 공고가 없습니다.</strong><span>검색어와 필터를 확인해 보세요.</span><button type="button" class="empty-reset" id="reset-filters">필터 초기화</button></div>`;
+  } else {
+    list.innerHTML = `<div class="empty-state"><strong>해당 판정의 공고가 없습니다.</strong><span>프로필이나 필터를 바꿔 보세요.</span><button type="button" class="empty-reset" id="reset-filters">필터 초기화</button></div>`;
+  }
 }
 
 form.addEventListener("input", () => {
@@ -381,6 +477,11 @@ tabs.addEventListener("click", (event) => {
   renderResults();
 });
 
+list.addEventListener("click", (event) => {
+  if (!event.target.closest("#reset-filters")) return;
+  resetFilters();
+});
+
 list.addEventListener("change", (event) => {
   const picker = event.target.closest("[data-contest-id]");
   if (!picker) return;
@@ -440,7 +541,7 @@ importForm.addEventListener("submit", async (event) => {
     document.querySelector("#category-filter").value = "all";
     document.querySelector("#deadline-filter").value = "all";
     renderResults();
-    document.querySelector("#contest-total").textContent = state.contests.length;
+    updateDataSummary();
     importMessage.textContent = "검수 전 공고를 목록 맨 위에 추가했습니다. 새로고침하면 미리보기는 사라집니다.";
   } catch (error) {
     importMessage.textContent = error.message || "서버 연결을 확인해 주세요.";
@@ -482,22 +583,38 @@ feedbackForm.addEventListener("submit", async (event) => {
   }
 });
 
+function applyContestData() {
+  const categories = [...new Set(state.contests.flatMap((item) => [item.category, ...titleTopics(item.title)].filter(Boolean)))].sort();
+  document.querySelector("#category-filter").innerHTML = `<option value="all">전체 주제</option>${categories.map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join("")}`;
+  updateDataSummary();
+  loading.hidden = true;
+  renderResults();
+}
+
 async function start() {
   renderForm();
+  loadDataStatus();
   try {
     const response = await fetch("/api/contests");
     if (!response.ok) throw new Error(`seed load failed: ${response.status}`);
     const seed = await response.json();
     state.contests = seed.contests;
-    const categories = [...new Set(state.contests.flatMap((item) => [item.category, ...titleTopics(item.title)].filter(Boolean)))].sort();
-    document.querySelector("#category-filter").innerHTML = `<option value="all">전체 주제</option>${categories.map((category) => `<option value="${escapeHtml(category)}">${escapeHtml(category)}</option>`).join("")}`;
-    document.querySelector("#contest-total").textContent = state.contests.length;
-    document.querySelector("#data-summary").textContent = `샘플 ${state.contests.filter((item) => item.is_sample).length}건 · 실제 ${state.contests.filter((item) => !item.is_sample).length}건`;
-    loading.hidden = true;
-    renderResults();
+    state.dataMeta = { schemaVersion: seed.schema_version ?? null, validationStatus: seed.validation_status ?? null };
+    applyContestData();
   } catch (error) {
-    loading.innerHTML = `<strong>공고 데이터를 불러오지 못했습니다.</strong><span>Python 서비스로 실행했는지 확인해 주세요.</span>`;
     console.error(error);
+    try {
+      const fallbackResponse = await fetch("./data/seed.json");
+      if (!fallbackResponse.ok) throw new Error(`seed fallback failed: ${fallbackResponse.status}`);
+      const seed = await fallbackResponse.json();
+      state.contests = seed.contests;
+      state.dataMeta = { schemaVersion: seed.schema_version ?? null, validationStatus: seed.validation_status ?? null };
+      if (fallbackBanner) fallbackBanner.hidden = false;
+      applyContestData();
+    } catch (fallbackError) {
+      console.error(fallbackError);
+      loading.innerHTML = `<strong>공고 데이터를 불러오지 못했습니다.</strong><span>Python 서비스로 실행했는지 확인해 주세요.</span>`;
+    }
   }
 }
 
