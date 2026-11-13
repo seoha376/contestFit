@@ -242,6 +242,10 @@ def data_status() -> dict:
 
 
 class Handler(SimpleHTTPRequestHandler):
+    # Browsers refuse ES modules served as text/plain. On Windows the registry-based
+    # mime table has no .mjs entry, so declare it instead of relying on the OS.
+    extensions_map = {**SimpleHTTPRequestHandler.extensions_map, ".mjs": "text/javascript"}
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(WEB), **kwargs)
 

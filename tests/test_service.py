@@ -73,6 +73,12 @@ class ServiceTests(unittest.TestCase):
                         server.shutdown()
                         thread.join(timeout=2)
 
+    def test_static_es_modules_are_served_as_javascript(self) -> None:
+        # Regression: on Windows .mjs came back as text/plain and the page never booted.
+        handler = service.Handler.__new__(service.Handler)
+        for name in ("app.mjs", "decision-engine.mjs", "config.mjs"):
+            self.assertEqual(handler.guess_type(name), "text/javascript", name)
+
     def test_official_pasted_text_creates_unverified_preview_without_network(self) -> None:
         text = "IT 서비스 아이디어 공모전\n주최: 예시대학교\n참가자격: 대학 재학생만 참가 가능\n만 19세 이상"
         with patch.object(service, "fetch_official_html", side_effect=AssertionError("unexpected network")):
