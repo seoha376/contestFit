@@ -51,8 +51,28 @@ jobs:
           for file in web/*.mjs scripts/*.mjs tests/e2e/*.mjs playwright.config.mjs; do node --check "$file"; done
 
       - name: Validate committed JSON data
+        # Recorded API fixtures hold date placeholders such as {{D+4:epoch}} that the
+        # fixture loader fills in at run time, so they only parse after substitution.
         run: |
-          python -c "import json, pathlib; [json.loads(path.read_text(encoding='utf-8')) for path in [*pathlib.Path('.').glob('*.json'), *pathlib.Path('web/data').glob('*.json'), *pathlib.Path('tests/fixtures').rglob('*.json')]]"
+          python - <<'PY'
+          import json, pathlib, re, sys
+
+          files = [
+              *pathlib.Path(".").glob("*.json"),
+              *pathlib.Path("web/data").glob("*.json"),
+              *pathlib.Path("tests/fixtures").rglob("*.json"),
+          ]
+          bad = 0
+          for path in sorted(files):
+              text = re.sub(r"\{\{[^}]*\}\}", "0", path.read_text(encoding="utf-8"))
+              try:
+                  json.loads(text)
+              except ValueError as error:
+                  bad += 1
+                  print(f"::error file={path}::invalid JSON: {error}")
+          print(f"{len(files)} JSON files checked, {bad} invalid")
+          sys.exit(1 if bad else 0)
+          PY
 
       - name: Check official API adapters against recorded payloads
         env:
