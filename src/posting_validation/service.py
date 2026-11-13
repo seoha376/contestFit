@@ -23,7 +23,9 @@ from pathlib import Path
 from urllib.parse import urlsplit
 from urllib.parse import parse_qs
 
+from .contest_model import has_conditions, kind_from_title
 from .departments import CATALOG, search_catalog, search_schools
+from .details import extract_details, scrub
 from .extractor import extract_posting
 from .parser import html_to_text
 from .web_seed import convert_records
@@ -141,9 +143,8 @@ def preview_contest(source_url: str, pasted_text: str = "") -> dict:
         text = html_to_text(html)
     if len(text.strip()) < 30:
         raise PreviewError("자격 조건을 읽을 수 없습니다. 공고 원문을 함께 입력해 주세요.")
-    record = extract_posting(source_url, html, text, "preview")
-    if record["type"]["value"] != "공모전":
-        raise PreviewError("공모전 공고만 처리할 수 있습니다. 공고 제목과 자격 문장을 확인해 주세요.")
+    text = scrub(text)
+    record = extract_posting(source_url, html, text, "preview", force_type="공모전")
     seed = convert_records([record], datetime.now(UTC).isoformat())
     contest = seed["contests"][0]
     contest["id"] = "official-" + hashlib.sha256(source_url.encode("utf-8")).hexdigest()[:16]
@@ -158,22 +159,34 @@ def preview_contest(source_url: str, pasted_text: str = "") -> dict:
     contest["category"] = None
     contest["topic_tags"] = []
     contest["skill_signals"] = []
+    contest["kind"] = kind_from_title(contest["title"], "contest")
+    contest["source"] = {"id": "user", "name": "사용자 추가 URL", "type": "user_submission"}
+    contest["eligibility_known"] = any(has_conditions(section) for section in contest["sections"])
+    contest["details"] = extract_details(text)
+    contest["details"]["links"] = [{"label": "원문 공고", "url": source_url}]
+    if not contest["deadline"]:
+        apply = next((item for item in contest["details"]["schedule"] if item["type"] == "apply"), None)
+        contest["deadline"] = (apply or {}).get("end_date") or None
     return contest
 
 
-def record_feedback(value: dict) -> None:
+def validate_feedback(value: dict) -> dict:
     if not isinstance(value, dict):
         raise PreviewError("피드백 형식이 올바르지 않습니다.")
     if value.get("task_completed") not in (True, False) or value.get("reason_clear") not in (True, False):
         raise PreviewError("과제 완료 여부와 판정 이해 여부를 선택해 주세요.")
     if value.get("ease") not in (1, 2, 3, 4, 5):
         raise PreviewError("사용 편의성을 1~5점으로 선택해 주세요.")
-    row = {
+    return {
         "submitted_at": datetime.now(UTC).isoformat(),
         "task_completed": value["task_completed"],
         "reason_clear": value["reason_clear"],
         "ease": value["ease"],
     }
+
+
+def record_feedback(value: dict) -> None:
+    row = validate_feedback(value)
     FEEDBACK.parent.mkdir(parents=True, exist_ok=True)
     with _feedback_lock, FEEDBACK.open("a", encoding="utf-8") as stream:
         stream.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -241,56 +254,28 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
-    def do_GET(self) -> None:
+    def _api(self, method: str) -> None:
+        from . import api  # imported lazily: api depends on this module
+
         parsed = urlsplit(self.path)
-        if parsed.path == "/api/contests":
-            params = parse_qs(parsed.query)
+        body = None
+        if method == "POST":
             try:
-                limit = int(params["limit"][0]) if "limit" in params else None
-                data = list_contests(
-                    kind=params.get("kind", ["all"])[0],
-                    deadline=params.get("deadline", ["all"])[0],
-                    query=params.get("q", [""])[0][:100],
-                    limit=limit,
-                )
-            except ValueError as exc:
-                self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
-                return
-            self.send_json(HTTPStatus.OK, data)
-        elif parsed.path == "/api/departments":
-            catalog = load_catalog()
-            query = parse_qs(parsed.query).get("q", [""])[0][:80]
-            self.send_json(HTTPStatus.OK, search_catalog(catalog, query))
-        elif parsed.path == "/api/schools":
-            catalog = load_catalog()
-            query = parse_qs(parsed.query).get("q", [""])[0][:80]
-            self.send_json(HTTPStatus.OK, search_schools(catalog, query))
-        elif parsed.path == "/api/data-status":
-            self.send_json(HTTPStatus.OK, data_status())
-        elif self.path.startswith("/api/"):
-            self.send_json(HTTPStatus.NOT_FOUND, {"error": "API를 찾을 수 없습니다."})
+                length = int(self.headers.get("Content-Length", "0"))
+            except ValueError:
+                length = 0
+            body = self.rfile.read(length) if 0 < length <= MAX_BODY else b""
+        status, payload = api.handle(method, parsed.path, parsed.query, body)
+        self.send_json(HTTPStatus(status), payload)
+
+    def do_GET(self) -> None:
+        if urlsplit(self.path).path.startswith("/api/"):
+            self._api("GET")
         else:
             super().do_GET()
 
     def do_POST(self) -> None:
-        if self.path not in ("/api/preview", "/api/feedback"):
-            self.send_json(HTTPStatus.NOT_FOUND, {"error": "API를 찾을 수 없습니다."})
-            return
-        try:
-            length = int(self.headers.get("Content-Length", "0"))
-            if length < 1 or length > MAX_BODY:
-                raise PreviewError("요청 크기가 허용 범위를 벗어났습니다.")
-            value = json.loads(self.rfile.read(length))
-            if not isinstance(value, dict):
-                raise PreviewError("요청 형식이 올바르지 않습니다.")
-            if self.path == "/api/preview":
-                contest = preview_contest(str(value.get("source_url", "")), str(value.get("text", "")))
-                self.send_json(HTTPStatus.OK, {"contest": contest})
-            else:
-                record_feedback(value)
-                self.send_json(HTTPStatus.CREATED, {"saved": True})
-        except (PreviewError, ValueError, json.JSONDecodeError) as exc:
-            self.send_json(HTTPStatus.BAD_REQUEST, {"error": str(exc)})
+        self._api("POST")
 
 
 def main() -> None:

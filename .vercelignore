@@ -1,0 +1,12 @@
+raw/
+raw2/
+tmp/
+node_modules/
+test-results/
+playwright-report/
+tests/
+*.md
+manifest*.json
+extracted*.json
+metrics*.json
+report*.md

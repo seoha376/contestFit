@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import tempfile
 import threading
 import unittest
@@ -9,11 +10,23 @@ from http.server import ThreadingHTTPServer
 from urllib.request import urlopen
 from unittest.mock import patch
 
-from posting_validation import service
+from posting_validation import service, store
 from posting_validation.curate import publish, verify_contest
 
 
 class ServiceTests(unittest.TestCase):
+    def setUp(self) -> None:
+        # Unit tests never call live APIs or touch the developer's tmp/ store.
+        self._directory = tempfile.TemporaryDirectory()
+        self._env = patch.dict(os.environ, {"CONTESTFIT_SOURCE_MODE": "off"})
+        self._env.start()
+        store.reset_store(store.LocalStore(Path(self._directory.name)))
+
+    def tearDown(self) -> None:
+        store.reset_store(None)
+        self._env.stop()
+        self._directory.cleanup()
+
     def test_http_data_contract_uses_saved_catalog_and_excludes_candidates(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
