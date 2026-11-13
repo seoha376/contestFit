@@ -1,6 +1,17 @@
 # ContestFit
 
-ContestFit은 공모전 자격 조건을 추출하고 사용자의 프로필과 명시 조건을 비교해 `지원 가능`, `확인 필요`, `지원 불가`를 보여주는 웹서비스 뼈대다.
+ContestFit은 공식 API로 받은 공모전·대회·지원사업·인턴 공고를 사용자 프로필과 비교해 `지원 가능`, `확인 필요`, `지원 불가`를 원문 근거와 함께 보여주고, 공고별 일정·제출물·접수 방법을 정리하는 웹서비스다.
+
+## 한눈에 보기 (2026-11-13 기준)
+
+| 영역 | 구현 |
+| --- | --- |
+| 1. 데이터·백엔드 | 공식 출처 7개 실시간 호출(`src/posting_validation/sources/`): K-Startup 사업공고(공공데이터포털), 한국콘텐츠진흥원 지원사업, 서울시 공모전 목록, K-CTF, Codeforces, Kaggle, 고용24 인턴 + 커리어넷 학과정보·전국 학과 카탈로그. 최소 저장은 Supabase(사용자 추가 공고, 익명 의견, 만료 캐시). |
+| 2. 자격 판정 엔진 | 출처별 구조화 자격 → 공통 조건 스키마, 원문 분석으로 자격·일정·제출물 보강(`api.analyze_contest`), 계열 조건(공학·인문사회 등)·관련 전공·자격 정보 없음(`eligibility_unknown`) 판정 추가. |
+| 3. 프론트엔드 | Stitch 디자인 기반 탭: 탐색 · 공고 상세(일정 타임라인, 제출물 체크리스트, 프로필별 비교, .ics) · 일정 · 공고 추가(URL) · 프로필 비교 · 의견. |
+| 4. 검증 | 단위 테스트, 녹화된 API 응답 E2E(데스크톱·모바일), 배포 사이트 live E2E와 API 실호출 점검을 GitHub Actions에서 실행. |
+
+배포·키 발급·Secret 등록 절차는 [배포·API 키 설정 가이드](docs/deploy-setup.md)를 따른다.
 
 현재 저장소는 다음 두 부분으로 구성된다.
 
@@ -61,6 +72,8 @@ macOS/Linux: `PYTHONPATH=src python -m posting_validation.service`. 브라우저
 
 ## 표준 검사 명령
 
+E2E와 공식 API 점검은 [배포 가이드](docs/deploy-setup.md#로컬-실행)의 명령(`npx playwright test`, `python -m posting_validation.sources.check`)을 쓴다.
+
 ### macOS / Linux
 
 ```bash
@@ -97,7 +110,14 @@ src/posting_validation/       Python 추출·평가 파이프라인
   web_seed.py                 추출 결과를 웹 seed 스키마로 변환
   departments.py              공식 전국 학과 API 동기화·검색
   candidates.py               공식 공고 후보 메타데이터 등록·중복 제거
-  service.py                  정적 웹·단건 미리보기·익명 의견 API
+  service.py                  로컬 서버, URL 미리보기(robots 확인), 공통 검증
+  api.py                      /api/* 라우터 (로컬 서버와 Vercel이 공유)
+  wsgi.py                     Vercel/WSGI 앱 (api/index.py에서 사용)
+  sources/                    공식 API 어댑터와 실호출 점검(check.py)
+  store.py                    최소 저장소: 로컬 파일 또는 Supabase REST
+  details.py                  일정·제출물·접수 방법 추출
+  page_extract.py             원문 → 자격 조건 + 상세 정보
+  contest_model.py            공통 공고 스키마 생성기
   curate.py                   원문 대조 후 실제 공고 게시
   cli.py                      파이프라인 CLI
 web/                          정적 웹 프로토타입
@@ -160,4 +180,4 @@ PowerShell에서는 먼저 `$env:PYTHONPATH='src'`를 설정한다.
 
 ## 현재 범위 밖
 
-DB 선택, 배포 환경, 상시 자동 수집은 아직 확정하지 않았다. 실제 사용과 공식 공급원 계약이 정해진 뒤 결정한다.
+해외 공모전 통합 API, Reddit 등 커뮤니티 수집, 대외활동 전용 공식 API는 이용 조건이 확인되지 않아 연결하지 않았다. 참가자 분석 리포트(수익모델)는 익명 의견·판정 분포 집계(`/api/feedback-summary`)까지만 구현했다.
