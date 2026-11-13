@@ -77,7 +77,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-14",
+            "end_date": "2026-11-15",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모870만 원접수기간 시작일2026.10.14 마감일2026.11.15홈페이지https://www.mcst.go.kr활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 870만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/357817"
+          }
+        ]
+      }
     },
     {
       "id": "50bee33adad9109e",
@@ -159,7 +185,36 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-15",
+            "end_date": "2026-10-30",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모630만 원접수기간 시작일2026.10.15 마감일2026.10.30홈페이지http://uscai.kr/#top활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 630만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": {
+          "value": "- 만 14세 미만은 개인정보·저작권 동의서에 법정대리인 동의·서명 필요",
+          "evidence": "- 만 14세 미만은 개인정보·저작권 동의서에 법정대리인 동의·서명 필요"
+        },
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/357818"
+          }
+        ]
+      }
     },
     {
       "id": "1811d39c3cd41950",
@@ -244,7 +299,50 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-26",
+            "end_date": "2026-11-06",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모270만 원접수기간 시작일2026.10.26 마감일2026.11.06홈페이지https://www.gwangyang.go.kr활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [
+          {
+            "text": "세로형 영상(9:16)",
+            "evidence": "세로형 영상(9:16)"
+          },
+          {
+            "text": "1080×1920픽셀 이상",
+            "evidence": " 1080×1920픽셀 이상"
+          },
+          {
+            "text": "MP4",
+            "evidence": " MP4"
+          },
+          {
+            "text": "30초 이상 60초 이내",
+            "evidence": " 30초 이상 60초 이내"
+          }
+        ],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 270만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/357820"
+          }
+        ]
+      }
     },
     {
       "id": "31018040a0476696",
@@ -320,7 +418,36 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-18",
+            "end_date": "2026-11-18",
+            "evidence": "기업형태중소기업참여대상대상 제한 없음시상규모20만 원접수기간 시작일2026.10.18 마감일2026.11.18홈페이지https://ggumggumi.com/contest활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 20만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": {
+          "value": "무료",
+          "evidence": "- 참가비 없음"
+        },
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/357821"
+          }
+        ]
+      }
     },
     {
       "id": "38b258b4cdbaeb11",
@@ -396,7 +523,30 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-13",
+            "end_date": "2026-11-13",
+            "evidence": "기업형태비영리단체/협회/재단참여대상청소년시상규모-접수기간 시작일2026.10.13 마감일2026.11.13홈페이지https://www.sy0404.or.kr/bbs/board.php?bo_table=notice&wr_id=1472활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": null,
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/356549"
+          }
+        ]
+      }
     },
     {
       "id": "dec8ffbdd716df9f",
@@ -474,7 +624,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-12",
+            "end_date": "2026-11-13",
+            "evidence": "기업형태비영리단체/협회/재단참여대상대상 제한 없음시상규모60만 원접수기간 시작일2026.10.12 마감일2026.11.13홈페이지https://twin.or.kr/활동혜택기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 60만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/356564"
+          }
+        ]
+      }
     },
     {
       "id": "20bba634f2e9bbfd",
@@ -552,7 +728,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-23",
+            "end_date": "2026-11-05",
+            "evidence": "기업형태기타참여대상대상 제한 없음시상규모100만 원접수기간 시작일2026.10.23 마감일2026.11.05홈페이지https://kdata.or.kr/datahub/portal/support/board/6/23활동혜택기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 100만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/357852"
+          }
+        ]
+      }
     },
     {
       "id": "6658219099ecdc58",
@@ -628,7 +830,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-11-02",
+            "end_date": "2026-11-30",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모1000만 원접수기간 시작일2026.11.02 마감일2026.11.30홈페이지https://www.silson24.or.kr/claim/web/활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 1000만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/358840"
+          }
+        ]
+      }
     },
     {
       "id": "6a8f178313c30e88",
@@ -704,7 +932,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-12",
+            "end_date": "2026-11-01",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모810만 원접수기간 시작일2026.10.12 마감일2026.11.01홈페이지-활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 810만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/355613"
+          }
+        ]
+      }
     },
     {
       "id": "d60209357585cf8b",
@@ -780,7 +1034,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-22",
+            "end_date": "2026-10-31",
+            "evidence": "기업형태중소기업참여대상대상 제한 없음시상규모1400만 원접수기간 시작일2026.10.22 마감일2026.10.31홈페이지https://tenpercentcoffee.com/활동혜택실제상용화, 기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 1400만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/358629"
+          }
+        ]
+      }
     },
     {
       "id": "a15b52f50572c8dd",
@@ -859,7 +1139,36 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-26",
+            "end_date": "2026-11-25",
+            "evidence": "기업형태공공기관/공기업참여대상대학생, 직장인/일반인시상규모200만 원접수기간 시작일2026.10.26 마감일2026.11.25홈페이지https://www.nafi.re.kr/home/kor/main.do활동혜택기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 200만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": {
+          "value": "- 지식재산권의 보호를 받고 있는 내용을 포함하는 제안서",
+          "evidence": "- 지식재산권의 보호를 받고 있는 내용을 포함하는 제안서"
+        },
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/358929"
+          }
+        ]
+      }
     },
     {
       "id": "02aeef30eac884ae",
@@ -935,7 +1244,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-28",
+            "end_date": "2026-11-04",
+            "evidence": "기업형태대기업참여대상대상 제한 없음시상규모2000만 원접수기간 시작일2026.10.28 마감일2026.11.04홈페이지-활동혜택인턴/정규직채용, 상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 2000만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360080"
+          }
+        ]
+      }
     },
     {
       "id": "f5b5a5c472f36432",
@@ -1074,7 +1409,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-08-11",
+            "end_date": "2026-11-25",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모1300만 원접수기간 시작일2026.08.11 마감일2026.11.25홈페이지https://aida.kisti.re.kr/competition/main/competition/COMP_000000000000050/detail.do활동혜택기타, 상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 1300만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/342034"
+          }
+        ]
+      }
     },
     {
       "id": "f75ed85a5321c4a5",
@@ -1153,7 +1514,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-09-21",
+            "end_date": "2026-10-31",
+            "evidence": "기업형태금융권참여대상대학생시상규모1830만 원접수기간 시작일2026.09.21 마감일2026.10.31홈페이지-활동혜택입사시 가산점, 상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 1830만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/351157"
+          }
+        ]
+      }
     },
     {
       "id": "4d952afa37972fe8",
@@ -1232,7 +1619,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-26",
+            "end_date": "2026-11-13",
+            "evidence": "기업형태대기업참여대상대상 제한 없음시상규모3000만 원접수기간 시작일2026.10.26 마감일2026.11.13홈페이지-활동혜택기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 3000만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/359538"
+          }
+        ]
+      }
     },
     {
       "id": "418b705aa4232fb7",
@@ -1308,7 +1721,30 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-26",
+            "end_date": "2026-11-14",
+            "evidence": "기업형태비영리단체/협회/재단참여대상청소년시상규모-접수기간 시작일2026.10.26 마감일2026.11.14홈페이지http://www.masak-k.or.kr/활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": null,
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360404"
+          }
+        ]
+      }
     },
     {
       "id": "eed1812d21af3550",
@@ -1384,7 +1820,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-27",
+            "end_date": "2026-12-07",
+            "evidence": "기업형태중소기업참여대상대상 제한 없음시상규모600만 원접수기간 시작일2026.10.27 마감일2026.12.07홈페이지https://www.mdilbo.com/detail/L3KfzM/759587활동혜택기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 600만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360403"
+          }
+        ]
+      }
     },
     {
       "id": "75cfa447df5e3a3e",
@@ -1460,7 +1922,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-28",
+            "end_date": "2026-11-09",
+            "evidence": "기업형태기타참여대상대상 제한 없음시상규모210만 원접수기간 시작일2026.10.28 마감일2026.11.09홈페이지https://www.xn--z92b25s31a159a.com/활동혜택기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 210만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360396"
+          }
+        ]
+      }
     },
     {
       "id": "728d81257d3244ba",
@@ -1536,7 +2024,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-22",
+            "end_date": "2026-11-15",
+            "evidence": "기업형태기타참여대상대상 제한 없음시상규모580만 원접수기간 시작일2026.10.22 마감일2026.11.15홈페이지https://www.fashionandstyle.com/활동혜택기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 580만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360339"
+          }
+        ]
+      }
     },
     {
       "id": "cdd42e0d01944f9d",
@@ -1620,7 +2134,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-28",
+            "end_date": "2026-11-15",
+            "evidence": "기업형태공공기관/공기업참여대상대학생시상규모950만 원접수기간 시작일2026.10.28 마감일2026.11.15홈페이지http://drafthon.ai.kr/활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 950만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360309"
+          }
+        ]
+      }
     },
     {
       "id": "44faa9beca11bec4",
@@ -1696,7 +2236,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-27",
+            "end_date": "2026-12-10",
+            "evidence": "기업형태중견기업참여대상대상 제한 없음시상규모490만 원접수기간 시작일2026.10.27 마감일2026.12.10홈페이지-활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 490만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360286"
+          }
+        ]
+      }
     },
     {
       "id": "7022c12a6276257d",
@@ -1772,7 +2338,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-28",
+            "end_date": "2026-11-10",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모360만 원접수기간 시작일2026.10.28 마감일2026.11.10홈페이지https://www.kdn.com/event.kdn?mid=a10111060100&act=view&event_seq=59&event_status=I활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 360만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360285"
+          }
+        ]
+      }
     },
     {
       "id": "d135e88e6af7ad11",
@@ -1856,7 +2448,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-12",
+            "end_date": "2026-11-15",
+            "evidence": "기업형태비영리단체/협회/재단참여대상대상 제한 없음시상규모800만 원접수기간 시작일2026.10.12 마감일2026.11.15홈페이지https://kaps.or.kr/?p=35&page=1&viewMode=view&reqIdx=2610121352096866활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 800만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360283"
+          }
+        ]
+      }
     },
     {
       "id": "bc2fb76a70b45368",
@@ -1932,7 +2550,46 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-30",
+            "end_date": "2026-12-13",
+            "evidence": "기업형태중소기업참여대상대상 제한 없음시상규모2000만 원접수기간 시작일2026.10.30 마감일2026.12.13홈페이지https://vivid.ing/contest활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [
+          {
+            "text": "영상 길이: 30초~120초",
+            "evidence": "영상 길이: 30초~120초"
+          },
+          {
+            "text": "화면 비율: 16:9",
+            "evidence": " 화면 비율: 16:9"
+          },
+          {
+            "text": "해상도: HD(720p) 이상",
+            "evidence": " 해상도: HD(720p) 이상"
+          }
+        ],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 2천만원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360253"
+          }
+        ]
+      }
     },
     {
       "id": "318f863d38930705",
@@ -2013,7 +2670,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-21",
+            "end_date": "2027-11-16",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모1000만 원접수기간 시작일2026.10.21 마감일2027.11.16홈페이지-활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 1000만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360251"
+          }
+        ]
+      }
     },
     {
       "id": "7f5234cd9d78a71f",
@@ -2089,7 +2772,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-26",
+            "end_date": "2026-11-11",
+            "evidence": "기업형태공공기관/공기업참여대상대상 제한 없음시상규모3000만 원접수기간 시작일2026.10.26 마감일2026.11.11홈페이지https://buyeostartup.kr/활동혜택실제상용화, 상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 3000만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360224"
+          }
+        ]
+      }
     },
     {
       "id": "a0f5483fd9cb23e7",
@@ -2165,7 +2874,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-28",
+            "end_date": "2026-11-20",
+            "evidence": "기업형태중소기업참여대상청소년시상규모710만 원접수기간 시작일2026.10.28 마감일2026.11.20홈페이지-활동혜택해외연수, 전시기회, 상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 710만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360215"
+          }
+        ]
+      }
     },
     {
       "id": "773bb8ad87e21618",
@@ -2244,7 +2979,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-19",
+            "end_date": "2026-11-02",
+            "evidence": "기업형태중소기업참여대상대상 제한 없음시상규모100만 원접수기간 시작일2026.10.19 마감일2026.11.02홈페이지-활동혜택기타공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 100만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360141"
+          }
+        ]
+      }
     },
     {
       "id": "23b5778c0e4433fd",
@@ -2320,7 +3081,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-21",
+            "end_date": "2026-11-20",
+            "evidence": "기업형태기타참여대상대상 제한 없음시상규모2450만 원접수기간 시작일2026.10.21 마감일2026.11.20홈페이지http://wma.co.kr/ax활동혜택기타, 상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 2450만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360109"
+          }
+        ]
+      }
     },
     {
       "id": "c9ae25ac194be349",
@@ -2396,7 +3183,33 @@
             "other_conditions": null
           }
         }
-      ]
+      ],
+      "details": {
+        "schedule": [
+          {
+            "type": "apply",
+            "label": "접수",
+            "date": "2026-10-26",
+            "end_date": "2026-11-15",
+            "evidence": "기업형태기타참여대상직장인/일반인시상규모100만 원접수기간 시작일2026.10.26 마감일2026.11.15홈페이지-활동혜택상장 수여공모분야"
+          }
+        ],
+        "deliverables": [],
+        "apply_method": null,
+        "reward": {
+          "value": "시상 규모 100만 원",
+          "evidence": "공고 시상 규모"
+        },
+        "entry_fee": null,
+        "rights": null,
+        "summary": null,
+        "links": [
+          {
+            "label": "원문 공고",
+            "url": "https://linkareer.com/activity/360083"
+          }
+        ]
+      }
     }
   ]
 }

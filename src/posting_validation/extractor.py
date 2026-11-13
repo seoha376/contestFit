@@ -303,7 +303,7 @@ def _business_registration_field(text: str) -> dict:
 
 def _nationality_field(text: str) -> dict:
     for line in lines(text):
-        if re.search(r"대한민국\s*(?:국민|국적)|한국\s*국적|내국인", line):
+        if re.search(r"대한민국\s*(?:국민|국적)|한국\s*국적|내국인|(?<![전외])국민\s*(?:누구나|이면|으로서)", line):
             return field("대한민국", line)
         if re.search(r"외국인.{0,12}(?:가능|포함)|국적\s*(?:제한\s*)?(?:없음|무관)", line):
             return field("제한없음", line)
@@ -438,8 +438,11 @@ def _simple(text: str, pats: list[str]) -> dict:
     return field(labeled_value(evidence), evidence) if evidence else field()
 
 
-def extract_posting(url: str, html: str, text: str, item_id: str | None = None) -> dict:
+def extract_posting(url: str, html: str, text: str, item_id: str | None = None, force_type: str | None = None) -> dict:
+    """Extract attributes; ``force_type`` applies one posting type's rules (e.g. official API text)."""
     posting_type, type_evidence = classify_type(text, html)
+    if force_type and force_type != posting_type:
+        posting_type, type_evidence = force_type, None
     text = main_posting_text(text)
     data = {"id": item_id, "source_url": url}
     data.update({name: field() for name in COMMON_FIELDS + ALL_TYPE_FIELDS})

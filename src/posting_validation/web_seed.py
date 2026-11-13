@@ -117,6 +117,38 @@ def _section(record: dict, override: dict | None, index: int) -> dict:
     }
 
 
+def _details(record: dict) -> dict:
+    """Schedule and deliverables from fields the extractor already captured."""
+    from .contest_model import empty_details, schedule_item
+    from .parser import DATE_RE
+
+    details = empty_details()
+    period = _field(record, "period")
+    dates = [f"{y}-{int(m):02d}-{int(d):02d}" for y, m, d in DATE_RE.findall(str(period.get("value") or ""))]
+    if dates:
+        item = schedule_item("apply", "접수", dates[0], dates[-1] if len(dates) > 1 else None, period.get("evidence"))
+        if item:
+            details["schedule"].append(item)
+    elif _value(record, "deadline"):
+        details["schedule"].append(schedule_item("apply", "접수 마감", None, _value(record, "deadline"), _evidence(record, "deadline")))
+    submission = _field(record, "submission_format")
+    if submission.get("value"):
+        details["deliverables"] = [{"text": part.strip(), "evidence": str(submission.get("evidence") if isinstance(submission.get("evidence"), str) else part)[:200]}
+                                   for part in str(submission["value"]).split(";") if part.strip()]
+    reward = re.search(r"시상규모\s*([\d,]+\s*만\s*원)|총\s*상금\s*([\d,천억만]+\s*원)", str(_value(record, "reward") or ""))
+    if reward:
+        details["reward"] = {"value": f"시상 규모 {reward.group(1) or reward.group(2)}", "evidence": "공고 시상 규모"}
+    fee = _field(record, "entry_fee")
+    if fee.get("value"):
+        details["entry_fee"] = {"value": fee["value"], "evidence": str(fee.get("evidence"))[:200]}
+    rights = _field(record, "rights_clause")
+    if rights.get("value"):
+        details["rights"] = {"value": str(rights["value"])[:120], "evidence": str(rights.get("evidence"))[:200]}
+    if record.get("source_url"):
+        details["links"] = [{"label": "원문 공고", "url": record["source_url"]}]
+    return details
+
+
 def convert_records(records: list[dict], collected_at: str) -> dict:
     contests = []
     for record in records:
@@ -134,6 +166,7 @@ def convert_records(records: list[dict], collected_at: str) -> dict:
             "is_sample": True,
             "validation_status": "unverified",
             "sections": [_section(record, override, index) for index, override in enumerate(overrides, start=1)],
+            "details": _details(record),
         })
     return {
         "schema_version": "1.1",
