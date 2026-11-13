@@ -1,0 +1,80 @@
+{
+  "contest": {
+    "id": "official-962593f3f6fa98cc",
+    "title": "개관 1주년 기념 애칭 공모전",
+    "organizer": "용산글로벌교육지원센터",
+    "deadline": "2026-11-20",
+    "category": null,
+    "topic_tags": [],
+    "skill_signals": [],
+    "source_url": "https://www.yglobal.or.kr/program/list.php?idx=38&mode=view",
+    "collected_at": "2026-11-10T01:17:15.085329+00:00",
+    "is_sample": false,
+    "validation_status": "draft",
+    "sections": [
+      {
+        "id": "official-962593f3f6fa98cc-section-1",
+        "name": null,
+        "age": {
+          "min": null,
+          "max": null,
+          "basis_date": null
+        },
+        "status": {
+          "allowed": [],
+          "excluded": [],
+          "chip_mismatch": false
+        },
+        "major_scope": null,
+        "region": null,
+        "nationality": null,
+        "business_reg": {
+          "policy": null,
+          "years": null,
+          "name_restriction": false
+        },
+        "entry_type": null,
+        "team_size": null,
+        "other_conditions": [
+          "만 14세 미만 청소년은 법정대리인(보호자) 동의서에 자필 서명 후 함께 제출해야 합니다."
+        ],
+        "evidence": {
+          "age": null,
+          "status": "응모 자격: 누구나(지역·연령 제한 없음)",
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": null,
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": "만 14세 미만 청소년은 법정대리인(보호자) 동의서에 자필 서명 후 함께 제출해야 합니다."
+        },
+        "evidence_source": {
+          "age": null,
+          "status": "body",
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": null,
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": "body"
+        },
+        "chip_evidence": {
+          "status": null
+        },
+        "confidence": {
+          "age": null,
+          "status": null,
+          "major_scope": null,
+          "region": null,
+          "nationality": null,
+          "business_reg": null,
+          "entry_type": null,
+          "team_size": null,
+          "other_conditions": null
+        }
+      }
+    ]
+  }
+}
