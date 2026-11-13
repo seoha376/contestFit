@@ -1,0 +1,32 @@
+{
+ "status": "OK",
+ "result": [
+  {
+   "id": 990101,
+   "name": "(테스트) Codeforces Round (Div. 2)",
+   "type": "CF",
+   "phase": "BEFORE",
+   "frozen": false,
+   "durationSeconds": 7200,
+   "startTimeSeconds": {{D+4:epoch}}
+  },
+  {
+   "id": 990102,
+   "name": "(테스트) Codeforces Round (Div. 1)",
+   "type": "CF",
+   "phase": "BEFORE",
+   "frozen": false,
+   "durationSeconds": 9000,
+   "startTimeSeconds": {{D+11:epoch}}
+  },
+  {
+   "id": 990100,
+   "name": "(테스트) Finished Round",
+   "type": "CF",
+   "phase": "FINISHED",
+   "frozen": false,
+   "durationSeconds": 7200,
+   "startTimeSeconds": 1700000000
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "contestfit",
+  "private": true,
+  "type": "module",
+  "description": "ContestFit web E2E tests (Python service + static web)",
+  "scripts": {
+    "test:engine": "node --test tests/web/decision-engine.test.mjs",
+    "test:e2e": "playwright test",
+    "test:live": "E2E_MODE=live playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

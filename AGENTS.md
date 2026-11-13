@@ -15,8 +15,10 @@
 - 정적 웹은 `web/`에 있다.
 - `web/decision-engine.mjs`는 DOM, 브라우저 API, 프레임워크에 의존하지 않는 순수 판정 모듈로 유지한다.
 - `web/app.mjs`만 DOM과 localStorage를 다룬다.
-- 웹은 `web/data/seed.json`을 사용한다.
-- Python 추출 결과에서 웹 스키마로의 변환은 `web_seed.py`가 담당한다.
+- 웹은 `/api/contests`(공식 API + 검수 공고 + 사용자 추가 + 샘플)를 사용하고, 실패 시 `web/data/seed.json`으로 폴백한다.
+- Python 추출 결과에서 웹 스키마로의 변환은 `web_seed.py`가 담당한다. 공식 API 어댑터는 `contest_model.make_contest`로 같은 스키마를 만든다.
+- 공식 API 호출은 `sources/`에서만 한다. 키는 환경변수(GitHub Secret)로만 읽고 응답·로그·오류에 넣지 않는다.
+- 테스트는 `CONTESTFIT_SOURCE_MODE=fixture`(녹화 응답) 또는 `off`로 실행한다. 단위 테스트에서 실제 API를 호출하지 않는다.
 
 ## 금지 사항
 
@@ -44,6 +46,7 @@ python -m compileall -q src tests
 node --check web/decision-engine.mjs
 node --check web/config.mjs
 node --check web/app.mjs
+npx playwright test   # fixture E2E
 ```
 
 Windows PowerShell에서는 `PYTHONPATH=src` 대신 `$env:PYTHONPATH='src'`를 사용한다.

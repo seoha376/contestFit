@@ -102,5 +102,18 @@ class DepartmentTests(unittest.TestCase):
         self.assertEqual(search_schools(indexed, "서울")["count"], 2)
 
 
+class CombinedQueryTests(unittest.TestCase):
+    def test_school_and_major_terms_narrow_results(self) -> None:
+        from posting_validation.departments import search_catalog
+        catalog = {"departments": [
+            {"school": "서울과학기술대학교", "major": "산업공학과", "region": "서울", "family": "공학"},
+            {"school": "부산대학교", "major": "산업공학과", "region": "부산", "family": "공학"},
+            {"school": "서울과학기술대학교", "major": "경영학과", "region": "서울", "family": "사회"},
+        ]}
+        result = search_catalog(catalog, "서울과학기술대학교 산업공학")["departments"]
+        self.assertEqual([(item["school"], item["major"]) for item in result], [("서울과학기술대학교", "산업공학과")])
+        self.assertEqual(len(search_catalog(catalog, "산업공학")["departments"]), 2)
+
+
 if __name__ == "__main__":
     unittest.main()

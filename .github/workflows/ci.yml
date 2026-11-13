@@ -5,20 +5,23 @@ on:
   push:
     branches:
       - main
+  workflow_call:
 
 permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  group: ci-${{ github.workflow }}-${{ github.ref }}-${{ github.event_name }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_call' }}
 
 jobs:
   test:
+    name: Unit tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
       PYTHONPATH: src
+      CONTESTFIT_SOURCE_MODE: "off"
 
     steps:
       - name: Checkout
@@ -27,7 +30,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.12"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -41,14 +44,76 @@ jobs:
         run: node --test tests/web/decision-engine.test.mjs
 
       - name: Check Python syntax
-        run: python -m compileall -q src tests
+        run: python -m compileall -q src tests api
 
       - name: Check JavaScript syntax
         run: |
-          node --check web/decision-engine.mjs
-          node --check web/config.mjs
-          node --check web/app.mjs
+          for file in web/*.mjs scripts/*.mjs tests/e2e/*.mjs playwright.config.mjs; do node --check "$file"; done
 
       - name: Validate committed JSON data
+        # Recorded API fixtures hold date placeholders such as {{D+4:epoch}} that the
+        # fixture loader fills in at run time, so they only parse after substitution.
         run: |
-          python -c "import json, pathlib; [json.loads(path.read_text(encoding='utf-8')) for path in pathlib.Path('.').glob('*.json')]; json.loads(pathlib.Path('web/data/seed.json').read_text(encoding='utf-8'))"
+          python - <<'PY'
+          import json, pathlib, re, sys
+
+          files = [
+              *pathlib.Path(".").glob("*.json"),
+              *pathlib.Path("web/data").glob("*.json"),
+              *pathlib.Path("tests/fixtures").rglob("*.json"),
+          ]
+          bad = 0
+          for path in sorted(files):
+              text = re.sub(r"\{\{[^}]*\}\}", "0", path.read_text(encoding="utf-8"))
+              try:
+                  json.loads(text)
+              except ValueError as error:
+                  bad += 1
+                  print(f"::error file={path}::invalid JSON: {error}")
+          print(f"{len(files)} JSON files checked, {bad} invalid")
+          sys.exit(1 if bad else 0)
+          PY
+
+      - name: Check official API adapters against recorded payloads
+        env:
+          CONTESTFIT_SOURCE_MODE: fixture
+        run: python -m posting_validation.sources.check --min-ok 8
+
+  e2e:
+    name: E2E (recorded API payloads)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install Playwright
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Run E2E tests (desktop + mobile)
+        run: npx playwright test
+
+      - name: Upload E2E report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-report-fixture
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14

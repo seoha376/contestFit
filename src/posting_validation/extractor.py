@@ -145,6 +145,21 @@ def _direct_deadline_range_evidence(text: str) -> str | None:
     return None
 
 
+def _deadline_from_evidence(evidence: str):
+    """Use an abbreviated range end only when its year is unambiguous."""
+    dates = list(DATE_RE.finditer(evidence))
+    if len(dates) == 1:
+        year, start_month, start_day = map(int, dates[0].groups())
+        remainder = evidence[dates[0].end():]
+        abbreviated_end = re.match(r"^\s*\.?\s*[~–-]\s*(\d{1,2})[.\-/월]\s*(\d{1,2})(?:일)?", remainder)
+        if abbreviated_end:
+            end_month, end_day = map(int, abbreviated_end.groups())
+            if (end_month, end_day) < (start_month, start_day):
+                return None
+            return parse_deadline(f"마감일 {year}-{end_month:02d}-{end_day:02d}")
+    return parse_deadline(evidence)
+
+
 def _submission_format_field(text: str) -> dict:
     text_lines = lines(text)
     for index, line in enumerate(text_lines):
@@ -288,7 +303,7 @@ def _business_registration_field(text: str) -> dict:
 
 def _nationality_field(text: str) -> dict:
     for line in lines(text):
-        if re.search(r"대한민국\s*(?:국민|국적)|한국\s*국적|내국인", line):
+        if re.search(r"대한민국\s*(?:국민|국적)|한국\s*국적|내국인|(?<![전외])국민\s*(?:누구나|이면|으로서)", line):
             return field("대한민국", line)
         if re.search(r"외국인.{0,12}(?:가능|포함)|국적\s*(?:제한\s*)?(?:없음|무관)", line):
             return field("제한없음", line)
@@ -423,8 +438,11 @@ def _simple(text: str, pats: list[str]) -> dict:
     return field(labeled_value(evidence), evidence) if evidence else field()
 
 
-def extract_posting(url: str, html: str, text: str, item_id: str | None = None) -> dict:
+def extract_posting(url: str, html: str, text: str, item_id: str | None = None, force_type: str | None = None) -> dict:
+    """Extract attributes; ``force_type`` applies one posting type's rules (e.g. official API text)."""
     posting_type, type_evidence = classify_type(text, html)
+    if force_type and force_type != posting_type:
+        posting_type, type_evidence = force_type, None
     text = main_posting_text(text)
     data = {"id": item_id, "source_url": url}
     data.update({name: field() for name in COMMON_FIELDS + ALL_TYPE_FIELDS})
@@ -442,7 +460,7 @@ def extract_posting(url: str, html: str, text: str, item_id: str | None = None) 
     deadline_evidence = first_line(text, [r"마감.{0,20}20\d{2}[.\-/년]\s*\d{1,2}[.\-/월]\s*\d{1,2}", r"(접수|모집|지원).{0,12}20\d{2}[.\-/년]\s*\d{1,2}[.\-/월]\s*\d{1,2}"])
     if not deadline_evidence:
         deadline_evidence = _direct_deadline_range_evidence(text)
-    deadline = parse_deadline(deadline_evidence or "")
+    deadline = _deadline_from_evidence(deadline_evidence or "")
     data["deadline"] = field(deadline.date().isoformat(), deadline_evidence) if deadline and deadline_evidence else field()
     data["region"] = _simple(text, [r"^(지역|활동지역|근무지역)\s*[:：]"])
     if data["region"]["value"] is None:

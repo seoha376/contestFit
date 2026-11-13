@@ -1,0 +1,109 @@
+name: Live check
+
+# Calls every official API with the repository secrets and runs the live E2E suite
+# against the deployed site. Runs after each deploy, daily, and on demand.
+on:
+  workflow_call:
+    inputs:
+      base_url:
+        type: string
+        required: false
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "배포 URL (비우면 Vercel 프로젝트의 운영 주소를 조회)"
+        required: false
+  schedule:
+    - cron: "17 21 * * *"  # 매일 06:17 KST
+
+permissions:
+  contents: read
+
+jobs:
+  official-apis:
+    name: Official API calls
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONPATH: src
+      CONTESTFIT_SOURCE_MODE: live
+      DATA_GO_KR_SERVICE_KEY: ${{ secrets.DATA_GO_KR_SERVICE_KEY }}
+      KOCCA_SERVICE_KEY: ${{ secrets.KOCCA_SERVICE_KEY }}
+      KCTF_API_KEY: ${{ secrets.KCTF_API_KEY }}
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      WORK24_AUTH_KEY: ${{ secrets.WORK24_AUTH_KEY }}
+      CAREERNET_API_KEY: ${{ secrets.CAREERNET_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Call every configured API once
+        run: python -m posting_validation.sources.check --min-ok 2
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-check
+          path: test-results/source-check.json
+
+  database:
+    name: Supabase maintenance
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - name: Purge expired cache and report row counts
+        if: env.SUPABASE_DB_URL != ''
+        run: |
+          psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -c "select public.purge_expired_cache() as purged;" \
+            -c "select (select count(*) from public.submissions) as submissions, (select count(*) from public.feedback) as feedback, (select count(*) from public.api_cache) as cache;"
+      - name: Skip notice
+        if: env.SUPABASE_DB_URL == ''
+        run: echo "::notice::SUPABASE_DB_URL secret이 없어 DB 점검을 건너뜁니다."
+
+  e2e-live:
+    name: Live E2E (deployed site)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_PROJECT_NAME: ${{ vars.VERCEL_PROJECT_NAME || 'contestfit' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Resolve site URL
+        id: site
+        run: |
+          url="${{ inputs.base_url || vars.PRODUCTION_URL }}"
+          if [ -z "$url" ] && [ -n "$VERCEL_TOKEN" ]; then
+            node scripts/vercel-production-url.mjs --project "$VERCEL_PROJECT_NAME" >> "$GITHUB_OUTPUT"
+          else
+            echo "url=$url" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install Playwright
+        if: steps.site.outputs.url != ''
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+      - name: Run live E2E
+        if: steps.site.outputs.url != ''
+        env:
+          E2E_MODE: live
+          BASE_URL: ${{ steps.site.outputs.url }}
+        run: npx playwright test
+      - name: Skip notice
+        if: steps.site.outputs.url == ''
+        run: echo "::notice::배포 URL을 알 수 없어 live E2E를 건너뜁니다 (PRODUCTION_URL 변수 또는 VERCEL_TOKEN 필요)."
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.site.outputs.url != ''
+        with:
+          name: e2e-report-live
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14

@@ -32,3 +32,9 @@ Thumbs.db
 *.log
 *.tmp
 tmp/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+.vercel

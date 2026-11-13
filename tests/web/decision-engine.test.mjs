@@ -240,3 +240,49 @@ test("정규화하지 못한 부문 자격은 확인 필요지만 유의사항�
   assert.equal(judgeContest(unmodeled, baseProfile, DEFAULT_SETTINGS).result, "needs_review");
   assert.equal(judgeContest(noticeOnly, baseProfile, DEFAULT_SETTINGS).result, "eligible");
 });
+
+test("자격 정보가 없는 공식 API 공고는 지원 가능으로 단정하지 않는다", () => {
+  const apiContest = { ...contest({}), eligibility_known: false };
+  const decision = judgeContest(apiContest, baseProfile);
+  assert.equal(decision.result, "needs_review");
+  assert.equal(decision.reasons[0].kind, "eligibility_unknown");
+  // 기존 데이터(플래그 없음)는 기존 판정을 유지한다.
+  assert.equal(judgeContest(contest({}), baseProfile).result, "eligible");
+});
+
+test("계열 조건은 학과 카탈로그의 계열로 비교한다", () => {
+  const engineering = contest({
+    major_scope: "공학계열",
+    evidence: { major_scope: "공학계열 전공 재학생" },
+    evidence_source: { major_scope: "body" },
+  });
+  const engineer = { ...baseProfile, affiliation: "산업공학과", school: "서울과학기술대학교", majorFamily: "공학" };
+  assert.equal(judgeContest(engineering, engineer).result, "eligible");
+  const business = { ...baseProfile, affiliation: "경영학과", school: "연세대학교", majorFamily: "인문사회" };
+  assert.equal(judgeContest(engineering, business).result, "ineligible");
+  const unknownFamily = { ...baseProfile, affiliation: "자유전공학부", school: "예시대학교", majorFamily: "" };
+  assert.equal(judgeContest(engineering, unknownFamily).result, "needs_review");
+});
+
+test("이공계 조건은 공학과 자연 계열을 모두 허용한다", () => {
+  const stem = contest({
+    major_scope: "이공계 전공",
+    evidence: { major_scope: "이공계 전공자 대상" },
+    evidence_source: { major_scope: "body" },
+  });
+  assert.equal(judgeContest(stem, { ...baseProfile, affiliation: "수학과", majorFamily: "자연과학" }).result, "eligible");
+  assert.equal(judgeContest(stem, { ...baseProfile, affiliation: "국어국문학과", majorFamily: "인문사회" }).result, "ineligible");
+  const social = contest({ major_scope: "사회계열", evidence: { major_scope: "사회계열 전공자" }, evidence_source: { major_scope: "body" } });
+  assert.equal(judgeContest(social, { ...baseProfile, affiliation: "경영학과", majorFamily: "인문사회" }).result, "eligible");
+});
+
+test("관련 전공 표현은 학과명이 달라도 불가로 단정하지 않는다", () => {
+  const related = contest({
+    major_scope: "IT 관련 전공",
+    evidence: { major_scope: "IT 관련 전공 대학생" },
+    evidence_source: { major_scope: "body" },
+  });
+  const decision = judgeContest(related, { ...baseProfile, affiliation: "산업공학과", majorFamily: "공학" });
+  assert.equal(decision.result, "needs_review");
+  assert.equal(decision.reasons[0].kind, "related_major");
+});
