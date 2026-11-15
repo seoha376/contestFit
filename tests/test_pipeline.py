@@ -161,6 +161,19 @@ class PipelineTests(unittest.TestCase):
     item = extract_posting("https://example/1", html, text)
     self.assertEqual(item["deadline"], {"value": "2026-11-30", "evidence": "마감일2026.11.30"})
 
+ def test_extractor_uses_end_of_range_when_year_is_omitted(self) -> None:
+    text = "서울특별시 행정서식 개선 아이디어 공모전\n접수기간: 2026. 10. 13. ~ 11. 20. (마감일 23:59)"
+    item = extract_posting("https://example.org/contest", "", text)
+    self.assertEqual(item["deadline"], {
+        "value": "2026-11-20",
+        "evidence": "접수기간: 2026. 10. 13. ~ 11. 20. (마감일 23:59)",
+    })
+
+ def test_extractor_does_not_guess_year_for_cross_year_short_range(self) -> None:
+    text = "예시 공모전\n접수기간: 2026. 12. 20. ~ 01. 15."
+    item = extract_posting("https://example.org/contest", "", text)
+    self.assertIsNone(item["deadline"]["value"])
+
  def test_structured_linkareer_labels_fill_common_attributes(self) -> None:
     html = '<title>지역 콘텐츠 서포터즈</title><script>{"@id":"https://linkareer.com/list/activity","name":"대외활동"}</script>'
     text = """지역 콘텐츠 서포터즈
