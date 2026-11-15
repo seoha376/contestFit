@@ -1,0 +1,7 @@
+{"total": 2, "items": [
+ {"id": 701, "name": "(테스트) 2026 화이트햇 대학생 CTF", "host": "정보보호 대학생 연합(테스트)", "registration_status": "registration_open",
+  "apply_start_date": "{{D-7:isoz}}", "apply_end_date": "{{D+6:isoz}}", "start_date": "{{D+14:isoz}}", "end_date": "{{D+15:isoz}}",
+  "link": "https://ctf.example.org/2026", "url": "https://k-ctf.org/contests/701", "format": "Jeopardy"},
+ {"id": 702, "name": "(테스트) 마감된 CTF", "host": "테스트", "registration_status": "registration_closed",
+  "apply_end_date": "{{D+3:isoz}}", "url": "https://k-ctf.org/contests/702"}
+]}

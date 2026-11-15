@@ -1,0 +1,116 @@
+name: Deploy
+
+# Push to main (or run manually) → tests → Supabase migration → Vercel production → live checks.
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  deploy:
+    name: Deploy to Vercel
+    needs: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: ${{ steps.url.outputs.url }}
+    outputs:
+      url: ${{ steps.url.outputs.url }}
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_PROJECT_NAME: ${{ vars.VERCEL_PROJECT_NAME || 'contestfit' }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      DATA_GO_KR_SERVICE_KEY: ${{ secrets.DATA_GO_KR_SERVICE_KEY }}
+      KOCCA_SERVICE_KEY: ${{ secrets.KOCCA_SERVICE_KEY }}
+      KCTF_API_KEY: ${{ secrets.KCTF_API_KEY }}
+      KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+      KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      WORK24_AUTH_KEY: ${{ secrets.WORK24_AUTH_KEY }}
+      CAREERNET_API_KEY: ${{ secrets.CAREERNET_API_KEY }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check deployment secrets
+        run: |
+          if [ -z "$VERCEL_TOKEN" ]; then
+            echo "::error::VERCEL_TOKEN secret이 없습니다. docs/deploy-setup.md의 1단계를 확인하세요."
+            exit 1
+          fi
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "::warning::Supabase secret이 없어 배포 서버가 임시 로컬 저장소를 씁니다(재시작 시 사라짐)."
+          fi
+          missing=""
+          for name in DATA_GO_KR_SERVICE_KEY KOCCA_SERVICE_KEY KCTF_API_KEY KAGGLE_USERNAME KAGGLE_KEY WORK24_AUTH_KEY CAREERNET_API_KEY; do
+            [ -n "${!name}" ] || missing="$missing $name"
+          done
+          [ -z "$missing" ] || echo "::warning::아직 없는 API 키:$missing (해당 출처는 '키 미설정'으로 표시됩니다)"
+
+      - name: Apply Supabase migrations
+        if: env.SUPABASE_DB_URL != ''
+        run: |
+          for file in supabase/migrations/*.sql; do
+            echo "apply $file"
+            psql "$SUPABASE_DB_URL" -v ON_ERROR_STOP=1 -q -f "$file"
+          done
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Link Vercel project
+        if: env.VERCEL_PROJECT_ID == ''
+        run: vercel link --yes --project "$VERCEL_PROJECT_NAME" --token "$VERCEL_TOKEN"
+
+      - name: Deploy production
+        id: deploy
+        run: |
+          args=(deploy --prod --yes --token "$VERCEL_TOKEN" --env CONTESTFIT_SOURCE_MODE=live)
+          for name in SUPABASE_URL SUPABASE_SERVICE_ROLE_KEY DATA_GO_KR_SERVICE_KEY KOCCA_SERVICE_KEY KCTF_API_KEY KAGGLE_USERNAME KAGGLE_KEY WORK24_AUTH_KEY CAREERNET_API_KEY; do
+            if [ -n "${!name}" ]; then args+=(--env "$name=${!name}"); fi
+          done
+          deployment=$(vercel "${args[@]}" | tail -n 1)
+          echo "deployment=$deployment" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve public production URL
+        id: url
+        run: node scripts/vercel-production-url.mjs --deployment "${{ steps.deploy.outputs.deployment }}" >> "$GITHUB_OUTPUT"
+
+      - name: Smoke test
+        run: |
+          url="${{ steps.url.outputs.url }}"
+          for attempt in 1 2 3 4 5; do
+            if curl -fsS "$url/api/health" -o health.json; then break; fi
+            sleep 10
+          done
+          python3 -c "import json; h=json.load(open('health.json')); print(h); assert h['ok'] and h['source_mode']=='live'"
+          curl -fsS "$url/" | grep -q "CONTEST FIT"
+          echo "### 배포 완료: $url" >> "$GITHUB_STEP_SUMMARY"
+
+  live:
+    needs: deploy
+    uses: ./.github/workflows/live-check.yml
+    with:
+      base_url: ${{ needs.deploy.outputs.url }}
+    secrets: inherit

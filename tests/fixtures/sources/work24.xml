@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wantedRoot><total>3</total><startPage>1</startPage><display>100</display>
+<wanted><wantedAuthNo>K990001</wantedAuthNo><company>(테스트) 데이터솔루션</company><title>(테스트) 데이터 분석 체험형 인턴 모집</title>
+<salTpNm>월급</salTpNm><sal>220만원</sal><region>서울 강남구</region><holidayTpNm>주5일근무</holidayTpNm>
+<minEdubg>학력무관</minEdubg><career>신입</career><regDt>{{D-4:yy}}</regDt><closeDt>{{D+10:yy}}</closeDt>
+<wantedInfoUrl>https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K990001</wantedInfoUrl><empTpCd>20</empTpCd></wanted>
+<wanted><wantedAuthNo>K990002</wantedAuthNo><company>(테스트) 공공기관</company><title>(테스트) 채용형 인턴 (행정)</title>
+<salTpNm>월급</salTpNm><sal>250만원</sal><region>세종</region><minEdubg>대졸(4년)</minEdubg><career>관계없음</career>
+<regDt>{{D-1:yy}}</regDt><closeDt>{{D+14:yy}}</closeDt>
+<wantedInfoUrl>https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K990002</wantedInfoUrl><empTpCd>20</empTpCd></wanted>
+<wanted><wantedAuthNo>K990003</wantedAuthNo><company>(테스트) 물류</company><title>(테스트) 물류 사무원 정규직</title>
+<regDt>{{D-1:yy}}</regDt><closeDt>{{D+14:yy}}</closeDt>
+<wantedInfoUrl>https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K990003</wantedInfoUrl></wanted>
+</wantedRoot>
