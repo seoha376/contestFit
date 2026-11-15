@@ -1,6 +1,16 @@
 export const APP_CONFIG = Object.freeze({
   confidenceThreshold: 0.7,
   storageKey: "contest-fit.profile.v1",
+  profilesKey: "contest-fit.profiles.v1",
+  checklistKey: "contest-fit.checklist.v1",
+  kindOptions: [
+    { value: "contest", label: "공모전" },
+    { value: "competition", label: "대회" },
+    { value: "support", label: "지원사업" },
+    { value: "internship", label: "인턴" },
+  ],
+  // 전국대학별학과정보 표준데이터의 계열 값과 동일하게 맞춘다.
+  majorFamilies: ["공학", "자연과학", "인문사회", "의학", "예체능", "교육"],
   filters: [
     { id: "all", label: "전체" },
     { id: "eligible", label: "가능" },
@@ -34,6 +44,7 @@ export const EMPTY_PROFILE = Object.freeze({
   age: "",
   affiliation: "",
   school: "",
+  majorFamily: "",
   skills: [],
   interests: [],
   region: "",

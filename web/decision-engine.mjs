@@ -103,6 +103,32 @@ function compareMajorScope(profileValue, requiredValue) {
     .includes(String(requiredValue).replace(/\s+/g, "").toLowerCase());
 }
 
+const MAJOR_FAMILIES = ["공학", "자연", "인문", "사회", "교육", "의약", "예체능"];
+
+// 계열 표현(공학계열, 이공계)을 학과 카탈로그의 계열 값으로 바꾼다. 계열 조건이 아니면 null.
+export function requiredFamilies(requiredValue) {
+  const text = (Array.isArray(requiredValue) ? requiredValue.join(" ") : String(requiredValue ?? "")).replace(/\s+/g, "");
+  const families = new Set();
+  if (/이공계|이공학|STEM/i.test(text)) { families.add("공학"); families.add("자연"); }
+  for (const family of MAJOR_FAMILIES) {
+    if (new RegExp(`${family}계열|${family}계`).test(text)) families.add(family);
+  }
+  if (/예술계열|체육계열|예체능/.test(text)) families.add("예체능");
+  return families.size ? [...families] : null;
+}
+
+// 카탈로그 계열은 "인문사회", "자연과학", "의학"처럼 묶여 있어 포함 관계로 비교한다.
+function familyMatches(families, profileFamily) {
+  const value = String(profileFamily ?? "").replace(/계열$/, "");
+  const aliases = { 의약: ["의약", "의학"], 자연: ["자연"], 인문: ["인문"], 사회: ["사회"] };
+  return families.some((family) => (aliases[family] ?? [family]).some((alias) => value.includes(alias)));
+}
+
+function isRelatedMajorPhrase(requiredValue) {
+  const text = Array.isArray(requiredValue) ? requiredValue.join(" ") : String(requiredValue ?? "");
+  return /관련|계통|유관/.test(text);
+}
+
 function evaluateAge(section, profile, output) {
   if (!isSpecified(section, "age")) return;
   if (section.age?.basis_date) {
@@ -159,8 +185,21 @@ function evaluateSimple(section, profile, field, profileKey, output) {
       return;
     }
   }
+  if (field === "major_scope") {
+    const families = requiredFamilies(section[field]);
+    if (families) {
+      if (!profile.majorFamily) {
+        output.review.push(reason(field, "missing_profile", "계열 조건과 비교할 학과 계열이 없습니다. 학과를 목록에서 선택해 주세요.", section.evidence?.[field]));
+      } else if (!familyMatches(families, profile.majorFamily)) {
+        output.fail.push(reason(field, "mismatch", `${families.join("·")} 계열 조건에 해당하지 않습니다.`, section.evidence?.[field]));
+      }
+      return;
+    }
+  }
   if (profileValue == null || profileValue === "") {
     output.review.push(reason(field, "missing_profile", `프로필 ${FIELD_LABELS[field]}을(를) 입력해야 합니다.`, section.evidence?.[field]));
+  } else if (field === "major_scope" && !compareMajorScope(profileValue, section[field]) && isRelatedMajorPhrase(section[field])) {
+    output.review.push(reason(field, "related_major", "‘관련 전공’ 범위에 내 학과가 포함되는지 원문 확인이 필요합니다.", section.evidence?.[field]));
   } else if (!(field === "major_scope" ? compareMajorScope(profileValue, section[field]) : compareText(profileValue, section[field]))) {
     output.fail.push(reason(field, "mismatch", `${FIELD_LABELS[field]} 조건을 충족하지 않습니다.`, section.evidence?.[field]));
   }
@@ -275,6 +314,16 @@ export function evaluateSection(section, profile, settings = DEFAULT_SETTINGS) {
 
 export function judgeContest(contest, profile, settings = DEFAULT_SETTINGS) {
   const evaluations = contest.sections.map((section) => evaluateSection(section, profile, settings));
+  if (contest.eligibility_known === false && !evaluations.some((item) => item.result === "ineligible")) {
+    return {
+      result: "needs_review",
+      reasons: [reason("source", "eligibility_unknown", "출처가 참가 자격을 제공하지 않아 원문 확인이 필요합니다. 상세에서 원문 분석을 실행하세요.")],
+      sections: evaluations,
+      possibleSections: [],
+      missingFields: [...new Set(evaluations.flatMap((item) => item.missingFields))],
+      otherConditions: [...new Set(evaluations.flatMap((item) => item.otherConditions))],
+    };
+  }
   if (contest.validation_status === "draft") {
     return {
       result: "needs_review",

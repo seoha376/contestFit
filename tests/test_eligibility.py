@@ -298,5 +298,13 @@ class FakeClock:
         self.value += seconds
 
 
+class NationalityPhraseTests(unittest.TestCase):
+    def test_citizens_anyone_phrase_is_a_nationality_condition(self) -> None:
+        from posting_validation.extractor import _nationality_field
+        self.assertEqual(_nationality_field("공모자격: 행정서식 이용 경험이 있는 국민 누구나 (개인)")["value"], "대한민국")
+        self.assertIsNone(_nationality_field("전국민 누구나 참여 가능")["value"])
+        self.assertIsNone(_nationality_field("외국민 누구나")["value"])
+
+
 if __name__ == "__main__":
     unittest.main()

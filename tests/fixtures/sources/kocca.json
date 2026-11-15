@@ -1,0 +1,12 @@
+{"INFO": {"resultCode": "INFO-000", "resultMgs": "정상 처리되었습니다", "title": "한국콘텐츠진흥원 게시판 Open API",
+ "boardTitle": "지원사업", "pageNo": 1, "numOfRows": 50, "listCount": 2,
+ "list": [
+  {"title": "(테스트) 2026 대한민국 콘텐츠 스토리 공모전", "intcNoSeq": "T-26-001", "cate": "자유공모", "hit": 120,
+   "regDt": "{{D-5:ymd}}", "link": "www.kocca.kr/kocca/pims/view.do?intcNo=T26001&menuNo=204104",
+   "startDt": "{{D-5:ymd}}", "endDt": "{{D+15:ymd}}",
+   "content": "<p>공모 개요</p><p>응모자격: 만 19세 이상 대한민국 국민 누구나 (개인 또는 팀)</p><p>접수기간: {{D-5:dot}} ~ {{D+15:dot}}</p><p>1차 심사: {{D+20:dot}}</p><p>결과 발표: {{D+30:dot}}</p><p>시상식: {{D+40:dot}}</p><p>제출서류</p><p>- 응모신청서 1부 (HWP)</p><p>- 스토리 기획안 (PDF, A4 10쪽 이내)</p><p>시상내역: 총상금 3,000만 원</p><p>접수방법: 콘텐츠진흥원 누리집 온라인 접수</p>"},
+  {"title": "(테스트) 게임 인디 개발사 제작 지원 모집공고", "intcNoSeq": "T-26-002", "cate": "모집공고", "hit": 80,
+   "regDt": "{{D-2:ymd}}", "link": "www.kocca.kr/kocca/pims/view.do?intcNo=T26002&menuNo=204104",
+   "startDt": "{{D-2:ymd}}", "endDt": "{{D+25:ymd}}",
+   "content": "<p>지원대상: 창업 7년 미만 게임 개발 중소기업</p><p>사업자등록증 필수 제출</p><p>접수기간: {{D-2:dot}} ~ {{D+25:dot}}</p>"}
+ ]}}

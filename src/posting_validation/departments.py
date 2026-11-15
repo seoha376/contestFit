@@ -139,8 +139,13 @@ def sync(api_key: str, year: int, output: Path = CATALOG, max_pages: int = 1000)
 def search_catalog(catalog: dict, query: str, limit: int = 12) -> dict:
     query = query.strip().casefold()
     results = []
-    if len(query) >= 2:
-        results = [item for item in catalog.get("departments", []) if query in item["major"].casefold() or query in item["school"].casefold()][:limit]
+    terms = [term for term in query.split() if term]
+    if len(query) >= 2 and terms:
+        # "서울과학기술대학교 산업공학" narrows to one school; a single term matches school or major.
+        results = [item for item in catalog.get("departments", [])
+                   if all(term in f"{item['school']} {item['major']}".casefold() for term in terms)]
+        results.sort(key=lambda item: (len(terms) > 1 and not item["school"].casefold().startswith(terms[0]), len(item["major"])))
+        results = results[:limit]
     return {
         "departments": results,
         "count": len(catalog.get("departments", [])),
